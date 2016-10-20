@@ -12,7 +12,10 @@ var app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
-app.post("/polls",polls.post);
+
+//app.post("/polls",polls.post);
+app.get("/polls",polls.get);
+
 
 app.use(express.static(path.join(__dirname, 'public')));
 
