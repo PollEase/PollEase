@@ -1,8 +1,5 @@
-var express = require('express');
 var nodemailer = require("nodemailer");
 var colors = require("colors");
-
-var router = express.Router();
 
 var smtpConfig = {
     host: 'smtp.gmail.com',
@@ -14,9 +11,8 @@ var smtpConfig = {
     }
 };
 
+//This is the email transporter
 var transporter = nodemailer.createTransport(smtpConfig);
-
-
 transporter.verify(function(error, success) {
    if (error) {
       console.log(colors.red.bold("Error logging into email: \n"));
@@ -26,8 +22,20 @@ transporter.verify(function(error, success) {
    }
 });
 
-router.post("/email",function(req,res,err){
+/* Options = json
 
-});
+  from: this will always be us.
+  to: comma separated
+  subject: the subject
+  html: the html of the email
+  text: this is a fallback version
+  attachments: this is like attachable files and embedded images
+*/
+//pretty self explanatory.
+function sendEmail(options){
+    transporter.sendMail(options, function(err,info){
+        //Do we really need to handler errors with sending emails?  Probably not tbh
+    });
+};
 
-module.exports = router;
+module.exports = sendEmail;
