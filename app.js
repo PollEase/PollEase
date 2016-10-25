@@ -31,8 +31,6 @@ app.put("/editPreferences",editPreferences.put);
 var results = require("./routes/results.js");
 app.get("/results",results.get)
 
-sql();
-
 app.use(express.static(path.join(__dirname, 'public')));
 
 module.exports = app;
