@@ -6,7 +6,6 @@ var bodyParser = require("body-parser");
 
 var sql = require("./helpers/sql.js");
 
-
 var app = express();
 
 app.use(bodyParser.json());

@@ -3,8 +3,6 @@ var colors = require("colors");
 
 const dbname = ":memory:";
 
-
-
 // query -> currently plain text
 //callback called on every row
 
@@ -21,6 +19,7 @@ function select(query, callback){
 }
 
 // query -> currently a string, we'll change this.
+
 function insert(query,callback){
   var db = new sqlite3.Database(dbname);
 
