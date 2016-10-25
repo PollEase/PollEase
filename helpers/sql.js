@@ -6,6 +6,8 @@ const dbname = ":memory:";
 
 
 // query -> currently plain text
+//callback called on every row
+
 function select(query, callback){
 
   var db = new sqlite3.Database(dbname);
@@ -16,6 +18,13 @@ function select(query, callback){
 
   db.close();
 
+}
+
+// query -> currently a string, we'll change this.
+function insert(query,callback){
+  var stmt = db.prepare(query);
+  stmt.run();
+  stmt.finalize();
 }
 
 
