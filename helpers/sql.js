@@ -1,4 +1,4 @@
-var mysql = require("mysql");
+var mysql = require("sqlite3").verbose();
 var colors = require("colors");
 
 const db = "pollease";
