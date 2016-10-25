@@ -1,4 +1,4 @@
-var mysql = require("sqlite3").verbose();
+var sqlite3 = require("sqlite3").verbose();
 var colors = require("colors");
 
 const dbname = ":memory:";
@@ -17,7 +17,7 @@ function execute(query, callback){
     stmt.finalize();
 
     db.each("SELECT rowid AS id, info FROM lorem", function(err, row) {
-        console.log(row.id + ": " + row.info);
+    //    console.log(row.id + ": " + row.info);
     });
   });
 

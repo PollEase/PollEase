@@ -4,6 +4,9 @@ var favicon = require('serve-favicon');
 var colors = require("colors");
 var bodyParser = require("body-parser");
 
+var sql = require("./helpers/sql.js");
+
+
 var app = express();
 
 app.use(bodyParser.json());
@@ -28,6 +31,7 @@ app.put("/editPreferences",editPreferences.put);
 var results = require("./routes/results.js");
 app.get("/results",results.get)
 
+sql();
 
 app.use(express.static(path.join(__dirname, 'public')));
 
