@@ -1,3 +1,4 @@
+var sql = require("./../db/sql.js");
 var sendmail = require("./sendmail.js");
 var url = require("url");
 

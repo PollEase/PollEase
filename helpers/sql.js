@@ -1,7 +1,9 @@
 var mysql = require("mysql");
 var colors = require("colors");
 
-function execute(query,db, callback){
+const db = "pollease";
+
+function execute(query, callback){
 
     var connection = mysql.createConnection({
         host:"localhost",
