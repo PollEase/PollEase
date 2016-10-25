@@ -1,4 +1,54 @@
-<div class="container">
-	<h1>PollEase</h1>
-	Hi from /public
-</div>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Courses</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="app.css">
+    </head>
+    <body>
+        <nav class="navbar navbar-default">
+            <h1 class="logo">[-PollEase-]</h1>
+        </nav>
+
+            <div class="container">
+                <div class="content">
+                    <h1 class="slogan">Hangout Planning Made Easy!</h1>
+
+                    <button type="button" class="btn btn-default btn-lg">
+                        Start Hangout Poll
+                    </button>
+                    <h1 class="or">or</h1>
+                    <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal">
+                        Get Your Active Polls
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">Get Your Active Polls</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <h5>Recieve an email with links to all of the active polls you are involved in!</h5>
+                                        <label for="request-email">Email</label>
+                                        <input type="text" class="form-control" id="request-email">
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-success">Send</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div><!-- end tabs -->
+            </div>
+    </body>
+</html>
