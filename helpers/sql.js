@@ -22,9 +22,16 @@ function select(query, callback){
 
 // query -> currently a string, we'll change this.
 function insert(query,callback){
-  var stmt = db.prepare(query);
-  stmt.run();
-  stmt.finalize();
+  var db = new sqlite3.Database(dbname);
+
+  db.serialize(function() {
+    var stmt = db.prepare(query);
+    stmt.run();
+    stmt.finalize();
+  });
+
+  db.close();
+
 }
 
 
