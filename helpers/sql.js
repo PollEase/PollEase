@@ -1,24 +1,27 @@
 var mysql = require("sqlite3").verbose();
 var colors = require("colors");
 
-const db = "pollease";
+const dbname = ":memory:";
 
 function execute(query, callback){
 
-    var connection = mysql.createConnection({
-        host:"localhost",
-        user:"admin",
-        password:"pwd",
-        database:db
+  var db = new sqlite3.Database(dbname);
+
+  db.serialize(function() {
+    db.run("CREATE TABLE lorem (info TEXT)");
+
+    var stmt = db.prepare("INSERT INTO lorem VALUES (?)");
+    for (var i = 0; i < 10; i++) {
+        stmt.run("Ipsum " + i);
+    }
+    stmt.finalize();
+
+    db.each("SELECT rowid AS id, info FROM lorem", function(err, row) {
+        console.log(row.id + ": " + row.info);
     });
-    connection.connect(function(err){
-        if(err){
-          console.log(colors.blue("This is not yet implemented, ignore this message."));
-          console.log(colors.red.bold("Couldn't connect to mysql.\n"));
-        }
-    });
-    connection.query(query,callback);
-    connection.end();
+  });
+
+  db.close();
 
 }
 
