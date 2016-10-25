@@ -15,7 +15,13 @@ function post(req,res){
 }
 
 function get(req,res){
+  //
+  // req url -> www.pollease.com/polls?email=lukewood@gmail.com
+  // {
+  //    email: "lukewood@gmail.com"
+  //  }
   var address = url.parse(req.url, true).query.email;
+
   var mail_options = {
       to:address,
       subject:"Hello Email",
@@ -23,7 +29,7 @@ function get(req,res){
       text:"Hello from polleasemessages@gmail.com"
   };
   //sql("",function(err,rows){
-    sendmail(mail_options);
+  sendmail(mail_options);
   //});
   res.send("mail sent to "+address);
 }
