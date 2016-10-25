@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 var email = require("./routes/email.js");
 app.post("/email",email.post);
 
-var createPoll = require("./routes/createpoll.js");
+var createPoll = require("./routes/createPoll.js");
 app.post("/createPoll",createPoll.post);
 
 var editPoll = require("./routes/edit.js");
@@ -20,7 +20,7 @@ app.put("/editPoll",editPoll.put);
 var submitPreferences = require("./routes/submitPreferences.js");
 app.post("/submitPreferences",submitPreferences.post);
 
-var editPreferences = require("./routes/editpreferences.js");
+var editPreferences = require("./routes/editPreferences.js");
 app.put("/editPreferences",editPreferences.put);
 
 var results = require("./routes/results.js");
