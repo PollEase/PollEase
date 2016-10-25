@@ -1,0 +1,28 @@
+<ul class="list-group">
+   <li class="list-group-item list-group-item-info">
+      Event Locations
+   </li>
+   <li  class="list-group-item"
+        *ngFor="let location of locations">
+      <div class="input-group">
+        {{ location }}
+        <span class="input-group-btn">
+          <button class="btn btn-danger" (click)="removeLocation(location)">
+            <span class="glyphicon-minus"></span>
+          </button>
+        </span>
+      </div>
+   </li>
+   <li class="list-group-item">
+      <div class="input-group">
+         <input class="form-control"
+            placeholder="Add Location"
+            [(ngModel)]="_temp" />
+         <span class="input-group-btn">
+            <button class="btn btn-info" (click)="addLocation()" [disabled]="!_temp">
+                <span class="glyphicon-plus"></span>
+            </button>
+         </span>
+      </div>
+   </li>
+</ul>
