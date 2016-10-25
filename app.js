@@ -4,6 +4,8 @@ var favicon = require('serve-favicon');
 var colors = require("colors");
 var bodyParser = require("body-parser");
 
+var app = express();
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 
@@ -14,7 +16,7 @@ app.post("/email",email.post);
 var createPoll = require("./routes/createPoll.js");
 app.post("/createPoll",createPoll.post);
 
-var editPoll = require("./routes/edit.js");
+var editPoll = require("./routes/editPoll.js");
 app.put("/editPoll",editPoll.put);
 
 var submitPreferences = require("./routes/submitPreferences.js");
@@ -24,9 +26,8 @@ var editPreferences = require("./routes/editPreferences.js");
 app.put("/editPreferences",editPreferences.put);
 
 var results = require("./routes/results.js");
-app.get("/results",reuslts.get)''
+app.get("/results",results.get)
 
-var app = express();
 
 app.use(express.static(path.join(__dirname, 'public')));
 

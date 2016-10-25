@@ -3,6 +3,6 @@ function put(req,res){
 
 }
 
-const exports = {};
+var exports = {};
 exports.put = put;
 module.exports = exports;

@@ -2,6 +2,6 @@ function post(req,res){
 
 }
 
-const exports = {};
+var exports = {};
 exports.post = post;
 module.exports = exports;

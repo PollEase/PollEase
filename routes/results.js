@@ -7,6 +7,6 @@ function get(req,res){
 
 }
 
-const exports = {};
+var exports = {};
 exports.get = get;
 module.exports = exports;
