@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 
 import { LocationPickerComponent } from './../location-picker/location-picker.component';
+import { EmailPickerComponent } from './../email-picker/email-picker.component';
 
 @Component({
 	selector: 'create-event-poll-form',
