@@ -11,8 +11,16 @@ import { EmailPickerComponent } from './../email-picker/email-picker.component';
 })
 
 export class CreateEventPollFormComponent {
+	creatorName: string;
+	creatorEmail: string;
+	eventTitle: string;
+	eventDescription: string;
+	needPickup: boolean;
+	canPickup: boolean;
+	pickupQuantity: number;
+	hasCoverCharge: boolean;
+	coverQuantity: number;
+	fundContribution: number;
 
-	constructor(private route : ActivatedRoute, private router: Router) {
-
-	}
+	constructor(private route : ActivatedRoute, private router: Router) {}
 }
