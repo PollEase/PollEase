@@ -1,0 +1,99 @@
+<div class="create-event-poll-form">
+    <form>
+        <h3>Creator Info</h3>
+        <div class="form-field required">
+            <label for="creatorName">
+                Name
+            </label>
+            <input type="text"
+                   id="creatorName"
+                   [(ngModel)]="creatorName" />
+        </div>
+        <div class="form-field required">
+            <label for="creatorEmail">
+               Email
+            </label>
+            <input type="email"
+                    id="creatorEmail"
+                    [(ngModel)]="creatorEmail" />
+        </div>
+
+        <h3>Event</h3>
+        <div class="form-field required">
+            <label for="eventTitle">
+                Title
+            </label>
+            <input type="text"
+                   id="eventTitle"
+                   [(ngModel)]="eventTitle" />
+        </div>
+        <div class="form-field required">
+            <label for="eventDescription">
+                Description
+            </label>
+            <br />
+            <textarea id="eventDescription" [(ngModel)]="eventDescription"></textarea>
+        </div>
+
+        <h3>Location</h3>
+        <location-picker></location-picker>
+
+        <h3>Date + Time</h3>
+        <!-- TODO: add component -->
+
+        <h3>Transportation</h3>
+        <div class="form-field required checkbox">
+            <label for="needPickup">
+                <input type="checkbox"
+                     id="needPickup"
+                     [(ngModel)]="needPickup" />
+                Do you need to be picked up?
+            </label>
+        </div>
+        <div class="form-field required checkbox">
+            <label for="canPickup">
+                <input type="checkbox"
+                     id="canPickup"
+                     [(ngModel)]="canPickup" />
+                    <div class="form-field required">
+                        <label for="pickupQuantity">
+                            Can Pickup
+                        </label>
+                        <input type="number" [(ngModel)]="pickupQuantity" min="1" max="5">
+                        seats
+                    </div>
+            </label>
+        </div>
+
+        <h3>Funding</h3>
+        <div class="form-field required checkbox">
+            <label for="hasCoverCharge">
+                <input type="checkbox"
+                     id="hasCoverCharge"
+                     [(ngModel)]="hasCoverCharge" />
+                    <div class="form-field required">
+                        <label for="coverQuantity">
+                            Cover Charge
+                        </label>
+                        <input type="number" [(ngModel)]="coverQuantity" min="1" max="5">
+                    </div>
+            </label>
+        </div>
+        <div class="form-field required checkbox">
+            <label for="fundContribution">
+                <input type="checkbox"
+                     id="fundContribution"
+                     [(ngModel)]="fundContribution" />
+                    Ask for fund contribution?
+            </label>
+        </div>
+
+
+        <h3>Add Attendees</h3>
+        <email-picker></email-picker>
+
+        <button type="button" class="btn btn-default btn-lg">
+            Next
+        </button>
+    </form>
+</div>

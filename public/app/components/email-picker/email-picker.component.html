@@ -1,0 +1,28 @@
+<ul class="list-group">
+   <li class="list-group-item list-group-item-info">
+      Event Emails
+   </li>
+   <li  class="list-group-item"
+        *ngFor="let email of emails">
+      <div class="input-group">
+        {{ email }}
+        <span class="input-group-btn">
+          <button class="btn btn-danger" (click)="removeEmail(email)">
+            <span class="glyphicon-minus"></span>
+          </button>
+        </span>
+      </div>
+   </li>
+   <li class="list-group-item">
+      <div class="input-group">
+         <input class="form-control"
+            placeholder="Add Email"
+            [(ngModel)]="_temp" />
+         <span class="input-group-btn">
+            <button class="btn btn-info" (click)="addEmail()" [disabled]="!_temp">
+                <span class="glyphicon-plus"></span>
+            </button>
+         </span>
+      </div>
+   </li>
+</ul>
