@@ -1,0 +1,58 @@
+.slogan {
+    font-weight: 100;
+    font-family: "Arial";
+    font-size: 500%;
+    padding: 50px 200px;
+    align-self: center;
+    text-align: center;
+}
+
+h1 {
+    text-align: center;
+    color: #e5e5e5;
+}
+
+.or {
+    margin: 20px;
+    font-weight: 500;
+}
+
+.logo{
+    text-align: left;
+    margin: 30px 40px;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+}
+
+.btn {
+    width: 300px;
+    height: 50px;
+    flex: 1;
+    align-self: center;
+}
+
+body {
+    background: linear-gradient(
+      rgba(0,0,0, 0.35),
+      rgba(0,0,0, 0.35)
+    ), url(http://www.freestockphotos.name/wallpaper-original/wallpapers/photos-of-people-holding-hands-6934.jpg);
+    background-size: cover;
+}
+
+.navbar {
+    background-color: rgba(0,0,0,0.5);
+    border-color: black;
+    border-radius: 0;
+}
+
+.modal {
+    margin-top: 175px;
+}
+
+.modal-footer {
+    display: flex;
+    flex-direction: column;
+}
