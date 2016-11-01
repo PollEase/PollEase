@@ -9,21 +9,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var router_1 = require('@angular/router');
-var HomePageComponent = (function () {
-    function HomePageComponent(route, router) {
-        this.route = route;
-        this.router = router;
+var Configuration = (function () {
+    function Configuration() {
+        this.Server = "http://localhost:3000/";
+        this.ApiUrl = "";
+        this.ServerWithApiUrl = this.Server + this.ApiUrl;
     }
-    HomePageComponent = __decorate([
-        core_1.Component({
-            selector: 'home-page',
-            templateUrl: './app/components/home-page/home-page.component.html',
-            styleUrls: ['./app/components/home-page/home-page.component.css']
-        }), 
-        __metadata('design:paramtypes', [router_1.ActivatedRoute, router_1.Router])
-    ], HomePageComponent);
-    return HomePageComponent;
+    Configuration = __decorate([
+        core_1.Injectable(), 
+        __metadata('design:paramtypes', [])
+    ], Configuration);
+    return Configuration;
 }());
-exports.HomePageComponent = HomePageComponent;
-//# sourceMappingURL=home-page.component.js.map
+exports.Configuration = Configuration;
+//# sourceMappingURL=app.constants.js.map

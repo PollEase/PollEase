@@ -9,11 +9,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var email_picker_service_1 = require('./email-picker.service');
 var EmailPickerComponent = (function () {
-    function EmailPickerComponent(emailPickerService) {
-        //For the future
-        // this.locations = emailPickerService.getEmails();
+    function EmailPickerComponent() {
         this.emails = [];
         this._temp = "";
     }
@@ -27,14 +24,16 @@ var EmailPickerComponent = (function () {
             this.emails.splice(index, 1);
         }
     };
+    EmailPickerComponent.prototype.getEmails = function () {
+        return this.emails;
+    };
     EmailPickerComponent = __decorate([
         core_1.Component({
             selector: 'email-picker',
             templateUrl: './app/components/email-picker/email-picker.component.html',
-            styleUrls: ['./app/components/email-picker/email-picker.component.css'],
-            providers: [email_picker_service_1.EmailPickerService]
+            styleUrls: ['./app/components/email-picker/email-picker.component.css']
         }), 
-        __metadata('design:paramtypes', [email_picker_service_1.EmailPickerService])
+        __metadata('design:paramtypes', [])
     ], EmailPickerComponent);
     return EmailPickerComponent;
 }());

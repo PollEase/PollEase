@@ -9,11 +9,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var location_picker_service_1 = require('./location-picker.service');
 var LocationPickerComponent = (function () {
-    function LocationPickerComponent(locationPickerService) {
-        //For the future
-        // this.locations = locationPickerService.getLocations();
+    function LocationPickerComponent() {
         this.locations = [];
         this._temp = "";
     }
@@ -27,14 +24,16 @@ var LocationPickerComponent = (function () {
             this.locations.splice(index, 1);
         }
     };
+    LocationPickerComponent.prototype.getLocations = function () {
+        return this.locations;
+    };
     LocationPickerComponent = __decorate([
         core_1.Component({
             selector: 'location-picker',
             templateUrl: './app/components/location-picker/location-picker.html',
-            styleUrls: ['./app/components/location-picker/location-picker.css'],
-            providers: [location_picker_service_1.LocationPickerService]
+            styleUrls: ['./app/components/location-picker/location-picker.css']
         }), 
-        __metadata('design:paramtypes', [location_picker_service_1.LocationPickerService])
+        __metadata('design:paramtypes', [])
     ], LocationPickerComponent);
     return LocationPickerComponent;
 }());

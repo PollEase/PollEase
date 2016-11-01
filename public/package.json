@@ -1,6 +1,6 @@
 {
   "name": "PollEase",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "scripts": {
     "start": "tsc && concurrently \"tsc -w\" \"lite-server\" ",
     "lite": "lite-server",
@@ -37,6 +37,6 @@
     "concurrently": "^3.0.0",
     "lite-server": "^2.2.2",
     "typescript": "^2.0.3",
-    "typings":"^1.4.0"
+    "typings": "^1.4.0"
   }
 }
