@@ -19,16 +19,16 @@ export class CreateEventPollFormService {
         this.headers.append('Accept', 'application/json');
     }
 
-    public Add = (itemName: string): Observable<MyTypedItem> => {
-        let toAdd = JSON.stringify({ ItemName: itemName });
+    // public Add = (itemName: string): Observable<MyTypedItem> => {
+    //     let toAdd = JSON.stringify({ ItemName: itemName });
  
-        return this._http.post(this.actionUrl, toAdd, { headers: this.headers })
-            .map((response: Response) => <MyTypedItem>response.json())
-            .catch(this.handleError);
-    }
+    //     return this._http.post(this.actionUrl, toAdd, { headers: this.headers })
+    //         .map((response: Response) => <MyTypedItem>response.json())
+    //         .catch(this.handleError);
+    // }
 
-     private handleError(error: Response) {
-        console.error(error);
-        return Observable.throw(error.json().error || 'Server error');
-    }
+    //  private handleError(error: Response) {
+    //     console.error(error);
+    //     return Observable.throw(error.json().error || 'Server error');
+    // }
 }
