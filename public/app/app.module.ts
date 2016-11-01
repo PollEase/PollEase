@@ -8,6 +8,7 @@ import { HomePageComponent } from './components/home-page/home-page.component';
 import { CreateEventPollFormComponent } from './components/create-event-poll-form/create-event-poll-form.component';
 import { LocationPickerComponent } from './components/location-picker/location-picker.component';
 import { EmailPickerComponent } from './components/email-picker/email-picker.component';
+import { TimePickerComponent } from './components/time-picker/time-picker.component';
 
 @NgModule({
   imports: [ BrowserModule,
@@ -18,7 +19,9 @@ import { EmailPickerComponent } from './components/email-picker/email-picker.com
                 { path: 'createpoll', component: CreateEventPollFormComponent }
              ])
   ],
-  declarations: [ AppComponent, HomePageComponent, CreateEventPollFormComponent, LocationPickerComponent, EmailPickerComponent ],
+  declarations: [ AppComponent, HomePageComponent, CreateEventPollFormComponent,
+                  LocationPickerComponent, EmailPickerComponent, TimePickerComponent ],
+  providers: [ LocationPickerComponent, TimePickerComponent, EmailPickerComponent ],
   bootstrap:    [ AppComponent ]
 })
 

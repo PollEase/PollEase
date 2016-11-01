@@ -1,12 +1,9 @@
-import { Component } from '@angular/core';
-
-import { LocationPickerService } from './location-picker.service';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'location-picker',
   templateUrl: './app/components/location-picker/location-picker.html',
-  styleUrls: [ './app/components/location-picker/location-picker.css' ],
-  providers: [ LocationPickerService ]
+  styleUrls: [ './app/components/location-picker/location-picker.css' ]
 })
 
 export class LocationPickerComponent {
@@ -14,10 +11,7 @@ export class LocationPickerComponent {
   locations: any[];
   _temp: string;
 
-  constructor(locationPickerService : LocationPickerService) {
-
-    //For the future
-    // this.locations = locationPickerService.getLocations();
+  constructor() {
 
     this.locations = [];
     this._temp = "";
@@ -33,5 +27,9 @@ export class LocationPickerComponent {
     if(index != -1) {
       this.locations.splice(index, 1);
     }
+  }
+
+  getLocations() {
+    return this.locations;
   }
 }

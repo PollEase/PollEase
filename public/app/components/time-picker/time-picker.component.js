@@ -9,21 +9,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var router_1 = require('@angular/router');
-var HomePageComponent = (function () {
-    function HomePageComponent(route, router) {
-        this.route = route;
-        this.router = router;
+var TimePickerComponent = (function () {
+    function TimePickerComponent() {
     }
-    HomePageComponent = __decorate([
+    TimePickerComponent.prototype.getTimes = function () {
+        return this.times;
+    };
+    TimePickerComponent = __decorate([
         core_1.Component({
-            selector: 'home-page',
-            templateUrl: './app/components/home-page/home-page.component.html',
-            styleUrls: ['./app/components/home-page/home-page.component.css']
+            selector: 'time-picker',
+            templateUrl: './app/components/time-picker/time-picker.component.html',
+            styleUrls: ['./app/components/time-picker/time-picker.component.css']
         }), 
-        __metadata('design:paramtypes', [router_1.ActivatedRoute, router_1.Router])
-    ], HomePageComponent);
-    return HomePageComponent;
+        __metadata('design:paramtypes', [])
+    ], TimePickerComponent);
+    return TimePickerComponent;
 }());
-exports.HomePageComponent = HomePageComponent;
-//# sourceMappingURL=home-page.component.js.map
+exports.TimePickerComponent = TimePickerComponent;
+//# sourceMappingURL=time-picker.component.js.map

@@ -1,23 +1,17 @@
-import { Component } from '@angular/core';
-
-import { EmailPickerService } from './email-picker.service';
+import { Component, Input } from '@angular/core';
 
 @Component({
 	selector: 'email-picker',
 	templateUrl: './app/components/email-picker/email-picker.component.html',
-  styleUrls: [ './app/components/email-picker/email-picker.component.css'],
-	providers: [EmailPickerService]
+  styleUrls: [ './app/components/email-picker/email-picker.component.css']
 })
 
 export class EmailPickerComponent {
 
-	emails: any[];
+	emails: string[];
   _temp: string;
 
-  constructor(emailPickerService : EmailPickerService) {
-
-    //For the future
-    // this.locations = emailPickerService.getEmails();
+  constructor() {
 
     this.emails = [];
     this._temp = "";
@@ -33,5 +27,9 @@ export class EmailPickerComponent {
     if(index != -1) {
       this.emails.splice(index, 1);
     }
+  }
+
+  getEmails() {
+    return this.emails;
   }
 }

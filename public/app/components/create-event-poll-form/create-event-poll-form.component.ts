@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 
 import { LocationPickerComponent } from './../location-picker/location-picker.component';
+import { TimePickerComponent } from './../time-picker/time-picker.component';
 import { EmailPickerComponent } from './../email-picker/email-picker.component';
 
 @Component({
@@ -11,10 +12,14 @@ import { EmailPickerComponent } from './../email-picker/email-picker.component';
 })
 
 export class CreateEventPollFormComponent {
-	creatorName: string;
-	creatorEmail: string;
-	eventTitle: string;
-	eventDescription: string;
+	
+	creator: any;
+	event: any;
+	
+	locations: any[];
+	times: any[];
+	emails: any[];	
+	
 	needPickup: boolean;
 	canPickup: boolean;
 	pickupQuantity: number;
@@ -22,5 +27,25 @@ export class CreateEventPollFormComponent {
 	coverQuantity: number;
 	fundContribution: number;
 
-	constructor(private route : ActivatedRoute, private router: Router) {}
+	constructor(private route : ActivatedRoute, private router: Router, private locationPicker : LocationPickerComponent,
+				private timePicker : TimePickerComponent, private emailPicker : EmailPickerComponent) {}
+
+	ngOnInit() {
+
+		this.creator = { };
+		this.creator.name = '';
+		this.creator.email = '';
+
+		this.event = { };
+		this.event.title = '';
+		this.event.description = '';
+		this.event.deadline = '';
+	}
+
+	submit() {
+
+		this.locations = this.locationPicker.getLocations();
+		this.times = this.timePicker.getTimes();
+		this.emails = this.emailPicker.getEmails();
+	}
 }
