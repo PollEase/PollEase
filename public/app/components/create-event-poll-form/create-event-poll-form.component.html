@@ -56,6 +56,92 @@
 
                     <h3>Add Attendees</h3>
                     <email-picker></email-picker>
+                    
+                    <div class="container" *ngIf="showFunding == true">
+                        <h3>Funding</h3>
+                        <div class="form-group">
+                            <label for="cover_charge">
+                                Cover Charge
+                            </label>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <input  id="cover_charge"
+                                            type="checkbox"
+                                            [(ngModel)]="coverCharge" />
+                                </span>
+                                <span class="input-group-addon">$</span>
+                                <input  id="cover_amount"
+                                        type="number" min="0" step="any"
+                                        placeholder="0.00"
+                                        [(ngModel)]="coverAmount" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contribution">
+                                Ask for Contributions
+                            </label>
+                            <div class="input-group">
+                                <input  id="contribution"
+                                        type="checkbox"
+                                        [(ngModel)]="contribution" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container" *ngIf="showTransportation == true">
+                        <h3>Transportation</h3>
+                        <div class="form-group">
+                            <label for="poll_for_transport">
+                                Poll Attendees for Drivers and Riders?
+                            </label>
+                            <div class="input-group">
+                                <input  id="poll_for_transport"
+                                        type="checkbox"
+                                        [(ngModel)]="pollUsersForTransport" />
+                            </div>
+                        </div>
+
+                        <div class="form-group" *ngIf="pollUsersForTransport == true">
+                            <label for="need_pickup">
+                                Do you need a ride?
+                            </label>
+                            <div class="input-group">
+                                <input  id="need_pickup"
+                                        type="checkbox"
+                                        [(ngModel)]="needPickup" />
+                            </div>
+                        </div>
+
+                        <div class="form-group" *ngIf="pollUsersForTransport == true && needPickup == false">
+                            <label for="can_drive">
+                                Can you pickup others?
+                            </label>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <input  id="can_drive"
+                                            type="checkbox"
+                                            [(ngModel)]="canDrive" />
+                                </span>
+                                <input  id="cover_amount"
+                                        type="number" min="1"
+                                        [(ngModel)]="pickupQuantity" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--More Options Buttons-->
+                    <div class="container" *ngIf="showFunding == false || showTransportation == false">
+                        <h3>More Options</h3>
+                        <button class="btn btn-info btn-block btn-lg" *ngIf="showFunding == false"
+                            (click)="showFunding = true">
+                            <span class="glyphicon glyphicon-usd"></span>
+                        </button>
+                        <button class="btn btn-info btn-block btn-lg" *ngIf="showTransportation == false"
+                            (click)="showTransportation = true">
+                            <span class="glyphicon glyphicon-road"></span>
+                        </button>
+                    </div>
 
                 </div>
             </div>
@@ -68,50 +154,3 @@
         </div>
     </div>
 </div>
-
- <!--<h3>Transportation</h3>
-<div class="form-field required checkbox">
-    <label for="needPickup">
-        <input type="checkbox"
-                id="needPickup"
-                [(ngModel)]="needPickup" />
-        Do you need to be picked up?
-    </label>
-</div>
-<div class="form-field required checkbox">
-    <label for="canPickup">
-        <input type="checkbox"
-                id="canPickup"
-                [(ngModel)]="canPickup" />
-            <div class="form-field required">
-                <label for="pickupQuantity">
-                    Can Pickup
-                </label>
-                <input type="number" [(ngModel)]="pickupQuantity" min="1" max="5">
-                seats
-            </div>
-    </label>
-</div>
-
-<h3>Funding</h3>
-<div class="form-field required checkbox">
-    <label for="hasCoverCharge">
-        <input type="checkbox"
-                id="hasCoverCharge"
-                [(ngModel)]="hasCoverCharge" />
-            <div class="form-field required">
-                <label for="coverQuantity">
-                    Cover Charge
-                </label>
-                <input type="number" [(ngModel)]="coverQuantity" min="1" max="5">
-            </div>
-    </label>
-</div>
-<div class="form-field required checkbox">
-    <label for="fundContribution">
-        <input type="checkbox"
-                id="fundContribution"
-                [(ngModel)]="fundContribution" />
-            Ask for fund contribution?
-    </label>
-</div>-->

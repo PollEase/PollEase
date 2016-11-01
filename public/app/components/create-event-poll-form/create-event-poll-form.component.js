@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
+var http_1 = require('@angular/http');
 var location_picker_component_1 = require('./../location-picker/location-picker.component');
 var time_picker_component_1 = require('./../time-picker/time-picker.component');
 var email_picker_component_1 = require('./../email-picker/email-picker.component');
@@ -22,18 +23,39 @@ var CreateEventPollFormComponent = (function () {
         this.emailPicker = emailPicker;
     }
     CreateEventPollFormComponent.prototype.ngOnInit = function () {
+        //base
         this.creator = {};
         this.creator.name = '';
         this.creator.email = '';
         this.event = {};
         this.event.title = '';
         this.event.description = '';
-        this.event.deadline = '';
+        this.event.deadline = null;
+        this.locations = [];
+        this.times = [];
+        this.emails = [];
+        //optional fields
+        this.coverCharge = false;
+        this.coverAmount = 0.00;
+        this.contribution = false;
+        this.pollUsersForTransport = false;
+        this.needPickup = false;
+        this.canDrive = false;
+        this.pickupQuantity = 0;
+        //ngIfs
+        this.showFunding = false;
+        this.showTransportation = false;
     };
     CreateEventPollFormComponent.prototype.submit = function () {
         this.locations = this.locationPicker.getLocations();
         this.times = this.timePicker.getTimes();
         this.emails = this.emailPicker.getEmails();
+        //post request
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        var options = new http_1.RequestOptions({ headers: headers });
+        // return this.http.post(this.heroesUrl, { name }, options)
+        //             .map(this.extractData)
+        //             .catch(this.handleError);
     };
     CreateEventPollFormComponent = __decorate([
         core_1.Component({
