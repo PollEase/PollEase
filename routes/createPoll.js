@@ -11,9 +11,11 @@ function post(req,res){
     var funding = req.body.funding;
     var description = req.body.description;
     var emails = req.body.emails;
-    console.log(req);
-    sql.insert("Insert into meow "+req.name);
-    res.send("Post request received</br>\n");
+
+    res.send(`{
+      "shareLink": "htp://dbgui1.com/event/poll/{pollId}",
+      "creatorLink": "http://dbgui1.com/event/edit"
+    }`);
 }
 
 var exports = {};

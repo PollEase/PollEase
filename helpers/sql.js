@@ -9,16 +9,20 @@ var connection = mysql.createConnection({
     database:"pollease"
 });
 
-
+//Table schemes
+var err = false;
 connection.connect();
-
+/*
+create TABLE events(name varchar(255), owner_id int, description varchar(255), attendee_id int, event_id int primary key auto_increment unique,FOREIGN KEY(attendee_id) references users(id), FOREIGN KEY(owner_id) references users(id));
+*/
 connection.query('select 1+1 as solution', function(err, rows, fields){
-    if(err){
-        console.log(colors.red.bold("SQL Test Statement Failed."));
-    }
-    else{
-        console.log(colors.green("Connected to database 'pollease'"));
-    }
+  if(err){
+    console.log(colors.red("Error connecting to 'pollease'"));
+    err = true;
+  }
+  else{
+    console.log(colors.green("Connected to database pollease"));
+  }
 });
 
 function exitHandler(){
