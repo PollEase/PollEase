@@ -1,10 +1,11 @@
 var mysql = require("mysql");
 var colors = require("colors");
+var config = require("../config.js");
 
 var connection = mysql.createConnection({
     host:"localhost",
-    user:"root",
-    password:"password",
+    user:config.username,
+    password:config.password,
     database:"pollease"
 });
 
