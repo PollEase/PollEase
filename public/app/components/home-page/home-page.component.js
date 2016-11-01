@@ -20,6 +20,7 @@ var HomePageComponent = (function () {
             selector: 'home-page',
             templateUrl: './app/components/home-page/home-page.component.html',
             styleUrls: ['./app/components/home-page/home-page.component.css'],
+            encapsulation: core_1.ViewEncapsulation.None
         }), 
         __metadata('design:paramtypes', [router_1.ActivatedRoute, router_1.Router])
     ], HomePageComponent);
