@@ -1,15 +1,17 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
-import { Headers, RequestOptions } from '@angular/http';
 
 import { LocationPickerComponent } from './../location-picker/location-picker.component';
 import { TimePickerComponent } from './../time-picker/time-picker.component';
 import { EmailPickerComponent } from './../email-picker/email-picker.component';
 
+import { CreateEventPollFormService } from './create-event-poll-form.service';
+
 @Component({
 	selector: 'create-event-poll-form',
 	templateUrl: './app/components/create-event-poll-form/create-event-poll-form.component.html',
 	styleUrls: ['./app/components/create-event-poll-form/create-event-poll-form.component.css'],
+	providers: [ CreateEventPollFormService ]
 })
 
 export class CreateEventPollFormComponent {
@@ -75,8 +77,8 @@ export class CreateEventPollFormComponent {
 		this.emails = this.emailPicker.getEmails();
 
 		//post request
-		let headers = new Headers({ 'Content-Type': 'application/json' });
-    	let options = new RequestOptions({ headers: headers });
+		// let headers = new Headers({ 'Content-Type': 'application/json' });
+    	// let options = new RequestOptions({ headers: headers });
 
     	// return this.http.post(this.heroesUrl, { name }, options)
         //             .map(this.extractData)

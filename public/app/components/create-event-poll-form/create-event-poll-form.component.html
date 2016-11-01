@@ -46,6 +46,7 @@
                         <input  id="event_deadline"
                                 class="form-control"
                                 [(ngModel)]="event.deadline" />
+                        <!--<datetime [(ngModel)]="event.deadline"></datetime>-->
                     </div>
 
                     <h3>Location</h3>
@@ -124,7 +125,7 @@
                                             [(ngModel)]="canDrive" />
                                 </span>
                                 <input  id="cover_amount"
-                                        type="number" min="1"
+                                        type="number" min="0"
                                         [(ngModel)]="pickupQuantity" />
                             </div>
                         </div>
