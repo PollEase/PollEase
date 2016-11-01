@@ -1,10 +1,19 @@
-var sqlite3 = require("sqlite3").verbose();
+var MongoClient = require("mongodb").MongoClient,
+assert = require("assert");
 var colors = require("colors");
-
-const dbname = ":memory:";
 
 // query -> currently plain text
 //callback called on every row
+var db = new sqlite3.Database(dbname);
+db.serialize(function(err){
+    if(err){
+      console.log(colors.red("Error opening sql"));
+      return;
+    }
+    var stmt = db.prepare("create table users");
+    stmt.run();
+    stmt.finalize();
+});
 
 function select(query, callback){
 
