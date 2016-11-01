@@ -38,7 +38,7 @@ body {
     background: linear-gradient(
       rgba(0,0,0, 0.35),
       rgba(0,0,0, 0.35)
-    ), url(http://www.freestockphotos.name/wallpaper-original/wallpapers/photos-of-people-holding-hands-6934.jpg);
+    ), url(./images/people-holding-hands.jpg);
     background-size: cover;
 }
 
