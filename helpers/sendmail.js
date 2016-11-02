@@ -34,6 +34,7 @@ transporter.verify(function(error, success) {
 //pretty self explanatory.
 function sendEmail(options){
     options.from = options.from ? options.from : smtpConfig.auth.user;
+    
     transporter.sendMail(options, function(err,info){
         //Do we really need to handler errors with sending emails?  Probably not tbh
     });
