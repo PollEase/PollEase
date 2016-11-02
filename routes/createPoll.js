@@ -1,5 +1,8 @@
 var sendemail = require("../helpers/sendmail.js");
-const crypto = require("crypto");
+var crypto = require("crypto");
+var sql = require("../helpers/sql.js");
+var validator = require("validator");
+
 function post(req,res){
     var email = req.body.creatorEmail;
     var name = req.body.creatorName;
@@ -12,7 +15,14 @@ function post(req,res){
     var description = req.body.description;
     var recipient_emails = req.body.emails;
 
-    var uid = crypto.randomBytes(16).toString("hex");
+    if(validator.isEmail(email)){
+      var uid = crypto.randomBytes(16).toString("hex");
+      sql.createUser(email,uid);
+    }
+    else{
+      res.send(email + " IS NOT A VALID EMAIL STOP TRYING TO HACK US")
+      return;
+    }
 
     res.send(`{
       "shareLink": "htp://dbgui1.com/event/poll/{pollId}",

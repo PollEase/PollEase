@@ -25,6 +25,7 @@ connection.query('select 1+1 as solution', function(err, rows, fields){
   }
 });
 
+
 function exitHandler(){
     if(connection){
         console.log(colors.blue("\nConnection with 'pollease' ended."));
@@ -32,12 +33,19 @@ function exitHandler(){
         connection = false;
     }
 }
-
 process.on("exit",exitHandler);
 process.on("SIGINT",exitHandler);
 process.on("uncaughtException",exitHandler);
 
 var exports = {};
+
+function createUser(email,uid){
+    //select * from users where email=email;
+    //if that doesn't exist then do this?
+    connection.query("insert into users values(?,?)",[email,uid],function(err,rows,fields){
+        console.log(colors.blue("Added user "+email + " to table users"));
+    });
+}
 
 function getAllPolls(uid,callback){
     connection.query("select * from polls where uid=?",[uid],function(err,rows,fields){
@@ -50,3 +58,4 @@ function getAllPolls(uid,callback){
 }
 
 module.exports = {};
+module.exports.createUser = createUser;
