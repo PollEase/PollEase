@@ -42,7 +42,10 @@ var exports = {};
 function createUser(email,uid){
     //select * from users where email=email;
     //if that doesn't exist then do this?
-    connection.query("insert into users values(?,?)",[email,uid],function(err,rows,fields){
+    connection.query("insert into users values(default,?,?)",[email,uid],function(err,rows,fields){
+      if(err){
+        console.log(colors.red("Error inserting user "+email +" with uid "+uid));
+      }
         console.log(colors.blue("Added user "+email + " to table users"));
     });
 }
