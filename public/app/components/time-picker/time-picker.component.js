@@ -11,7 +11,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var TimePickerComponent = (function () {
     function TimePickerComponent() {
+        this.times = [];
+        this._temp = "";
     }
+    TimePickerComponent.prototype.addTime = function () {
+        this.times.push(this._temp);
+        this._temp = "";
+    };
+    TimePickerComponent.prototype.removeTime = function (time) {
+        var index = this.times.findIndex(function (tim) { return (tim === time); });
+        if (index != -1) {
+            this.times.splice(index, 1);
+        }
+    };
     TimePickerComponent.prototype.getTimes = function () {
         return this.times;
     };

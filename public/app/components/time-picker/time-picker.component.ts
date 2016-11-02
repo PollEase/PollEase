@@ -9,6 +9,26 @@ import { Component, Input } from '@angular/core';
 export class TimePickerComponent {
 
 	times: any[];
+	_temp: any;
+
+	constructor(){
+
+		this.times = [];
+		this._temp = "";
+
+	}
+	addTime(){
+		this.times.push(this._temp);
+
+		this._temp = "";
+	}
+
+	removeTime(time){
+		var index = this.times.findIndex((tim) => (tim===time));
+		if(index != -1) {
+			this.times.splice(index, 1);
+		}
+	}
 
     getTimes() {
         return this.times;
