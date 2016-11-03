@@ -5,7 +5,7 @@
    <li  class="list-group-item"
         *ngFor="let time of times">
       <div class="input-group">
-        {{ time }}
+        {{ time|date }}
         <span class="input-group-btn">
           <button class="btn btn-danger" (click)="removeTime(time)">
             <span class="glyphicon-minus"></span>
@@ -27,3 +27,4 @@
    </li>
 </ul>
     
+    <pre>{{times|json}}</pre>

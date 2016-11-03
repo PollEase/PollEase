@@ -12,7 +12,7 @@ var core_1 = require('@angular/core');
 var TimePickerService = (function () {
     function TimePickerService() {
     }
-    TimePickerService.prototype.getLocations = function () {
+    TimePickerService.prototype.getTime = function () {
         return [];
     };
     TimePickerService = __decorate([

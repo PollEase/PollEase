@@ -18,7 +18,8 @@ export class TimePickerComponent {
 
 	}
 	addTime(){
-		this.times.push(this._temp);
+		var time = new Date(this._temp);
+		this.times.push(time);
 
 		this._temp = "";
 	}

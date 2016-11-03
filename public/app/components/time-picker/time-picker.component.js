@@ -15,7 +15,8 @@ var TimePickerComponent = (function () {
         this._temp = "";
     }
     TimePickerComponent.prototype.addTime = function () {
-        this.times.push(this._temp);
+        var time = new Date(this._temp);
+        this.times.push(time);
         this._temp = "";
     };
     TimePickerComponent.prototype.removeTime = function (time) {
