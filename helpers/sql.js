@@ -51,7 +51,7 @@ function createUser(email,uid){
 }
 
 function createEvent(name,owner_id,description){
-  function event_id = crypto.randomBytes(32).toString("hex");
+  var event_id = crypto.randomBytes(32).toString("hex");
 
   connection.query("insert into events values(?,?,?,?)",[name,owner_id,description,event_id],function(err,rows,fields(){
     if(err){
