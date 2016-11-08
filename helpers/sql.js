@@ -44,6 +44,15 @@ var exports = {};
 function createUser(email,uid){
     //select * from users where email=email;
     //if that doesn't exist then do this?
+    connection.query("select * from users where email=?",[email],function(err,rows,fields){
+      if(err){
+        console.log(colors.red("Error checking if user "+email+" exists."));
+      }
+      if(rows){
+        return;
+      }
+    });
+
     connection.query("insert into users values(default,?,?)",[email,uid],function(err,rows,fields){
       if(err){
         console.log(colors.red("Error inserting user "+email +" with uid "+uid));
@@ -67,6 +76,7 @@ function createEvent(name,owner_id,description){
   `description` varchar(255) DEFAULT NULL,
   KEY `event_id` (`event_id`)
   */
+  return event_id;
 }
 
 function getAllPolls(uid,callback){

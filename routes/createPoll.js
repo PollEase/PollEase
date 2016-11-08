@@ -22,10 +22,26 @@ function post(req,res){
 
       //polls uid
       sql.createUser(email,uid);
-      sql.createEvent(event_title,uid,deadline,description);
+      var poll_id = sql.createEvent(event_title,uid,deadline,description);
+
+      var options = {};
+      options.to = email;
+      options.subject = "Knock Knock open up its the PollEase.  We got a warrant.";
+      options.text = "Click here to not go to jail "+ "localhost:8000/editPoll?id="+uid+"&poll_id="+poll_id;
+      sendmail(JSON.parse(JSON.stringify(options)));
 
       for(var i = 0; i < recipient_emails.length; i++){
-        
+        var user_email = recipient_emails[i];
+
+        if(validator.isEmail(user_email)){
+          var u_uid = crypto.randomBytes(32).toString("hex");
+          sql.createUser(user_email, u_uid);
+
+          options.to = user_email;
+          options.text = "Click here to not go to jail "+ "localhost:8000/getPoll?id="+u_uid+"&poll_id="+poll_id;
+          sendmail(JSON.parse(JSON.stringify(options)));
+        }
+
       }
 
       //sql.createEvent.
@@ -37,11 +53,7 @@ function post(req,res){
         text: this is a fallback version
         attachments: this is like attachable files and embedded images
       */
-      var options = {};
-      options.to = email;
-      options.subject = "Knock Knock open up its the PollEase.  We got a warrant.";
-      options.text = "Click here to not go to jail "+ "localhost:8000/editPoll?id="+uid;
-      sendmail(options);
+
     }
     else{
       res.send(email + " IS NOT A VALID EMAIL STOP TRYING TO HACK US")
