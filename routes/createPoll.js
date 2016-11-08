@@ -4,15 +4,17 @@ var sql = require("../helpers/sql.js");
 var validator = require("validator");
 
 function post(req,res){
+
     var email = req.body.creatorEmail;
     var name = req.body.creatorName;
     var event_title = req.body.eventTitle;
     var deadline = req.body.pollDeadline;
+
     var locations = req.body.locations;
     var date = req.body.dateTime;
-    var transportation = req.body.transportation;
-    var funding = req.body.funding;
+
     var description = req.body.description;
+
     var recipient_emails = req.body.emails;
 
     if(validator.isEmail(email) && name !=null && description != null && event_title != null){
@@ -20,9 +22,11 @@ function post(req,res){
 
       //polls uid
       sql.createUser(email,uid);
-      sql.createEvent(event_title,uid,description);
+      sql.createEvent(event_title,uid,deadline,description);
 
-
+      for(var i = 0; i < recipient_emails.length; i++){
+        
+      }
 
       //sql.createEvent.
       /* Options = json
