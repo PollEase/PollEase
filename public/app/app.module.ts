@@ -9,10 +9,12 @@ import { CreateEventPollFormComponent } from './components/create-event-poll-for
 import { LocationPickerComponent } from './components/location-picker/location-picker.component';
 import { EmailPickerComponent } from './components/email-picker/email-picker.component';
 import { TimePickerComponent } from './components/time-picker/time-picker.component';
+import { Ng2DatetimePickerModule } from 'ng2-datetime-picker';
 
 @NgModule({
   imports: [ BrowserModule,
              FormsModule,
+             Ng2DatetimePickerModule,
              RouterModule.forRoot([
 
                 { path: '', component: HomePageComponent },
