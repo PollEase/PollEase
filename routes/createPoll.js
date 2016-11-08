@@ -15,13 +15,16 @@ function post(req,res){
     var description = req.body.description;
     var recipient_emails = req.body.emails;
 
-    if(validator.isEmail(email)){
-      var uid = crypto.randomBytes(16).toString("hex");
+    if(validator.isEmail(email) && name !=null && description != null && event_title != null){
+      var uid = crypto.randomBytes(32).toString("hex");
+
       //polls uid
       sql.createUser(email,uid);
+      sql.createEvent(event_title,uid,description);
+
+
 
       //sql.createEvent.
-
       /* Options = json
 
         to: comma separated
@@ -33,9 +36,8 @@ function post(req,res){
       var options = {};
       options.to = email;
       options.subject = "Knock Knock open up its the PollEase.  We got a warrant.";
-      options.text = "Click here to not go to jail "+ "localhost:8000/editPoll?id"+uid;
+      options.text = "Click here to not go to jail "+ "localhost:8000/editPoll?id="+uid;
       sendmail(options);
-
     }
     else{
       res.send(email + " IS NOT A VALID EMAIL STOP TRYING TO HACK US")

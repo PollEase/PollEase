@@ -1,7 +1,7 @@
 var mysql = require("mysql");
 var colors = require("colors");
 var config = require("../config.js");
-
+var crypto = require("crypto");
 var connection = mysql.createConnection({
     host:"localhost",
     user:config.username,
@@ -50,6 +50,23 @@ function createUser(email,uid){
     });
 }
 
+function createEvent(name,owner_id,description){
+  function event_id = crypto.randomBytes(32).toString("hex");
+
+  connection.query("insert into events values(?,?,?,?)",[name,owner_id,description,event_id],function(err,rows,fields(){
+    if(err){
+      console.log(colors.red("Error executing query insertion for create Event: "),[name,owner_id,description,event_id]);
+    }
+  }));
+  /*
+  `name` varchar(255) DEFAULT NULL,
+  `owner_id` int(11) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `event_id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`event_id`),
+  */
+}
+
 function getAllPolls(uid,callback){
     connection.query("select * from polls where uid=?",[uid],function(err,rows,fields){
     if(err){
@@ -62,3 +79,4 @@ function getAllPolls(uid,callback){
 
 module.exports = {};
 module.exports.createUser = createUser;
+module.exports.createPoll = createPoll;
