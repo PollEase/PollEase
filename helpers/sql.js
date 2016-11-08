@@ -79,4 +79,4 @@ function getAllPolls(uid,callback){
 
 module.exports = {};
 module.exports.createUser = createUser;
-module.exports.createPoll = createPoll;
+module.exports.createPoll = createEvent;
