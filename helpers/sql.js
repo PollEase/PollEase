@@ -53,11 +53,11 @@ function createUser(email,uid){
 function createEvent(name,owner_id,description){
   var event_id = crypto.randomBytes(32).toString("hex");
 
-  connection.query("insert into events values(?,?,?,?)",[name,owner_id,description,event_id],function(err,rows,fields(){
+  connection.query("insert into events values(?,?,?,?)",[name,owner_id,description,event_id],function(err,rows,fields){
     if(err){
       console.log(colors.red("Error executing query insertion for create Event: "),[name,owner_id,description,event_id]);
     }
-  }));
+  });
   /*
   `name` varchar(255) DEFAULT NULL,
   `owner_id` int(11) DEFAULT NULL,
