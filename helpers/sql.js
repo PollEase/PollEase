@@ -80,7 +80,7 @@ function createEvent(name,owner_id,description){
 }
 
 function getAllPolls(uid,callback){
-    connection.query("select * from polls where uid=?",[uid],function(err,rows,fields){
+    connection.query("select * from polls where owner_id=?",[uid],function(err,rows,fields){
     if(err){
         console.log(colors.red("Query failed under getAllPolls with uid "+uid));
         return;
@@ -90,5 +90,6 @@ function getAllPolls(uid,callback){
 }
 
 module.exports = {};
+module.exports.send_all_events = getAllPolls;
 module.exports.createUser = createUser;
 module.exports.createPoll = createEvent;

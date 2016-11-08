@@ -27,7 +27,7 @@ function post(req,res){
       var options = {};
       options.to = email;
       options.subject = "Knock Knock open up its the PollEase.  We got a warrant.";
-      options.text = "Click here to not go to jail "+ "localhost:8000/editPoll?id="+uid+"&poll_id="+poll_id;
+      options.text = "Click here to not go to jail "+ "localhost:8000/getPoll?id="+uid+"&poll_id="+poll_id;
       sendmail(JSON.parse(JSON.stringify(options)));
 
       for(var i = 0; i < recipient_emails.length; i++){
@@ -61,7 +61,7 @@ function post(req,res){
     }
 
     res.send(`{
-      "shareLink": "htp://dbgui1.com/event/poll/{pollId}",
+      "shareLink": "http://dbgui1.com/getPoll/{poll_id}",
       "creatorLink": "http://dbgui1.com/event/edit"
     }\n`);
 }
