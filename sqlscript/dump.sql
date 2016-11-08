@@ -52,10 +52,11 @@ DROP TABLE IF EXISTS `options`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `options` (
-  `id` int(11) DEFAULT NULL,
+  `id` int(11) AUTO_INCREMENT,
   `type` int(11) DEFAULT NULL,
   `event_id` int(11) DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
+  'tally' int DEFAULT 0,
   KEY `event_id` (`event_id`),
   CONSTRAINT `options_ibfk_1` FOREIGN KEY (`event_id`) REFERENCES `events` (`event_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

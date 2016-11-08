@@ -61,6 +61,14 @@ function createUser(email,uid){
     });
 }
 
+function createOption(event_id,description,type){
+    connection.query("insert into options values(default,?,?,?,0)",[type,event_id,description],function(err){
+      if(err){
+        console.log(colors.red("Error inserting into table options "+event_id+" "+description+" "+type));
+      }
+    });
+}
+
 function createEvent(name,owner_id,description){
   var event_id = crypto.randomBytes(32).toString("hex");
 

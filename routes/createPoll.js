@@ -40,7 +40,17 @@ function post(req,res){
           options.to = user_email;
           options.text = "Click here to not go to jail "+ "localhost:8000/getPoll?id="+u_uid+"&poll_id="+poll_id;
           sendmail(JSON.parse(JSON.stringify(options)));
-        }
+      }
+
+      //0 represents location
+      for(var i = 0; i < locations.length; i++){
+        sql.createOption(poll_id,locations[i],0);
+      }
+
+      //1 represents date.
+      for(var i = 0; i < date.length; i++){
+        sql.createOption(poll_id,date[i],1);
+      }
 
       }
 
