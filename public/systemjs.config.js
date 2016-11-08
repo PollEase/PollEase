@@ -24,6 +24,7 @@
       // other libraries
       'rxjs':                      'npm:rxjs',
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api',
+      'ng2-datetime-picker': 'npm:ng2-datetime-picker/dist',
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
@@ -36,6 +37,10 @@
       },
       'angular-in-memory-web-api': {
         main: './index.js',
+        defaultExtension: 'js'
+      },
+      'ng2-datetime-picker': {
+        main: 'ng2-datetime-picker.umd.js',
         defaultExtension: 'js'
       }
     }
