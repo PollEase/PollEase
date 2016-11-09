@@ -25,6 +25,7 @@
       // other libraries
       'rxjs':                      'npm:rxjs',
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api',
+
       'ng2-datetime-picker': 'node_modules/ng2-datetime-picker/dist',
 
     },
@@ -41,7 +42,10 @@
         main: './index.js',
         defaultExtension: 'js'
       },
-      'ng2-datetime-picker' : {
+
+
+      'ng2-datetime-picker': {
+
         main: 'ng2-datetime-picker.umd.js',
         defaultExtension: 'js'
       }
