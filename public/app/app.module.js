@@ -12,6 +12,7 @@ var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
 var forms_1 = require('@angular/forms');
 var router_1 = require('@angular/router');
+var ng2_datetime_picker_1 = require('ng2-datetime-picker');
 var app_component_1 = require('./app.component');
 var home_page_component_1 = require('./components/home-page/home-page.component');
 var create_event_poll_form_component_1 = require('./components/create-event-poll-form/create-event-poll-form.component');
@@ -25,6 +26,7 @@ var AppModule = (function () {
         core_1.NgModule({
             imports: [platform_browser_1.BrowserModule,
                 forms_1.FormsModule,
+                ng2_datetime_picker_1.Ng2DatetimePickerModule,
                 router_1.RouterModule.forRoot([
                     { path: '', component: home_page_component_1.HomePageComponent },
                     { path: 'createpoll', component: create_event_poll_form_component_1.CreateEventPollFormComponent }

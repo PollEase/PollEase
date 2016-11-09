@@ -2,6 +2,7 @@ import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { Ng2DatetimePickerModule } from 'ng2-datetime-picker';
 
 import { AppComponent }   from './app.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
@@ -13,6 +14,7 @@ import { TimePickerComponent } from './components/time-picker/time-picker.compon
 @NgModule({
   imports: [ BrowserModule,
              FormsModule,
+             Ng2DatetimePickerModule,
              RouterModule.forRoot([
 
                 { path: '', component: HomePageComponent },
