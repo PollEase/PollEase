@@ -4,7 +4,6 @@ var sql = require("../helpers/sql.js");
 var validator = require("validator");
 
 function post(req,res){
-
     var email = req.body.creatorEmail;
     var name = req.body.creatorName;
     var event_title = req.body.eventTitle;
@@ -17,7 +16,9 @@ function post(req,res){
 
     var recipient_emails = req.body.emails;
 
-    if(validator.isEmail(email) && name !=null && description != null && event_title != null){
+    return;
+
+    if(email &&validator.isEmail(email) && name !=null && description != null && event_title != null){
       var uid = crypto.randomBytes(32).toString("hex");
 
       //polls uid
