@@ -28,8 +28,8 @@ var CreateEventPollFormService = (function () {
         this._apiUrl = 'http://private-a1931-dbgui1.apiary-mock.com/createPoll';
     }
     CreateEventPollFormService.prototype.extractData = function (res) {
-        var body = res.json();
-        return body.data;
+        // let body = res.json();
+        // return body.data;
     };
     CreateEventPollFormService.prototype.handleError = function (error) {
         // In a real world app, we might use a remote logging infrastructure

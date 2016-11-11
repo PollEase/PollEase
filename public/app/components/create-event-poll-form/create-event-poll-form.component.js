@@ -65,7 +65,9 @@ var CreateEventPollFormComponent = (function () {
         this.pollData.description = this.event.description;
         this.pollData.pollDeadline = this.event.deadline;
         this.pollData.locations = this.locationPicker.getLocations();
-        this.pollData.times = this.timePicker.getTimes();
+        this.pollData.times = [];
+        //Till timepicker is ready
+        // this.pollData.times = this.timePicker.getTimes();
         this.pollData.emails = this.emailPicker.getEmails();
         //optional fields
         if (this.coverCharge !== false) {
