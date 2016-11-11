@@ -10,10 +10,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
-require('rxjs/add/operator/toPromise');
-require('rxjs/add/operator/catch');
-require('rxjs/add/operator/map');
 require('rxjs/add/observable/throw');
+require('rxjs/add/operator/catch');
+require('rxjs/add/operator/debounceTime');
+require('rxjs/add/operator/distinctUntilChanged');
+require('rxjs/add/operator/map');
+require('rxjs/add/operator/switchMap');
+require('rxjs/add/operator/toPromise');
 var CreateEventPollFormService = (function () {
     function CreateEventPollFormService(http) {
         this.http = http;
@@ -22,12 +25,34 @@ var CreateEventPollFormService = (function () {
         //localhost
         // private _apiUrl = 'http://localhost:3000/createPoll';
         //Apiary
-        this._apiUrl = 'https://private-a1931-dbgui1.apiary-mock.com/createPoll';
+        this._apiUrl = 'http://private-a1931-dbgui1.apiary-mock.com/createPoll';
     }
+    CreateEventPollFormService.prototype.extractData = function (res) {
+        var body = res.json();
+        return body.data;
+    };
+    CreateEventPollFormService.prototype.handleError = function (error) {
+        // In a real world app, we might use a remote logging infrastructure
+        var errMsg;
+        if (error instanceof http_1.Response) {
+            var body = error.json() || '';
+            var err = body.error || JSON.stringify(body);
+            errMsg = error.status + " - " + (error.statusText || '') + " " + err;
+        }
+        else {
+            errMsg = error.message ? error.message : error.toString();
+        }
+        console.error(errMsg);
+        return Promise.reject(errMsg);
+    };
     CreateEventPollFormService.prototype.createEventPoll = function (poll) {
-        this.http
-            .post(this._apiUrl, poll)
-            .toPromise();
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        var options = new http_1.RequestOptions({ headers: headers });
+        return this.http
+            .post(this._apiUrl, poll, options)
+            .toPromise()
+            .then(this.extractData)
+            .catch(this.handleError);
     };
     CreateEventPollFormService = __decorate([
         core_1.Injectable(), 

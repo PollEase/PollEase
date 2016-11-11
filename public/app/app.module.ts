@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
-import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+// import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 import { AppComponent }   from './app.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
@@ -13,7 +13,7 @@ import { EmailPickerComponent } from './components/email-picker/email-picker.com
 import { TimePickerComponent } from './components/time-picker/time-picker.component';
 
 import { CreateEventPollFormService } from './components/create-event-poll-form/create-event-poll-form.service'; 
-import { InMemoryDataService } from './in-memory-data.service';
+// import { InMemoryDataService } from './in-memory-data.service';
 
 @NgModule({
   imports: [ BrowserModule,
@@ -22,8 +22,8 @@ import { InMemoryDataService } from './in-memory-data.service';
              RouterModule.forRoot([
                 { path: '', component: HomePageComponent },
                 { path: 'createpoll', component: CreateEventPollFormComponent }
-             ]),
-             InMemoryWebApiModule.forRoot(InMemoryDataService)
+             ])
+            //  InMemoryWebApiModule.forRoot(InMemoryDataService)
   ],
   declarations: [ AppComponent, HomePageComponent, CreateEventPollFormComponent,
                   LocationPickerComponent, EmailPickerComponent, TimePickerComponent ],

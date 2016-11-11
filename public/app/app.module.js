@@ -13,7 +13,7 @@ var platform_browser_1 = require('@angular/platform-browser');
 var forms_1 = require('@angular/forms');
 var router_1 = require('@angular/router');
 var http_1 = require('@angular/http');
-var angular_in_memory_web_api_1 = require('angular-in-memory-web-api');
+// import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 var app_component_1 = require('./app.component');
 var home_page_component_1 = require('./components/home-page/home-page.component');
 var create_event_poll_form_component_1 = require('./components/create-event-poll-form/create-event-poll-form.component');
@@ -21,7 +21,7 @@ var location_picker_component_1 = require('./components/location-picker/location
 var email_picker_component_1 = require('./components/email-picker/email-picker.component');
 var time_picker_component_1 = require('./components/time-picker/time-picker.component');
 var create_event_poll_form_service_1 = require('./components/create-event-poll-form/create-event-poll-form.service');
-var in_memory_data_service_1 = require('./in-memory-data.service');
+// import { InMemoryDataService } from './in-memory-data.service';
 var AppModule = (function () {
     function AppModule() {
     }
@@ -33,8 +33,7 @@ var AppModule = (function () {
                 router_1.RouterModule.forRoot([
                     { path: '', component: home_page_component_1.HomePageComponent },
                     { path: 'createpoll', component: create_event_poll_form_component_1.CreateEventPollFormComponent }
-                ]),
-                angular_in_memory_web_api_1.InMemoryWebApiModule.forRoot(in_memory_data_service_1.InMemoryDataService)
+                ])
             ],
             declarations: [app_component_1.AppComponent, home_page_component_1.HomePageComponent, create_event_poll_form_component_1.CreateEventPollFormComponent,
                 location_picker_component_1.LocationPickerComponent, email_picker_component_1.EmailPickerComponent, time_picker_component_1.TimePickerComponent],

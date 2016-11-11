@@ -105,6 +105,6 @@ export class CreateEventPollFormComponent {
 			this.pollData.coverCharge = 0;
 		}
 
-		this.submitStatus = this.createEventPollFormService.createEventPoll(this.pollData);	
+		this.submitStatus = this.createEventPollFormService.createEventPoll(this.pollData);
 	}
 }
