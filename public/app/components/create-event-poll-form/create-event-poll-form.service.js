@@ -10,20 +10,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
+require('rxjs/add/operator/toPromise');
+require('rxjs/add/operator/catch');
 require('rxjs/add/operator/map');
-var app_constants_1 = require('../../app.constants');
+require('rxjs/add/observable/throw');
 var CreateEventPollFormService = (function () {
-    function CreateEventPollFormService(_http, _configuration) {
-        this._http = _http;
-        this._configuration = _configuration;
-        this.actionUrl = _configuration.ServerWithApiUrl + 'createpoll/';
-        this.headers = new http_1.Headers();
-        this.headers.append('Content-Type', 'application/json');
-        this.headers.append('Accept', 'application/json');
+    function CreateEventPollFormService(http) {
+        this.http = http;
+        //InMemoryModule
+        // private _apiUrl = 'app/events';
+        //localhost
+        // private _apiUrl = 'http://localhost:3000/createPoll';
+        //Apiary
+        this._apiUrl = 'https://private-a1931-dbgui1.apiary-mock.com/createPoll';
     }
+    CreateEventPollFormService.prototype.createEventPoll = function (poll) {
+        this.http
+            .post(this._apiUrl, poll)
+            .toPromise();
+    };
     CreateEventPollFormService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http, app_constants_1.Configuration])
+        __metadata('design:paramtypes', [http_1.Http])
     ], CreateEventPollFormService);
     return CreateEventPollFormService;
 }());
