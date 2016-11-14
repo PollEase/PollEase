@@ -2,8 +2,11 @@ var sendmail = require("../helpers/sendmail.js");
 var crypto = require("crypto");
 var sql = require("../helpers/sql.js");
 var validator = require("validator");
-
+var colors = require("colors");
 function post(req,res){
+
+    console.log(colors.red("got a hit on createpoll"));
+
     var email = req.body.creatorEmail;
     var name = req.body.creatorName;
     var event_title = req.body.eventTitle;
