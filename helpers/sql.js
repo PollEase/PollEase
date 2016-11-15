@@ -63,18 +63,24 @@ function createOption(event_id,description,type){
 
 function createPoll(name,owner_id,deadline,description){
   var event_id = crypto.randomBytes(32).toString("hex");
+  connection.query("select * from users where uid=?",[owner_id],function(err,rows,fields){
+    if(err || rows.length == 0){
+        console.log(colors.red("Cannot get users with uid "+owner_id));
+        return;
+    }
+    connection.query("insert into events values(?,?,?,?,?)",[name,rows[0].id,description,deadline,event_id],function(err,rows,fields){
+        if(err){
+          console.log(colors.red("Error executing query insertion for create poll: "),[name,owner_id,description,event_id]);
+        }
+    });
 
-  connection.query("insert into events values(?,?,?,?,?)",[name,owner_id,description,deadline,event_id],function(err,rows,fields){
-      if(err){
-        console.log(colors.red("Error executing query insertion for create poll: "),[name,owner_id,description,event_id]);
-      }
   });
   /*
-  `id` int(11) DEFAULT NULL,
-  `type` int(11) DEFAULT NULL,
-  `event_id` int(11) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `owner_id` int(11) DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
-  KEY `event_id` (`event_id`)
+  'deadline' varchar(255) DEFAULT NULL,
+  `event_id` varchar(255) not NULL AUTO_INCREMENT,
   */
   return event_id;
 }
@@ -116,12 +122,17 @@ function createOption(poll_id,description,type){
     `event_id` int(11) DEFAULT NULL,
     `description` varchar(255) DEFAULT NULL,
     'tally' int DEFAULT 0,*/
+  connection.query("select * from events where event_id=?",[poll_id],function(err,rows,fields){
+    if(err || rows.length == 0){
+      console.log(colors.red("No events with id "+poll_id));
+    }
+    connection.query("insert into options values(default,?,?,?,0)", [type,rows[0].id,description],function(err){
+        if(err){
+          console.log(colors.red("Error inserting into options" + [type,rows[0].id,description]));
+        }
+    });
+  });
 
-  connection.query("insert into options values(default,?,?,?,default)", [type,poll_id,description],function(err){
-      if(err){
-        console.log(colors.red("Error inserting into values " + [type,poll_id,description]));
-      }
-  })
 }
 
 module.exports = {};
