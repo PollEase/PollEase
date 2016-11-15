@@ -5,8 +5,6 @@ var validator = require("validator");
 var colors = require("colors");
 function post(req,res){
 
-    console.log(colors.red("got a hit on createpoll"));
-
     var email = req.body.creatorEmail;
     var name = req.body.creatorName;
     var event_title = req.body.eventTitle;
@@ -19,7 +17,6 @@ function post(req,res){
 
     var recipient_emails = req.body.emails;
 
-    return;
 
     if(email &&validator.isEmail(email) && name !=null && description != null && event_title != null){
       var uid = crypto.randomBytes(32).toString("hex");
@@ -70,7 +67,7 @@ function post(req,res){
 
     }
     else{
-      res.send(email + " IS NOT A VALID EMAIL STOP TRYING TO HACK US")
+      res.send(email + " IS NOT A VALID EMAIL STOP TRYING TO HACK US");
       return;
     }
 

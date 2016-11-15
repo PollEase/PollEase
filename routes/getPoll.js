@@ -5,7 +5,7 @@ function get(req,res){
     res.send("No Poll Id Sent.");
     return;
   }
-
+  
 }
 
 const exports = {};
