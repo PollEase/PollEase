@@ -23,8 +23,8 @@ export class CreateEventPollFormService {
     constructor(private http: Http) { }
 
     private extractData(res: Response) {
-        // let body = res.json();
-        // return body.data;
+        let body = res.json();
+        return body.data;
     }
 
     private handleError (error: Response | any) {

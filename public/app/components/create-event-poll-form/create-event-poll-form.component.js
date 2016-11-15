@@ -65,6 +65,7 @@ var CreateEventPollFormComponent = (function () {
         this.pollData.description = this.event.description;
         this.pollData.pollDeadline = this.event.deadline;
         this.pollData.locations = this.locationPicker.getLocations();
+        // console.log(this.pollData.locations);
         this.pollData.times = [];
         //Till timepicker is ready
         // this.pollData.times = this.timePicker.getTimes();
