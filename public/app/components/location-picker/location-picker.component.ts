@@ -30,6 +30,8 @@ export class LocationPickerComponent {
   }
 
   getLocations() {
+    // console.log("In Location Picker");
+    // console.log(this.locations[0]);
     return this.locations;
   }
 }

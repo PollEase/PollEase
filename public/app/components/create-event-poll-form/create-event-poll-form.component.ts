@@ -10,8 +10,7 @@ import { CreateEventPollFormService } from './create-event-poll-form.service';
 @Component({
 	selector: 'create-event-poll-form',
 	templateUrl: './app/components/create-event-poll-form/create-event-poll-form.component.html',
-	styleUrls: ['./app/components/create-event-poll-form/create-event-poll-form.component.css'],
-	providers: [ CreateEventPollFormService ]
+	styleUrls: ['./app/components/create-event-poll-form/create-event-poll-form.component.css']
 })
 
 export class CreateEventPollFormComponent {
@@ -38,8 +37,13 @@ export class CreateEventPollFormComponent {
 	showFunding: boolean;
 	showTransportation: boolean;
 
+	//Submission
+	pollData: any;
+	submitStatus: any;
+
 	constructor(private route : ActivatedRoute, private router: Router, private locationPicker : LocationPickerComponent,
-				private timePicker : TimePickerComponent, private emailPicker : EmailPickerComponent) {}
+				private timePicker : TimePickerComponent, private emailPicker : EmailPickerComponent,
+				private createEventPollFormService : CreateEventPollFormService) {}
 
 	ngOnInit() {
 
@@ -68,20 +72,42 @@ export class CreateEventPollFormComponent {
 		//ngIfs
 		this.showFunding = false;
 		this.showTransportation = false;
+
+		//Submission
+		this.pollData = { };
+		this.pollData.creatorEmail = '';
+		this.pollData.creatorName = '';
+		this.pollData.eventTitle = '';
+		this.pollData.description = '';
+		this.pollData.pollDeadline = null;
+		this.pollData.locations = [];
+		this.pollData.times = [];
+		this.pollData.emails = [];
+		this.pollData.coverCharge = null;
 	}
 
 	submit() {
 
-		this.locations = this.locationPicker.getLocations();
-		this.times = this.timePicker.getTimes();
-		this.emails = this.emailPicker.getEmails();
+		this.pollData.creatorEmail = this.creator.email;
+		this.pollData.creatorName = this.creator.name;
+		this.pollData.eventTitle = this.event.title;
+		this.pollData.description = this.event.description;
+		this.pollData.pollDeadline = this.event.deadline;
+		this.pollData.locations = this.locationPicker.getLocations();
+		// console.log(this.pollData.locations);
+		this.pollData.times = [];
+		//Till timepicker is ready
+		// this.pollData.times = this.timePicker.getTimes();
+		this.pollData.emails = this.emailPicker.getEmails();
 
-		//post request
-		// let headers = new Headers({ 'Content-Type': 'application/json' });
-    	// let options = new RequestOptions({ headers: headers });
+		//optional fields
+		if(this.coverCharge !== false) {
+			this.pollData.coverCharge = this.coverAmount;
+		}
+		else {
+			this.pollData.coverCharge = 0;
+		}
 
-    	// return this.http.post(this.heroesUrl, { name }, options)
-        //             .map(this.extractData)
-        //             .catch(this.handleError);
+		this.submitStatus = this.createEventPollFormService.createEventPoll(this.pollData);
 	}
 }
