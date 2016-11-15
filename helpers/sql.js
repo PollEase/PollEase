@@ -106,7 +106,16 @@ function castVote(eventId,description){
 }
 
 function deleteUser(uid){
-
+  connection.query("DELETE FROM users where uid=?",[uid],function(err,rows,fields){
+      if(err){
+        console.log(colors.red("Error with query delete user "+uid));
+      }
+      else{
+        if(rows.length > 0){
+          console.log(colors.green("Deleted user "+uid));
+        }
+      }
+  });
 }
 
 module.exports = {};
