@@ -9,6 +9,8 @@ import { CreateEventPollFormComponent } from './components/create-event-poll-for
 import { LocationPickerComponent } from './components/location-picker/location-picker.component';
 import { EmailPickerComponent } from './components/email-picker/email-picker.component';
 import { TimePickerComponent } from './components/time-picker/time-picker.component';
+import { EventVotingFormComponent } from './components/event-voting-form/event-voting-form.component';
+
 
 @NgModule({
   imports: [ BrowserModule,
@@ -16,11 +18,12 @@ import { TimePickerComponent } from './components/time-picker/time-picker.compon
              RouterModule.forRoot([
 
                 { path: '', component: HomePageComponent },
+                { path: 'vote', component: EventVotingFormComponent },
                 { path: 'createpoll', component: CreateEventPollFormComponent }
              ])
   ],
   declarations: [ AppComponent, HomePageComponent, CreateEventPollFormComponent,
-                  LocationPickerComponent, EmailPickerComponent, TimePickerComponent ],
+                  LocationPickerComponent, EmailPickerComponent, TimePickerComponent, EventVotingFormComponent ],
   providers: [ LocationPickerComponent, TimePickerComponent, EmailPickerComponent ],
   bootstrap:    [ AppComponent ]
 })

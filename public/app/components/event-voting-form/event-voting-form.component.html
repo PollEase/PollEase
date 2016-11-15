@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-7">
+            <div class="panel panel-info">
+                <div class="panel-body">
+                    <div class="static">
+                        <h1 class="title">{{eventTitle}}</h1>
+                        <h3 class="title">Created By: {{creatorFirstName}} {{creatorLastName}}</h3>
+                        <div class="border">
+                            <p class="left">{{description}}</p>
+                            <div class="span">
+                                <p [hidden]="!coverCharge">Cover Charge: ${{coverCharge}}</p>
+                                <p class="deadline">Deadline: {{deadline}}</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <h3>Location</h3>
+                    <div *ngFor="let location of locations">
+                        <input type="checkbox"> {{location}}<br>
+                    </div>
+
+                    <h3>Date + Time</h3>
+                    <div *ngFor="let time of times">
+                        <input type="checkbox"> {{time}}<br>
+                    </div>
+
+                    <h3>Notes</h3>
+                    <!-- <input  id="event_description"
+                        class="form-control"
+                        [(ngModel)]="notes" /> -->
+                    <textarea class="span6"
+                        rows="3"
+                        placeholder="What's up?"
+                        [(ngModel)]="notes"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-7">
+            <a class="btn btn-primary btn-block btn-lg" (click)="submit()">
+                Submit
+            </a>
+        </div>
+    </div>
+</div>
