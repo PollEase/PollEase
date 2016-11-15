@@ -30,7 +30,7 @@ connection.query('select 1+1 as solution', function(err, rows, fields){
 
 function exitHandler(){
     if(connection){
-        console.log(colors.blue("\nConnection with 'pollease' ended."));
+        console.log(colors.blue("Connection with 'pollease' ended."));
         connection.end();
         connection = false;
     }
@@ -44,7 +44,7 @@ var exports = {};
 function createUser(email,uid){
     //select * from users where email=email;
     //if that doesn't exist then do this?
-    
+
     connection.query("insert into users values(default,?,?)",[email,uid],function(err,rows,fields){
       if(err){
         console.log(colors.red("Error inserting user "+email +" with uid "+uid));

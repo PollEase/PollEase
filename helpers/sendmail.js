@@ -24,7 +24,7 @@ transporter.verify(function(error, success) {
 
 function exitHandler(){
     if(transporter){
-        console.log(colors.blue("\nConnection with gmail ending."));
+        console.log(colors.blue("Connection with gmail ending."));
         transporter = false;
     }
 }
