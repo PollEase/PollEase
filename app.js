@@ -28,4 +28,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.set('case sensitive routing', false);
 
+console.log(colors.green("Application listening on port 8000"));
+
 module.exports = app;
