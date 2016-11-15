@@ -18,9 +18,6 @@ app.post("/email",email.post);
 var createPoll = require("./routes/createPoll.js");
 app.post("/createPoll",createPoll.post);
 
-var editPoll = require("./routes/editPoll.js");
-app.put("/editPoll",editPoll.put);
-
 var submitPreferences = require("./routes/submitPreferences.js");
 app.post("/submitPreferences",submitPreferences.post);
 

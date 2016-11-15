@@ -11,6 +11,7 @@ import { CreateEventPollFormComponent } from './components/create-event-poll-for
 import { LocationPickerComponent } from './components/location-picker/location-picker.component';
 import { EmailPickerComponent } from './components/email-picker/email-picker.component';
 import { TimePickerComponent } from './components/time-picker/time-picker.component';
+import { Ng2DatetimePickerModule } from 'ng2-datetime-picker';
 
 import { CreateEventPollFormService } from './components/create-event-poll-form/create-event-poll-form.service'; 
 // import { InMemoryDataService } from './in-memory-data.service';
@@ -19,6 +20,7 @@ import { CreateEventPollFormService } from './components/create-event-poll-form/
   imports: [ BrowserModule,
              FormsModule,
              HttpModule,
+             Ng2DatetimePickerModule,
              RouterModule.forRoot([
                 { path: '', component: HomePageComponent },
                 { path: 'createpoll', component: CreateEventPollFormComponent }

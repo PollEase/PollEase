@@ -26,13 +26,11 @@ CREATE TABLE `events` (
   `name` varchar(255) DEFAULT NULL,
   `owner_id` int(11) DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
-  `attendee_id` int(11) DEFAULT NULL,
-  `event_id` int(11) NOT NULL AUTO_INCREMENT,
+  'deadline' varchar(255) DEFAULT NULL,
+  `event_id` varchar(255) not NULL AUTO_INCREMENT,
   PRIMARY KEY (`event_id`),
   UNIQUE KEY `event_id` (`event_id`),
-  KEY `attendee_id` (`attendee_id`),
   KEY `owner_id` (`owner_id`),
-  CONSTRAINT `events_ibfk_1` FOREIGN KEY (`attendee_id`) REFERENCES `users` (`id`),
   CONSTRAINT `events_ibfk_2` FOREIGN KEY (`owner_id`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -54,10 +52,11 @@ DROP TABLE IF EXISTS `options`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `options` (
-  `id` int(11) DEFAULT NULL,
+  `id` int(11) AUTO_INCREMENT,
   `type` int(11) DEFAULT NULL,
   `event_id` int(11) DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
+  'tally' int DEFAULT 0,
   KEY `event_id` (`event_id`),
   CONSTRAINT `options_ibfk_1` FOREIGN KEY (`event_id`) REFERENCES `events` (`event_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
