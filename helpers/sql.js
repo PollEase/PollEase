@@ -61,12 +61,12 @@ function createOption(event_id,description,type){
     });
 }
 
-function createEvent(name,owner_id,description){
+function createPoll(name,owner_id,deadline,description){
   var event_id = crypto.randomBytes(32).toString("hex");
 
   connection.query("insert into events values(?,?,?,?,?)",[name,owner_id,description,deadline,event_id],function(err,rows,fields){
       if(err){
-        console.log(colors.red("Error executing query insertion for create Event: "),[name,owner_id,description,event_id]);
+        console.log(colors.red("Error executing query insertion for create poll: "),[name,owner_id,description,event_id]);
       }
   });
   /*
@@ -110,9 +110,24 @@ function deleteUser(uid){
   });
 }
 
+function createOption(poll_id,description,type){
+  /*  `id` int(11) AUTO_INCREMENT,
+    `type` int(11) DEFAULT NULL,
+    `event_id` int(11) DEFAULT NULL,
+    `description` varchar(255) DEFAULT NULL,
+    'tally' int DEFAULT 0,*/
+
+  connection.query("insert into options values(default,?,?,?,default)", [type,poll_id,description],function(err){
+      if(err){
+        console.log(colors.red("Error inserting into values " + [type,poll_id,description]));
+      }
+  })
+}
+
 module.exports = {};
 module.exports.send_all_events = getAllPolls;
 module.exports.createUser = createUser;
-module.exports.createPoll = createEvent;
+module.exports.createPoll = createPoll;
+module.exports.createOption = createOption;
 module.exports.vote = castVote;
 module.exports.deleteUser = deleteUser;
