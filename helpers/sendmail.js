@@ -45,6 +45,8 @@ process.on("uncaughtException",exitHandler);
 //pretty self explanatory.
 function sendEmail(options){
     options.from = options.from ? options.from : smtpConfig.auth.user;
+    
+    return;
 
     transporter.sendMail(options, function(err,info){
       if(err){
