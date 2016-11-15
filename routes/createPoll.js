@@ -18,12 +18,12 @@ function post(req,res){
     var recipient_emails = req.body.emails;
 
 
-    if(email &&validator.isEmail(email) && name !=null && description != null && event_title != null){
+    if(email &&validator.isEmail(email) && name !=null && description != null && event_title != null && deadline != null){
       var uid = crypto.randomBytes(32).toString("hex");
 
       //polls uid
       sql.createUser(email,uid);
-      var poll_id = sql.createEvent(event_title,uid,deadline,description);
+      var poll_id = sql.createPoll(event_title,uid,deadline,description);
 
       var options = {};
       options.to = email;
