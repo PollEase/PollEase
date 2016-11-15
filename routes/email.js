@@ -7,7 +7,6 @@ function post(req,res){
 
     sql.get_all_events(user_email,function(rows,fields){
 
-
             var options = {};
             options.to = user_email;
             options.subject = "Knock Knock open up its the PollEase.  We got a warrant.";
@@ -18,16 +17,14 @@ function post(req,res){
                 options.text+=evt.name+'\n'+"Edit: "+"localhost:8000/editPoll?event_id="+evt.event_id+'\n';
                 options.text+="Results: "+"localhost:8000/results?event_id="+evt.event_id+"\n\n";
             }
-
-            sendmail(JSON.parse(JSON.stringify(options)));
-
+            sendmail(options);
     });
 
     res.send(
       `{
         status:1
       }`
-  );
+     );
 }
 
 var exports = {};

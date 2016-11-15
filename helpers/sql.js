@@ -97,7 +97,21 @@ function getAllPolls(uid,callback){
     });
 }
 
+function castVote(eventId,description){
+    connection.query("update options set tally=tally+1 where event_id=? AND description=?",[eventId,description],function(err){
+          if(err){
+            console.log(colors.red("Query "+eventId + " " + description));
+          }
+    });
+}
+
+function deleteUser(uid){
+
+}
+
 module.exports = {};
 module.exports.send_all_events = getAllPolls;
 module.exports.createUser = createUser;
 module.exports.createPoll = createEvent;
+module.exports.vote = castVote;
+module.exports.deleteUser = deleteUser;
