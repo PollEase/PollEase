@@ -25,6 +25,8 @@ var LocationPickerComponent = (function () {
         }
     };
     LocationPickerComponent.prototype.getLocations = function () {
+        // console.log("In Location Picker");
+        // console.log(this.locations[0]);
         return this.locations;
     };
     LocationPickerComponent = __decorate([

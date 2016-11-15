@@ -6,6 +6,9 @@ npm-debug.log*
 
 config.js
 
+#Personal SQL info
+config.json
+
 # Runtime data
 pids
 *.pid
