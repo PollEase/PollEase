@@ -8,7 +8,7 @@ function post(req,res){
     var email = req.body.creatorEmail;
     var name = req.body.creatorName;
     var event_title = req.body.eventTitle;
-    var deadline = req.body.pollDeadline;
+    var deadline = req.body.deadline;
 
     var locations = req.body.locations;
     var date = req.body.dateTime;
