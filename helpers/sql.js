@@ -102,12 +102,19 @@ function getAllPolls(uid,callback){
 function castVote(eventId,description){
 
     var connection = getConnection();
-
-    connection.query("update options set tally=tally+1 where event_id=? AND description=?",[eventId,description],function(err){
-          if(err){
-            console.log(colors.red("Query "+eventId + " " + description));
-          }
+    connection.query("select event_id from events where uid=?",[eventId], function(err,row,field){
+      if(err || rows == null || rows.length ==0){
+          console.log(colors.red("No event where uid="+eventId));
           connection.end();
+          return;
+      }
+      var e_id = rows[0].event_id;
+      connection.query("update options set tally=tally+1 where event_id=? AND description=?",[e_id,description],function(err){
+            if(err){
+              console.log(colors.red("Query "+eventId + " " + description));
+            }
+            connection.end();
+      });
     });
 }
 
