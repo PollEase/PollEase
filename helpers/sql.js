@@ -22,7 +22,7 @@ create TABLE events(name varchar(255), owner_id int, description varchar(255), a
 
 var exports = {};
 
-function createUser(email,uid){
+function createUser(email,uid,callback){
     //select * from users where email=email;
     //if that doesn't exist then do this?
     var connection = getConnection();
@@ -34,7 +34,9 @@ function createUser(email,uid){
       }
       console.log(colors.blue("Added user "+email + " to table users"));
       connection.end();
-
+      if(callback){
+        callback();
+      }
     });
 }
 
@@ -48,12 +50,13 @@ function createOption(event_id,description,type){
     });
 }
 
-function createPoll(name,owner_id,deadline,description){
+function createPoll(name,owner_id,deadline,description,callback){
 
   var connection = getConnection();
 
   var event_id = crypto.randomBytes(32).toString("hex");
-  connection.query("select * from users where uid=?",[owner_id],function(err,rows,fields){
+
+  connection.query("select id from users where uid=?",[owner_id],function(err,rows,fields){
     if(err || rows==null || rows.length == 0){
       console.log(err);
         console.log(colors.red("Cannot get users with uid "+owner_id));
@@ -69,6 +72,8 @@ function createPoll(name,owner_id,deadline,description){
         }
         connection.end();
     });
+    callback(event_id);
+
   });
   /*
   `name` varchar(255) DEFAULT NULL,
