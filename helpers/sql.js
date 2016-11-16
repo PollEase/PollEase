@@ -40,15 +40,7 @@ function createUser(email,uid,callback){
     });
 }
 
-function createOption(event_id,description,type){
-    var connection = getConnection();
-    connection.query("insert into options values(default,?,?,?,0)",[type,event_id,description],function(err){
-      if(err){
-        console.log(colors.red("Error inserting into table options "+event_id+" "+description+" "+type));
-      }
-      connection.end();
-    });
-}
+
 
 function createPoll(name,owner_id,deadline,description,callback){
 
@@ -70,6 +62,7 @@ function createPoll(name,owner_id,deadline,description,callback){
             console.log(colors.red("Error executing query insertion for create poll: "),[name,rows_initial[0].id,description,deadline,event_id]);
         }
         connection.end();
+        console.log(colors.blue("Successfully inserted event: "),[name,rows_initial[0].id,description,deadline,event_id]);
         callback(event_id);
 
     });
@@ -140,8 +133,8 @@ function createOption(poll_id,description,type){
     `event_id` int(11) DEFAULT NULL,
     `description` varchar(255) DEFAULT NULL,
     'tally' int DEFAULT 0,*/
-    var connection = getConnection();
-  connection.query("select * from events where event_id=?",[poll_id],function(err,rows,fields){
+  var connection = getConnection();
+  connection.query("select * from events where uid=?",[poll_id],function(err,rows,fields){
     if(err || rows.length == 0){
       console.log(colors.red("No events with id "+poll_id));
       connection.end();
