@@ -53,14 +53,15 @@ function createPoll(name,owner_id,deadline,description){
 
   var event_id = crypto.randomBytes(32).toString("hex");
   connection.query("select * from users where uid=?",[owner_id],function(err,rows,fields){
-    if(err || rows.length == 0){
+    if(err || rows==null || rows.length == 0){
         console.log(colors.red("Cannot get users with uid "+owner_id));
         connection.end();
         return;
     }
+    var rows_initial = rows;
     connection.query("insert into events values(?,?,?,?,?)",[name,rows[0].id,description,deadline,event_id],function(err,rows,fields){
         if(err){
-          console.log(colors.red("Error executing query insertion for create poll: "),[name,rows[0].id,description,deadline,event_id]);
+            console.log(colors.red("Error executing query insertion for create poll: "),[name,rows_initial[0].id,description,deadline,event_id]);
         }
         connection.end();
     });
