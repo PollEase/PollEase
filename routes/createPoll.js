@@ -23,6 +23,7 @@ function post(req,res){
 
       //polls uid
       sql.createUser(email,uid);
+
       var poll_id = sql.createPoll(event_title,uid,deadline,description);
 
       var options = {};
@@ -43,6 +44,8 @@ function post(req,res){
           sendmail(JSON.parse(JSON.stringify(options)));
       }
 
+
+      }
       //0 represents location
       for(var i = 0; i < locations.length; i++){
         sql.createOption(poll_id,locations[i],0);
@@ -52,9 +55,6 @@ function post(req,res){
       for(var i = 0; i < date.length; i++){
         sql.createOption(poll_id,date[i],1);
       }
-
-      }
-
       //sql.createEvent.
       /* Options = json
 
