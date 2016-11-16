@@ -65,13 +65,14 @@ function createPoll(name,owner_id,deadline,description,callback){
     connection.end();
     connection = getConnection();
     var rows_initial = rows;
-    connection.query("insert into events values(?,?,?,?,?)",[name,rows[0].id,description,deadline,event_id],function(err,rows,fields){
+    connection.query("insert into events values(?,?,?,?,default,?)",[name,rows[0].id,description,deadline,event_id],function(err,rows,fields){
         if(err){
             console.log(colors.red("Error executing query insertion for create poll: "),[name,rows_initial[0].id,description,deadline,event_id]);
         }
         connection.end();
+        callback(event_id);
+
     });
-    callback(event_id);
 
   });
   /*
