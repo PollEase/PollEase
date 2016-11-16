@@ -22,17 +22,6 @@ transporter.verify(function(error, success) {
    }
 });
 
-function exitHandler(){
-    if(transporter){
-        console.log(colors.blue("Connection with gmail ending."));
-        transporter = false;
-    }
-}
-process.on("exit",exitHandler);
-process.on("SIGINT",exitHandler);
-process.on("uncaughtException",exitHandler);
-
-
 /* Options = json
 
   from: this will always be us.
@@ -45,7 +34,7 @@ process.on("uncaughtException",exitHandler);
 //pretty self explanatory.
 function sendEmail(options){
     options.from = options.from ? options.from : smtpConfig.auth.user;
-    
+
     return;
 
     transporter.sendMail(options, function(err,info){
