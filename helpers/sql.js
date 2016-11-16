@@ -49,15 +49,19 @@ function createOption(event_id,description,type){
 }
 
 function createPoll(name,owner_id,deadline,description){
+
   var connection = getConnection();
 
   var event_id = crypto.randomBytes(32).toString("hex");
   connection.query("select * from users where uid=?",[owner_id],function(err,rows,fields){
     if(err || rows==null || rows.length == 0){
+      console.log(err);
         console.log(colors.red("Cannot get users with uid "+owner_id));
         connection.end();
         return;
     }
+    connection.end();
+    connection = getConnection();
     var rows_initial = rows;
     connection.query("insert into events values(?,?,?,?,?)",[name,rows[0].id,description,deadline,event_id],function(err,rows,fields){
         if(err){
