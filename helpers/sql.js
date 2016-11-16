@@ -58,7 +58,6 @@ function createPoll(name,owner_id,deadline,description,callback){
 
   connection.query("select id from users where uid=?",[owner_id],function(err,rows,fields){
     if(err || rows==null || rows.length == 0){
-      console.log(err);
         console.log(colors.red("Cannot get users with uid "+owner_id));
         connection.end();
         return;
@@ -66,6 +65,7 @@ function createPoll(name,owner_id,deadline,description,callback){
     connection.end();
     connection = getConnection();
     var rows_initial = rows;
+    console.log(users.id);
     connection.query("insert into events values(?,?,?,?,?)",[name,rows[0].id,description,deadline,event_id],function(err,rows,fields){
         if(err){
             console.log(colors.red("Error executing query insertion for create poll: "),[name,rows_initial[0].id,description,deadline,event_id]);
