@@ -62,7 +62,7 @@ function createPoll(name,owner_id,deadline,description,callback){
             console.log(colors.red("Error executing query insertion for create poll: "),[name,rows_initial[0].id,description,deadline,event_id]);
         }
         connection.end();
-        console.log(colors.blue("Successfully inserted event: "),[name,rows_initial[0].id,description,deadline,event_id]);
+        console.log(colors.blue("Successfully inserted event: "+name));
         callback(event_id);
 
     });
