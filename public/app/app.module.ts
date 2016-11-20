@@ -11,10 +11,14 @@ import { CreateEventPollFormComponent } from './components/create-event-poll-for
 import { LocationPickerComponent } from './components/location-picker/location-picker.component';
 import { EmailPickerComponent } from './components/email-picker/email-picker.component';
 import { TimePickerComponent } from './components/time-picker/time-picker.component';
+import { EventVotingFormComponent } from './components/event-voting-form/event-voting-form.component';
+import { PollResultsFormComponent } from './components/poll-results-form/poll-results-form.component';
+import { VoterIconsComponent } from './components/voter-icons/voter-icons.component';
 import { Ng2DatetimePickerModule } from 'ng2-datetime-picker';
 
-import { CreateEventPollFormService } from './components/create-event-poll-form/create-event-poll-form.service'; 
+import { CreateEventPollFormService } from './components/create-event-poll-form/create-event-poll-form.service';
 // import { InMemoryDataService } from './in-memory-data.service';
+
 
 @NgModule({
   imports: [ BrowserModule,
@@ -23,12 +27,15 @@ import { CreateEventPollFormService } from './components/create-event-poll-form/
              Ng2DatetimePickerModule,
              RouterModule.forRoot([
                 { path: '', component: HomePageComponent },
+                { path: 'vote', component: EventVotingFormComponent },
+                { path: 'results', component: PollResultsFormComponent },
                 { path: 'createpoll', component: CreateEventPollFormComponent }
              ])
             //  InMemoryWebApiModule.forRoot(InMemoryDataService)
   ],
   declarations: [ AppComponent, HomePageComponent, CreateEventPollFormComponent,
-                  LocationPickerComponent, EmailPickerComponent, TimePickerComponent ],
+                  LocationPickerComponent, EmailPickerComponent, TimePickerComponent,
+                  EventVotingFormComponent, PollResultsFormComponent, VoterIconsComponent ],
   providers: [ LocationPickerComponent, TimePickerComponent, EmailPickerComponent, CreateEventPollFormService ],
   bootstrap:    [ AppComponent ]
 })
