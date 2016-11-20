@@ -1,5 +1,4 @@
-var sendmail = require("../helpers/sendmail.js");
-var crypto = require("crypto");
+var sendmail = require("../helpers/sendmail.js");var crypto = require("crypto");
 var sql = require("../helpers/sql.js");
 var validator = require("validator");
 var colors = require("colors");
@@ -71,8 +70,6 @@ function post(req,res){
 
       //polls uid
       sql.createUser(email,uid, next_part);
-
-
 
       res.send(`{
         "shareLink": "http://dbgui1.com/getPoll/{poll_id}",

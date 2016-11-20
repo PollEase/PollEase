@@ -78,18 +78,33 @@ function createPoll(name,owner_id,deadline,description,callback){
   return event_id;
 }
 
-function getAllPolls(uid,callback){
+function getAllPolls(email,callback,finalize_emails){
 
     var connection = getConnection();
+    connection.query("select * from users where email=?",[email],function(err,rows,fields){
 
-    connection.query("select * from polls where owner_id=?",[uid],function(err,rows,fields){
-    if(err){
-        console.log(colors.red("Query failed under getAllPolls with uid "+uid));
-        return;
-    }
-    connection.end();
-    callback(rows,fields);
+      connection.end();
+      (function for_each_row(i){
+          if(i >= rows.length){
+            finalize_emails();
+            return;
+          }
+
+          connection = getConnection();
+          connection.query("select * from polls where owner_id=?",[rows[i].uid],function(err,rows2,fields){
+          if(err){
+              console.log(colors.red("Query failed under getAllPolls with uid "+uid));
+              return;
+          }
+          connection.end();
+          callback(rows2,fields);
+          for_each_row(i+1);
+          });
+
+      })(0);
+
     });
+
 }
 
 function castVote(eventId,description){
@@ -127,6 +142,21 @@ function deleteUser(uid){
   });
 }
 
+function selectEvent(e_id,callback){
+    var connection = getConnection();
+    connection.query("SELECT 1 from events where event_id=?",[e_id],function(err,rows,fields){
+      if(err){
+        console.log(colors.red("Error selecting from events "+e_id));
+      }
+      else{
+        if(rows.length > 0 ){
+            callback(rows[0]);
+        }
+      }
+      connection.end();
+    });
+}
+
 function createOption(poll_id,description,type){
   /*  `id` int(11) AUTO_INCREMENT,
     `type` int(11) DEFAULT NULL,
@@ -151,6 +181,7 @@ function createOption(poll_id,description,type){
 }
 
 module.exports = {};
+module.exports.selectEvent = selectEvent;
 module.exports.send_all_events = getAllPolls;
 module.exports.createUser = createUser;
 module.exports.createPoll = createPoll;
