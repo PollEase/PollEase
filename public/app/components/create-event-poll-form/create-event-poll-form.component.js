@@ -15,12 +15,13 @@ var time_picker_component_1 = require('./../time-picker/time-picker.component');
 var email_picker_component_1 = require('./../email-picker/email-picker.component');
 var create_event_poll_form_service_1 = require('./create-event-poll-form.service');
 var CreateEventPollFormComponent = (function () {
-    function CreateEventPollFormComponent(route, router, locationPicker, timePicker, emailPicker) {
+    function CreateEventPollFormComponent(route, router, locationPicker, timePicker, emailPicker, createEventPollFormService) {
         this.route = route;
         this.router = router;
         this.locationPicker = locationPicker;
         this.timePicker = timePicker;
         this.emailPicker = emailPicker;
+        this.createEventPollFormService = createEventPollFormService;
     }
     CreateEventPollFormComponent.prototype.ngOnInit = function () {
         //base
@@ -45,26 +46,46 @@ var CreateEventPollFormComponent = (function () {
         //ngIfs
         this.showFunding = false;
         this.showTransportation = false;
+        //Submission
+        this.pollData = {};
+        this.pollData.creatorEmail = '';
+        this.pollData.creatorName = '';
+        this.pollData.eventTitle = '';
+        this.pollData.description = '';
+        this.pollData.pollDeadline = null;
+        this.pollData.locations = [];
+        this.pollData.times = [];
+        this.pollData.emails = [];
+        this.pollData.coverCharge = null;
     };
     CreateEventPollFormComponent.prototype.submit = function () {
-        this.locations = this.locationPicker.getLocations();
-        this.times = this.timePicker.getTimes();
-        this.emails = this.emailPicker.getEmails();
-        //post request
-        // let headers = new Headers({ 'Content-Type': 'application/json' });
-        // let options = new RequestOptions({ headers: headers });
-        // return this.http.post(this.heroesUrl, { name }, options)
-        //             .map(this.extractData)
-        //             .catch(this.handleError);
+        this.pollData.creatorEmail = this.creator.email;
+        this.pollData.creatorName = this.creator.name;
+        this.pollData.eventTitle = this.event.title;
+        this.pollData.description = this.event.description;
+        this.pollData.pollDeadline = this.event.deadline;
+        this.pollData.locations = this.locationPicker.getLocations();
+        // console.log(this.pollData.locations);
+        this.pollData.times = [];
+        //Till timepicker is ready
+        // this.pollData.times = this.timePicker.getTimes();
+        this.pollData.emails = this.emailPicker.getEmails();
+        //optional fields
+        if (this.coverCharge !== false) {
+            this.pollData.coverCharge = this.coverAmount;
+        }
+        else {
+            this.pollData.coverCharge = 0;
+        }
+        this.submitStatus = this.createEventPollFormService.createEventPoll(this.pollData);
     };
     CreateEventPollFormComponent = __decorate([
         core_1.Component({
             selector: 'create-event-poll-form',
             templateUrl: './app/components/create-event-poll-form/create-event-poll-form.component.html',
-            styleUrls: ['./app/components/create-event-poll-form/create-event-poll-form.component.css'],
-            providers: [create_event_poll_form_service_1.CreateEventPollFormService]
+            styleUrls: ['./app/components/create-event-poll-form/create-event-poll-form.component.css']
         }), 
-        __metadata('design:paramtypes', [router_1.ActivatedRoute, router_1.Router, location_picker_component_1.LocationPickerComponent, time_picker_component_1.TimePickerComponent, email_picker_component_1.EmailPickerComponent])
+        __metadata('design:paramtypes', [router_1.ActivatedRoute, router_1.Router, location_picker_component_1.LocationPickerComponent, time_picker_component_1.TimePickerComponent, email_picker_component_1.EmailPickerComponent, create_event_poll_form_service_1.CreateEventPollFormService])
     ], CreateEventPollFormComponent);
     return CreateEventPollFormComponent;
 }());

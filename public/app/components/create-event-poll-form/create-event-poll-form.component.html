@@ -55,6 +55,7 @@
                     <h3>Date + Time</h3>
                     <time-picker></time-picker>
 
+
                     <h3>Add Attendees</h3>
                     <email-picker></email-picker>
                     
@@ -148,10 +149,12 @@
             </div>
         </div>
 
-        <div class="col-md-7">
+        <div class="col-md-7 submitBtn">
             <a class="btn btn-primary btn-block btn-lg" (click)="submit()">
                 Submit
             </a>
         </div>
     </div>
+    <pre>{{submitStatus|json}}</pre>
+    <pre>{{submitStatus}}</pre>
 </div>

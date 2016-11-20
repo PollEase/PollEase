@@ -18,18 +18,16 @@ app.post("/email",email.post);
 var createPoll = require("./routes/createPoll.js");
 app.post("/createPoll",createPoll.post);
 
-var editPoll = require("./routes/editPoll.js");
-app.put("/editPoll",editPoll.put);
-
 var submitPreferences = require("./routes/submitPreferences.js");
 app.post("/submitPreferences",submitPreferences.post);
-
-var editPreferences = require("./routes/editPreferences.js");
-app.put("/editPreferences",editPreferences.put);
 
 var results = require("./routes/results.js");
 app.get("/results",results.get)
 
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.set('case sensitive routing', false);
+
+console.log(colors.green("Application listening on port 8000"));
 
 module.exports = app;

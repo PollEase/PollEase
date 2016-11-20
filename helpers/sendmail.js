@@ -35,9 +35,14 @@ transporter.verify(function(error, success) {
 function sendEmail(options){
     options.from = options.from ? options.from : smtpConfig.auth.user;
 
+    return;
+
     transporter.sendMail(options, function(err,info){
       if(err){
         console.log(colors.red("Email couldn't send"));
+      }
+      else{
+        console.log(colors.blue("Sent message to "+options.to));
       }
         //Do we really need to handler errors with sending emails?  Probably not tbh
     });
