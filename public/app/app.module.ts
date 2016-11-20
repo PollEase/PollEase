@@ -10,6 +10,10 @@ import { LocationPickerComponent } from './components/location-picker/location-p
 import { EmailPickerComponent } from './components/email-picker/email-picker.component';
 import { TimePickerComponent } from './components/time-picker/time-picker.component';
 import { EventVotingFormComponent } from './components/event-voting-form/event-voting-form.component';
+import { PollResultsFormComponent } from './components/poll-results-form/poll-results-form.component';
+import { VoterIconsComponent } from './components/voter-icons/voter-icons.component';
+
+
 
 
 @NgModule({
@@ -19,11 +23,13 @@ import { EventVotingFormComponent } from './components/event-voting-form/event-v
 
                 { path: '', component: HomePageComponent },
                 { path: 'vote', component: EventVotingFormComponent },
+                { path: 'results', component: PollResultsFormComponent },
                 { path: 'createpoll', component: CreateEventPollFormComponent }
              ])
   ],
   declarations: [ AppComponent, HomePageComponent, CreateEventPollFormComponent,
-                  LocationPickerComponent, EmailPickerComponent, TimePickerComponent, EventVotingFormComponent ],
+                  LocationPickerComponent, EmailPickerComponent, TimePickerComponent,
+                  EventVotingFormComponent, PollResultsFormComponent, VoterIconsComponent ],
   providers: [ LocationPickerComponent, TimePickerComponent, EmailPickerComponent ],
   bootstrap:    [ AppComponent ]
 })

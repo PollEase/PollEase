@@ -5,7 +5,7 @@
                 <div class="panel-body">
                     <div class="static">
                         <h1 class="title">{{eventTitle}}</h1>
-                        <h3 class="title">Created By: {{creatorFirstName}} {{creatorLastName}}</h3>
+                        <h4 class="title">Created By: {{creatorFirstName}} {{creatorLastName}}</h4>
                         <div class="border">
                             <p class="left">{{description}}</p>
                             <div class="span">
@@ -18,22 +18,19 @@
 
                     <h3>Location</h3>
                     <div *ngFor="let location of locations">
-                        <input type="checkbox"> {{location}}<br>
+                        <input type="checkbox" (click)="selectLocation(location)"> {{location}}<br>
                     </div>
 
                     <h3>Date + Time</h3>
                     <div *ngFor="let time of times">
-                        <input type="checkbox"> {{time}}<br>
+                        <input type="checkbox" (click)="selectTime(time)"> {{time}}<br>
                     </div>
 
-                    <h3>Notes</h3>
-                    <!-- <input  id="event_description"
-                        class="form-control"
-                        [(ngModel)]="notes" /> -->
+                    <!-- <h3>Notes</h3>
                     <textarea class="span6"
                         rows="3"
                         placeholder="What's up?"
-                        [(ngModel)]="notes"></textarea>
+                        [(ngModel)]="notes"></textarea> -->
                 </div>
             </div>
         </div>
