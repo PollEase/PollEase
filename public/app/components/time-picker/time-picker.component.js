@@ -9,8 +9,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var createPoll_repository_service_1 = require('../repository/createPoll-repository.service');
 var TimePickerComponent = (function () {
-    function TimePickerComponent() {
+    function TimePickerComponent(createService) {
+        this.createService = createService;
         this.times = [];
         this._temp = "";
     }
@@ -18,11 +20,13 @@ var TimePickerComponent = (function () {
         var time = new Date(this._temp);
         this.times.push(time);
         this._temp = "";
+        this.createService.addTime(time);
     };
     TimePickerComponent.prototype.removeTime = function (time) {
         var index = this.times.findIndex(function (tim) { return (tim === time); });
         if (index != -1) {
             this.times.splice(index, 1);
+            this.createService.remLoc(index);
         }
     };
     TimePickerComponent.prototype.getTimes = function () {
@@ -34,7 +38,7 @@ var TimePickerComponent = (function () {
             templateUrl: './app/components/time-picker/time-picker.component.html',
             styleUrls: ['./app/components/time-picker/time-picker.component.css']
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [createPoll_repository_service_1.createRepoService])
     ], TimePickerComponent);
     return TimePickerComponent;
 }());

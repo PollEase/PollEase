@@ -19,6 +19,8 @@ var create_event_poll_form_component_1 = require('./components/create-event-poll
 var location_picker_component_1 = require('./components/location-picker/location-picker.component');
 var email_picker_component_1 = require('./components/email-picker/email-picker.component');
 var time_picker_component_1 = require('./components/time-picker/time-picker.component');
+var confirmation_component_1 = require('./components/confirmation/confirmation.component');
+var createPoll_repository_service_1 = require('./components/repository/createPoll-repository.service');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -29,12 +31,13 @@ var AppModule = (function () {
                 ng2_datetime_picker_1.Ng2DatetimePickerModule,
                 router_1.RouterModule.forRoot([
                     { path: '', component: home_page_component_1.HomePageComponent },
-                    { path: 'createpoll', component: create_event_poll_form_component_1.CreateEventPollFormComponent }
+                    { path: 'createpoll', component: create_event_poll_form_component_1.CreateEventPollFormComponent },
+                    { path: 'confirm', component: confirmation_component_1.ConfirmationComponent }
                 ])
             ],
             declarations: [app_component_1.AppComponent, home_page_component_1.HomePageComponent, create_event_poll_form_component_1.CreateEventPollFormComponent,
-                location_picker_component_1.LocationPickerComponent, email_picker_component_1.EmailPickerComponent, time_picker_component_1.TimePickerComponent],
-            providers: [location_picker_component_1.LocationPickerComponent, time_picker_component_1.TimePickerComponent, email_picker_component_1.EmailPickerComponent],
+                location_picker_component_1.LocationPickerComponent, email_picker_component_1.EmailPickerComponent, time_picker_component_1.TimePickerComponent, confirmation_component_1.ConfirmationComponent],
+            providers: [location_picker_component_1.LocationPickerComponent, time_picker_component_1.TimePickerComponent, email_picker_component_1.EmailPickerComponent, createPoll_repository_service_1.createRepoService],
             bootstrap: [app_component_1.AppComponent]
         }), 
         __metadata('design:paramtypes', [])

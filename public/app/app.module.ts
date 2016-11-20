@@ -10,7 +10,9 @@ import { CreateEventPollFormComponent } from './components/create-event-poll-for
 import { LocationPickerComponent } from './components/location-picker/location-picker.component';
 import { EmailPickerComponent } from './components/email-picker/email-picker.component';
 import { TimePickerComponent } from './components/time-picker/time-picker.component';
-import { Ng2DatetimePickerModule } from 'ng2-datetime-picker';
+import { ConfirmationComponent } from './components/confirmation/confirmation.component';
+import { createRepoService } from './components/repository/createPoll-repository.service';
+
 
 @NgModule({
   imports: [ BrowserModule,
@@ -19,12 +21,13 @@ import { Ng2DatetimePickerModule } from 'ng2-datetime-picker';
              RouterModule.forRoot([
 
                 { path: '', component: HomePageComponent },
-                { path: 'createpoll', component: CreateEventPollFormComponent }
+                { path: 'createpoll', component: CreateEventPollFormComponent },
+                { path: 'confirm', component: ConfirmationComponent}
              ])
   ],
   declarations: [ AppComponent, HomePageComponent, CreateEventPollFormComponent,
-                  LocationPickerComponent, EmailPickerComponent, TimePickerComponent ],
-  providers: [ LocationPickerComponent, TimePickerComponent, EmailPickerComponent ],
+                  LocationPickerComponent, EmailPickerComponent, TimePickerComponent,ConfirmationComponent ],
+  providers: [ LocationPickerComponent, TimePickerComponent, EmailPickerComponent, createRepoService ],
   bootstrap:    [ AppComponent ]
 })
 

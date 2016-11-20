@@ -1,0 +1,76 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-7">
+            <div class="panel panel-info">
+                <div class="panel-body">
+
+                   
+                    <div class="form-group" id = "center">
+                        <h3>SUCCESS!!</h3>
+                        <h4>YOU JUST CREATED A POLL!!</h4>
+                        <h3>{{event.title}}</h3> 
+                        <h3>CREATED BY: {{event.creator.name }}</h3>
+                    </div>
+                    <hr/>
+
+                    <div class="form-group">
+                        <label >
+                            Description: {{event.description}}
+
+                        </label>
+                        <br/>
+                        <label *ngIf="event.coverCharge == true">
+                            Cover Charge: {{event.coverAmount}}
+                        </label>
+                        <label *ngIf="event.coverCharge == false">
+                            Cover Charge: NONE
+                        </label>
+                        <br/>
+                        <label>
+                            Deadline:  {{event.deadline}}
+                        </label>
+                        <br/>
+                        <label *ngIf="event.contribution == true">
+                            Donation: YES
+
+                        </label>
+                        <label *ngIf="event.contribution == false">
+                            Donation: NO
+
+                        </label>
+                        <br/>
+                    </div>
+                    <div class="form-group" id="loc">
+                        <h4>LOCATION</h4>
+                        <li  class="list-group-item"
+                            *ngFor="let location of event.locations">
+                             <div class="input-group">
+                                {{ location }}
+                            </div>
+                        </li>
+                    </div>
+                    <br/>
+                    <div class="form-group" id="time">
+                        <h4>DATE+TIME</h4>
+                        <li  class="list-group-item"
+                            *ngFor="let time of event.times">
+                             <div class="input-group">
+                                {{time }}
+                            </div>
+                        </li>
+                    </div>
+                    <br/>
+                   
+        
+                    <div class="col-md-7">
+                    
+                        <a class="btn btn-primary btn-block btn-group-sm" routerLink="">
+                            SUBMIT
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

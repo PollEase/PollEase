@@ -11,7 +11,7 @@
                         </label>
                         <input  id="creator_name"
                                 class="form-control"
-                                [(ngModel)]="creator.name" />
+                                [(ngModel)]="event.creator.name" />
                     </div>
                     <div class="form-group">
                         <label for="creator_email">
@@ -19,7 +19,7 @@
                         </label>
                         <input  id="creator_email"
                                 class="form-control"
-                                [(ngModel)]="creator.email" />
+                                [(ngModel)]="event.creator.email" />
                     </div>
 
                     <h3>Event Info</h3>
@@ -59,7 +59,7 @@
                     <h3>Add Attendees</h3>
                     <email-picker></email-picker>
                     
-                    <div class="container" *ngIf="showFunding == true">
+                    <div class="container">
                         <h3>Funding</h3>
                         <div class="form-group">
                             <label for="cover_charge">
@@ -69,13 +69,13 @@
                                 <span class="input-group-addon">
                                     <input  id="cover_charge"
                                             type="checkbox"
-                                            [(ngModel)]="coverCharge" />
+                                            [(ngModel)]="event.coverCharge" />
                                 </span>
                                 <span class="input-group-addon">$</span>
                                 <input  id="cover_amount"
                                         type="number" min="0" step="any"
                                         placeholder="0.00"
-                                        [(ngModel)]="coverAmount" />
+                                        [(ngModel)]="event.coverAmount" />
                             </div>
                         </div>
 
@@ -86,12 +86,12 @@
                             <div class="input-group">
                                 <input  id="contribution"
                                         type="checkbox"
-                                        [(ngModel)]="contribution" />
+                                        [(ngModel)]="event.contribution" />
                             </div>
                         </div>
                     </div>
 
-                    <div class="container" *ngIf="showTransportation == true">
+                    <!--<div class="container" *ngIf="showTransportation == true">
                         <h3>Transportation</h3>
                         <div class="form-group">
                             <label for="poll_for_transport">
@@ -100,7 +100,7 @@
                             <div class="input-group">
                                 <input  id="poll_for_transport"
                                         type="checkbox"
-                                        [(ngModel)]="pollUsersForTransport" />
+                                        [(ngModel)]="event.pollUsersForTransport" />
                             </div>
                         </div>
 
@@ -111,7 +111,7 @@
                             <div class="input-group">
                                 <input  id="need_pickup"
                                         type="checkbox"
-                                        [(ngModel)]="needPickup" />
+                                        [(ngModel)]="event.needPickup" />
                             </div>
                         </div>
 
@@ -123,34 +123,31 @@
                                 <span class="input-group-addon">
                                     <input  id="can_drive"
                                             type="checkbox"
-                                            [(ngModel)]="canDrive" />
+                                            [(ngModel)]="event.canDrive" />
                                 </span>
                                 <input  id="cover_amount"
                                         type="number" min="0"
-                                        [(ngModel)]="pickupQuantity" />
+                                        [(ngModel)]="event.pickupQuantity" />
                             </div>
                         </div>
-                    </div>
+                    </div>-->
 
                     <!--More Options Buttons-->
-                    <div class="container col-md-12" *ngIf="showFunding == false || showTransportation == false">
+                    <!--<div class="container col-md-12" *ngIf="showFunding == false || showTransportation == false">
                         <h3>More Options</h3>
                         <button class="btn btn-info btn-block btn-lg" *ngIf="showFunding == false"
                             (click)="showFunding = true">
                             <span class="glyphicon glyphicon-usd"></span>
                         </button>
-                        <button class="btn btn-info btn-block btn-lg" *ngIf="showTransportation == false"
-                            (click)="showTransportation = true">
-                            <span class="glyphicon glyphicon-road"></span>
-                        </button>
-                    </div>
+                        
+                    </div>-->
 
                 </div>
             </div>
         </div>
 
         <div class="col-md-7">
-            <a class="btn btn-primary btn-block btn-lg" (click)="submit()">
+            <a class="btn btn-primary btn-block btn-lg" (click)="submit()" routerLink="/confirm">
                 Submit
             </a>
         </div>
