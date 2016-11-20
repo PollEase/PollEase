@@ -22,11 +22,11 @@ create TABLE events(name varchar(255), owner_id int, description varchar(255), a
 
 var exports = {};
 
-function createUser(email,uid,callback){
+function createUser(email,uid,name,callback){
     //select * from users where email=email;
     //if that doesn't exist then do this?
     var connection = getConnection();
-    connection.query("insert into users values(default,?,?)",[email,uid],function(err,rows,fields){
+    connection.query("insert into users values(default,?,?,?)",[name,email,uid],function(err,rows,fields){
       if(err){
         console.log(colors.red("Error inserting user "+email +" with uid "+uid));
         connection.end();
@@ -42,7 +42,7 @@ function createUser(email,uid,callback){
 
 
 
-function createPoll(name,owner_id,deadline,description,callback){
+function createPoll(name,owner_id,deadline,description,cost,callback){
 
   var connection = getConnection();
 
@@ -57,7 +57,7 @@ function createPoll(name,owner_id,deadline,description,callback){
     connection.end();
     connection = getConnection();
     var rows_initial = rows;
-    connection.query("insert into events values(?,?,?,?,default,?)",[name,rows[0].id,description,deadline,event_id],function(err,rows,fields){
+    connection.query("insert into events values(?,?,?,?,default,?,?)",[name,rows[0].id,description,deadline,event_id,cost],function(err,rows,fields){
         if(err){
             console.log(colors.red("Error executing query insertion for create poll: "),[name,rows_initial[0].id,description,deadline,event_id]);
         }
@@ -77,7 +77,18 @@ function createPoll(name,owner_id,deadline,description,callback){
   */
   return event_id;
 }
-
+function selectOwner(id,callback){
+    var connection = getConnection();
+    connection.query("select 1 from users where uid=?",[id],function(err,rows,field){
+      if(err){
+        console.log(colors.red("Error selecting from users where uid = "+id));
+      }
+      if(rows.length > 0 ){
+        var email = rows[0].email;
+        callback(email);
+      }
+    });
+}
 function getAllPolls(email,callback,finalize_emails){
 
     var connection = getConnection();
@@ -180,7 +191,23 @@ function createOption(poll_id,description,type){
 
 }
 
+function get_options(event_id,type,callback){
+    var connection = getConnection();
+    connection.query("select * from options where type=? AND event_id=?",[event_id,type],function(err,rows,fields){
+        if(err){
+          console.log(colors.red("Error in get_options executing "+[event_id,type]));
+          return;
+        }
+        if(rows.length > 0){
+          callback(rows);
+        }
+    });
+}
+
+
 module.exports = {};
+module.exports.selectOwner = selectOwner;
+module.exports.get_options = get_options;
 module.exports.selectEvent = selectEvent;
 module.exports.send_all_events = getAllPolls;
 module.exports.createUser = createUser;

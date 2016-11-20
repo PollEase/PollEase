@@ -14,23 +14,47 @@ function get(req,res){
       var deadline = row.deadline;
       var event_id = row.event_id;
       var uid = row.uid;
+      var funding = row.funding;
+      sql.selectOwner(owner_id,function(creator){
+          var json_object = {};
+          json_object.creatorEmail = creator.email;
+          json_object.name = creator.name;
+          json_object.eventTitle = name;
+          json_object.pollDeadline = deadline;
+          json_object.funding = funding;
+          json_object.description = description;
 
-      sql.selectOwner(function(row2){
-        
+          function finalize(){
+            res.send(JSON.stringify(json_object));
+            return;
+          }
+
+          sql.get_options(event_id,1,function(rows){
+            var all_times = [];
+
+            for(var i = 0; i < rows.length; i++){
+                  all_times.append(rows[i].description);
+            }
+
+            json_object.times = all_times;
+            sql.get_options(event_id,0,function(rows){
+              var locations = [];
+
+              for(var i = 0; i < rows.length; i++){
+                locations.append(rows[i].description);
+              }
+
+              json_object.times = locations;
+              finalize();
+              });
+          });
+
+
       });
 
   });
 
-  res.send(```{
-      "creatorEmail": "sample@gmail.com",
-      "name":"Luke Wood"
-      "eventTitle": "Class",
-      "pollDeadline": "2016-05-23T18:25:43.511Z",
-      "locations": ["Fondren","Caruth"],
-      "times": ["2016-05-23T18:25:43.511Z"],
-      "funding": 10.23,
-      "description": "Get excited for next class!",
-  }```);
+
 
 }
 

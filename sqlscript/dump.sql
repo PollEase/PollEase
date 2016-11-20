@@ -29,6 +29,7 @@ CREATE TABLE `events` (
   `deadline` varchar(255) DEFAULT NULL,
   `event_id` int(11) NOT NULL AUTO_INCREMENT,
   `uid` varchar(255) DEFAULT NULL,
+  `funding` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`event_id`),
   KEY `owner_id` (`owner_id`),
   CONSTRAINT `events_ibfk_1` FOREIGN KEY (`owner_id`) REFERENCES `users` (`id`)
@@ -80,6 +81,7 @@ DROP TABLE IF EXISTS `users`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `uid` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
