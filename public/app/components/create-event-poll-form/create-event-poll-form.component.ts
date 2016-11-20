@@ -63,7 +63,7 @@ export class CreateEventPollFormComponent {
 		//optional fields
 		this.event.coverCharge = false;
 		this.event.coverAmount = 0.00;
-		this.event.contribution = false;
+		
 
 		this.event.pollUsersForTransport = false;
 		this.event.needPickup = false;
