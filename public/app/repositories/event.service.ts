@@ -53,4 +53,37 @@ export class EventRepositoryService {
             .then(x => x.json())
             .catch(this.handleError);
     }
+
+    get(id : number) : Promise<any> {
+		var pluck = x => (x && x.length) ? x[0] : undefined;
+		return this.http
+			.get(`${this._apiUrl}/?id=${id}`)
+			.toPromise()
+			.then(x => pluck(x.json().data))
+			.catch(x => alert(x.json().error));
+	}
+
+	// add(movie) : Promise<any> {
+	// 	return this.http
+	// 		.post(this._apiUrl, movie)
+	// 		.toPromise()
+	// 		.then(() => movie)
+	// 		.catch(x => alert(x.json().error));
+	// }
+
+	update(event) : Promise<any> {
+		return this.http
+			.put(`${this._apiUrl}/${event.id}`, event)
+			.toPromise()
+			.then(() => event)
+			.catch(x => alert(x.json().error));
+	}
+
+	delete(id : number) : Promise<any> {
+		
+		return this.http
+			.delete(`${this._apiUrl}/${id}`)
+			.toPromise()
+			.catch(x => alert(x.json().error));
+	}
 }

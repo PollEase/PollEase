@@ -55,6 +55,34 @@ var EventRepositoryService = (function () {
             .then(function (x) { return x.json(); })
             .catch(this.handleError);
     };
+    EventRepositoryService.prototype.get = function (id) {
+        var pluck = function (x) { return (x && x.length) ? x[0] : undefined; };
+        return this.http
+            .get(this._apiUrl + "/?id=" + id)
+            .toPromise()
+            .then(function (x) { return pluck(x.json().data); })
+            .catch(function (x) { return alert(x.json().error); });
+    };
+    // add(movie) : Promise<any> {
+    // 	return this.http
+    // 		.post(this._apiUrl, movie)
+    // 		.toPromise()
+    // 		.then(() => movie)
+    // 		.catch(x => alert(x.json().error));
+    // }
+    EventRepositoryService.prototype.update = function (event) {
+        return this.http
+            .put(this._apiUrl + "/" + event.id, event)
+            .toPromise()
+            .then(function () { return event; })
+            .catch(function (x) { return alert(x.json().error); });
+    };
+    EventRepositoryService.prototype.delete = function (id) {
+        return this.http
+            .delete(this._apiUrl + "/" + id)
+            .toPromise()
+            .catch(function (x) { return alert(x.json().error); });
+    };
     EventRepositoryService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http])
