@@ -47,7 +47,7 @@ function post(req,res){
 
       function next_part(){
         var poll_id = sql.createPoll(event_title,uid,deadline,description,cost,part_three);
-        res.send(JSON.stringify({"voteLink":"localhost:8000/results?id="+uid+"&pollId="+poll_id,"shareLink": "localhost:8000/results?pollId="+poll_id}));
+        res.send(JSON.stringify({"voteLink":"localhost:8000/getPoll?id="+uid+"&pollId="+poll_id,"shareLink": "localhost:8000/results?pollId="+poll_id}));
 
         var options = {};
         options.to = email;
@@ -63,7 +63,7 @@ function post(req,res){
               sql.createUser(user_email, u_uid, "");
 
               options.to = user_email;
-              options.text = "Click here to not go to jail "+ "localhost:8000/getPoll?id="+u_uid+"&poll_id="+poll_id;
+              options.text = "Click here to not go to jail "+ "localhost:8000/getPoll?id="+u_uid+"&pollId="+poll_id;
               sendmail(JSON.parse(JSON.stringify(options)));
           }
 
