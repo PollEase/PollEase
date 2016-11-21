@@ -12,6 +12,7 @@ var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
 var forms_1 = require('@angular/forms');
 var router_1 = require('@angular/router');
+var ng2_datetime_picker_1 = require('ng2-datetime-picker');
 var http_1 = require('@angular/http');
 // import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 var app_component_1 = require('./app.component');
@@ -20,10 +21,11 @@ var create_event_poll_form_component_1 = require('./components/create-event-poll
 var location_picker_component_1 = require('./components/location-picker/location-picker.component');
 var email_picker_component_1 = require('./components/email-picker/email-picker.component');
 var time_picker_component_1 = require('./components/time-picker/time-picker.component');
+var confirmation_component_1 = require('./components/confirmation/confirmation.component');
+var createPoll_repository_service_1 = require('./components/repository/createPoll-repository.service');
 var event_voting_form_component_1 = require('./components/event-voting-form/event-voting-form.component');
 var poll_results_form_component_1 = require('./components/poll-results-form/poll-results-form.component');
 var voter_icons_component_1 = require('./components/voter-icons/voter-icons.component');
-var ng2_datetime_picker_1 = require('ng2-datetime-picker');
 var create_event_poll_form_service_1 = require('./components/create-event-poll-form/create-event-poll-form.service');
 //New service for all event related actions
 var event_service_1 = require('./repositories/event.service');
@@ -39,16 +41,17 @@ var AppModule = (function () {
                 ng2_datetime_picker_1.Ng2DatetimePickerModule,
                 router_1.RouterModule.forRoot([
                     { path: '', component: home_page_component_1.HomePageComponent },
+                    { path: 'confirm', component: confirmation_component_1.ConfirmationComponent },
                     { path: 'vote', component: event_voting_form_component_1.EventVotingFormComponent },
                     { path: 'results', component: poll_results_form_component_1.PollResultsFormComponent },
                     { path: 'createpoll', component: create_event_poll_form_component_1.CreateEventPollFormComponent }
                 ])
             ],
             declarations: [app_component_1.AppComponent, home_page_component_1.HomePageComponent, create_event_poll_form_component_1.CreateEventPollFormComponent,
-                location_picker_component_1.LocationPickerComponent, email_picker_component_1.EmailPickerComponent, time_picker_component_1.TimePickerComponent,
+                location_picker_component_1.LocationPickerComponent, email_picker_component_1.EmailPickerComponent, time_picker_component_1.TimePickerComponent, confirmation_component_1.ConfirmationComponent,
                 event_voting_form_component_1.EventVotingFormComponent, poll_results_form_component_1.PollResultsFormComponent, voter_icons_component_1.VoterIconsComponent],
             providers: [location_picker_component_1.LocationPickerComponent, time_picker_component_1.TimePickerComponent, email_picker_component_1.EmailPickerComponent, create_event_poll_form_service_1.CreateEventPollFormService,
-                event_service_1.EventRepositoryService
+                event_service_1.EventRepositoryService, createPoll_repository_service_1.createRepoService
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 

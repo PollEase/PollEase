@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { createRepoService } from '../repository/createPoll-repository.service';
 
 @Component({
 	selector: 'time-picker',
@@ -11,7 +12,7 @@ export class TimePickerComponent {
 	times: any[];
 	_temp: any;
 
-	constructor(){
+	constructor(private createService : createRepoService){
 
 		this.times = [];
 		this._temp = "";
@@ -22,12 +23,14 @@ export class TimePickerComponent {
 		this.times.push(time);
 
 		this._temp = "";
+		this.createService.addTime(time);
 	}
 
 	removeTime(time){
 		var index = this.times.findIndex((tim) => (tim===time));
 		if(index != -1) {
 			this.times.splice(index, 1);
+			this.createService.remLoc(index);
 		}
 	}
 

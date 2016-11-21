@@ -1,8 +1,8 @@
-var sendmail = require("../helpers/sendmail.js");
-var crypto = require("crypto");
+var sendmail = require("../helpers/sendmail.js");var crypto = require("crypto");
 var sql = require("../helpers/sql.js");
 var validator = require("validator");
 var colors = require("colors");
+
 function post(req,res){
 
     var email = req.body.creatorEmail;
@@ -16,9 +16,10 @@ function post(req,res){
     var description = req.body.description;
 
     var recipient_emails = req.body.emails;
-
+    var cost = req.body.coverCharge;
 
     if(email &&validator.isEmail(email) && name !=null && description != null && event_title != null && deadline != null){
+      //create users uid
       var uid = crypto.randomBytes(32).toString("hex");
 
 
@@ -45,12 +46,13 @@ function post(req,res){
             }
 
       function next_part(){
-        var poll_id = sql.createPoll(event_title,uid,deadline,description,part_three);
+        var poll_id = sql.createPoll(event_title,uid,deadline,description,cost,part_three);
+        res.send(JSON.stringify({"voteLink":"localhost:8000/getPoll?id="+uid+"&pollId="+poll_id,"shareLink": "localhost:8000/results?pollId="+poll_id}));
 
         var options = {};
         options.to = email;
         options.subject = "Knock Knock open up its the PollEase.  We got a warrant.";
-        options.text = "Click here to not go to jail "+ "localhost:8000/getPoll?id="+uid+"&poll_id="+poll_id;
+        options.text = "Click here to not go to jail "+ "localhost:8000/getPoll?id="+uid+"&pollId="+poll_id+"\nAnd here for the results localhost:8000/getPoll?pollId="+poll_id;
         sendmail(JSON.parse(JSON.stringify(options)));
 
         for(var i = 0; i < recipient_emails.length; i++){
@@ -58,10 +60,10 @@ function post(req,res){
 
             if(validator.isEmail(user_email)){
               var u_uid = crypto.randomBytes(32).toString("hex");
-              sql.createUser(user_email, u_uid);
+              sql.createUser(user_email, u_uid, "");
 
               options.to = user_email;
-              options.text = "Click here to not go to jail "+ "localhost:8000/getPoll?id="+u_uid+"&poll_id="+poll_id;
+              options.text = "Click here to not go to jail "+ "localhost:8000/getPoll?id="+u_uid+"&pollId="+poll_id;
               sendmail(JSON.parse(JSON.stringify(options)));
           }
 
@@ -70,14 +72,8 @@ function post(req,res){
       }
 
       //polls uid
-      sql.createUser(email,uid, next_part);
+      sql.createUser(email,uid,name,next_part);
 
-
-
-      res.send(`{
-        "shareLink": "http://dbgui1.com/getPoll/{poll_id}",
-        "creatorLink": "http://dbgui1.com/event/edit"
-      }\n`);
       }      else{
               res.send(email + " IS NOT A VALID EMAIL STOP TRYING TO HACK US");
               return;
