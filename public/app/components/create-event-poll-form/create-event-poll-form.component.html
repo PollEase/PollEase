@@ -58,7 +58,7 @@
 
                     <h3>Add Attendees</h3>
                     <email-picker></email-picker>
-                    
+
                     <div class="container">
                         <h3>Funding</h3>
                         <div class="form-group">
@@ -128,17 +128,18 @@
                             (click)="showFunding = true">
                             <span class="glyphicon glyphicon-usd"></span>
                         </button>
-                        
+
                     </div>-->
 
                 </div>
             </div>
         </div>
-
-        <div class="col-md-7">
+        <div class="col-md-7 submitBtn">
             <a class="btn btn-primary btn-block btn-lg" (click)="submit()" routerLink="/confirm">
                 Submit
             </a>
         </div>
     </div>
+    <!-- <pre>{{submitStatus|json}}</pre>
+    <pre>{{submitStatus}}</pre> -->
 </div>

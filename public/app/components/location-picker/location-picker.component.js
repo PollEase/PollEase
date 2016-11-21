@@ -33,7 +33,6 @@ var LocationPickerComponent = (function () {
         this.createService.remLoc(location);
     };
     LocationPickerComponent.prototype.getLocations = function () {
-        //console.log("this is the location "+this.locations);
         return this.locations;
     };
     LocationPickerComponent = __decorate([

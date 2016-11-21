@@ -37,7 +37,6 @@ export class LocationPickerComponent {
   }
 
   getLocations() {
-    //console.log("this is the location "+this.locations);
     return this.locations;
   }
 }

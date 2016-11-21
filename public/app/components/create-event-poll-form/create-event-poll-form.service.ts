@@ -1,34 +1,55 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers } from '@angular/http';
-import 'rxjs/add/operator/map'
-import { Observable } from 'rxjs/Observable';
-import { Configuration } from '../../app.constants';
- 
+import { Http, Response, RequestOptions, Headers } from '@angular/http';
+import 'rxjs/add/observable/throw';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/toPromise';
+
 @Injectable()
 export class CreateEventPollFormService {
  
-    private actionUrl: string;
-    private headers: Headers;
- 
-    constructor(private _http: Http, private _configuration: Configuration) {
- 
-        this.actionUrl = _configuration.ServerWithApiUrl + 'createpoll/';
- 
-        this.headers = new Headers();
-        this.headers.append('Content-Type', 'application/json');
-        this.headers.append('Accept', 'application/json');
+    //InMemoryModule
+    // private _apiUrl = 'app/events';
+
+    //localhost
+    private _apiUrl = 'http://localhost:8000/createPoll';
+
+    //Apiary
+    // private _apiUrl = 'http://private-a1931-dbgui1.apiary-mock.com/createPoll';
+
+    constructor(private http: Http) { }
+
+    private extractData(res: Response) {
+        let body = res.json();
+        return body.data;
     }
 
-    // public Add = (itemName: string): Observable<MyTypedItem> => {
-    //     let toAdd = JSON.stringify({ ItemName: itemName });
- 
-    //     return this._http.post(this.actionUrl, toAdd, { headers: this.headers })
-    //         .map((response: Response) => <MyTypedItem>response.json())
-    //         .catch(this.handleError);
-    // }
+    private handleError (error: Response | any) {
+        // In a real world app, we might use a remote logging infrastructure
+        let errMsg: string;
+        if (error instanceof Response) {
+            const body = error.json() || '';
+            const err = body.error || JSON.stringify(body);
+            errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
+        } else {
+            errMsg = error.message ? error.message : error.toString();
+        }
+        console.error(errMsg);
+        return Promise.reject(errMsg);
+    }
 
-    //  private handleError(error: Response) {
-    //     console.error(error);
-    //     return Observable.throw(error.json().error || 'Server error');
-    // }
+    createEventPoll(poll) : Promise<any> {
+
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+
+        return this.http
+            .post(this._apiUrl, poll, options)
+            .toPromise()
+            .then(x => x.json())
+            .catch(this.handleError);
+    }
 }
