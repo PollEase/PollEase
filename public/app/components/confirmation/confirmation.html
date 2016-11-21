@@ -54,10 +54,31 @@
 
                     <div class="col-md-7">
 
-                        <a class="btn btn-primary btn-block btn-group-sm" routerLink="">
+                        <a class="btn btn-primary btn-block btn-group-sm" data-toggle="modal" data-target="#myModal">
                             SUBMIT
                         </a>
                     </div>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">Poll was created successfully!</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <h5>You will recieve an email with a link to view the results of your poll shortly.</h5>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-success" data-dismiss="modal" routerLink="">OK</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
