@@ -1,21 +1,173 @@
 .slogan {
-    font-weight: 100;
-    font-family: "Arial";
-    font-size: 500%;
-    padding: 50px 200px;
+    /*color: #071722;*/
+    color: #fcfcfc;
+
+    font-family: 'Oswald', sans-serif; 
+    font-size: 75px; 
+    font-weight: normal; 
+    letter-spacing: -5px; 
+    word-spacing: 3px;
+    line-height: 1; 
+    text-align: center; 
+    opacity: 1.0;
+    margin-top: 60px;
+    padding-right: 25px;
+    padding-left: 30px;
+    margin-left: -20px;
+    margin-right: -20px;
+
+}
+
+
+div.topcontain {
+    width: 970px;
+    height: 300px;
+    /*background-color: rgba(0, 0, 0, .5);*/
+    /*padding: 75px 75pt;*/
+    border-radius: 10px;
+    font-size: 20px;
+    padding-top: 600px;
+    margin-left: 220px;
+    margin-right: 100px;
+    /*background-color: rgba(134, 165, 218, 0.27);*/
+    background-color: rgba(51, 139, 255, 0.62);
+    border-color: none;
     align-self: center;
+    position: relative;
+    /*position: 800px;*/
+    padding-left: 100px;
+    padding-right: 75px;
+    padding-top: 35px;
+    margin-top: 140px;
+
+}
+
+.intro{
+    width: 970px;
+    height: 409px;
+    margin-top: -20px; 
+    color: rgba(31, 132, 255, 1);
+    opacity: .9;
+    padding-left: -10px;
+    padding-right: 200px;
+}
+
+/*.content {
+    width: 100% !important;
+    height: 1600px !important;
+    align-items: center;
     text-align: center;
+    padding-top: 400px;
+
+}*/
+
+.button_one{
+    margin-top: 800px;
+    align-items: left;
+}
+
+.button_two{
+    margin-top: 0px;
+    padding-top: 0px;
+    align-items: center;
+}
+
+.imgbackground {
+    margin-right: 0px;
+    margin-left: 0px;
+    margin-top: -50px;
+    margin-bottom: 5px;
+    background-image: url('./images/Picture1.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+}
+
+
+div.paragraph {
+
+    margin-top: -250px;
+    background-color: none;
+    padding-right: 50px;
+    padding-left: 50px;
+}
+
+
+.content {
+    /*padding-right: 100px;*/
+}
+
+.container {
+    width: 100%;
+    align-items: center;
+
+}
+.container::after{
+    padding-bottom: 20px;
 }
 
 h1 {
     text-align: center;
-    color: #e5e5e5;
+    color: #282675;
+    width: 100%;
+    padding-bottom: 80px;
+    padding-right: 40px;
+    padding-left: 40px;
 }
 
-.or {
-    margin: 20px;
-    font-weight: 500;
+h2 {
+    text-align: center;
+    color: #fcfcfc;
+    /*opacity: .9;*/
+    font-size: 28px;
+    padding-top: -100px;
+    padding-bottom: 30px;
 }
+
+p {
+    text-align: center;
+    color: #fcfcfc;
+    /*opacity: .9;*/
+    font-size: 18px;
+    padding-top: 30px;/*
+    padding-bottom: 400px;*/
+    padding-right: 100px;
+    padding-left: 100px;
+    /*margin-bottom: 300px;*/
+}
+
+hr {
+    width: 600px;
+}
+/*a {
+    position: relative;
+    display: block;
+    font-family: 'Droid Sans', sans-serif
+    padding-right: 0px;
+    padding-top: 0px;
+    text-align: right;
+}*/
+
+
+
+a.about {
+    position: relative;
+    font-family: 'Droid Sans', sans-serif
+    padding-left: 8000px;
+    align-items: right;
+    text-align: right;
+    padding-top: 10px;
+    padding-bottom:10px;
+}
+
+/*.or {
+    margin: 20px;
+    font-weight: 400;
+    color: #282675;
+    opacity: .6;
+    align-self: center;
+}*/
 
 .logo{
     text-align: left;
@@ -25,27 +177,144 @@ h1 {
 .content {
     display: flex;
     flex-direction: column;
+    /*width: 100%;*/
 }
 
-.btn {
-    width: 300px;
-    height: 50px;
-    flex: 1;
+section.midbox {
+    width: 1420px;
+    height: 550px;
+    background-color: rgba(51, 139, 255, 0.85);
+    border-radius: 10px;
+    padding-top: 395px;
+    padding-bottom: 110px;
+    margin-top: 850px;
+    background-color: none;
+    align-items: right;
+    margin-left: -5px;
+}
+
+.phrase {
+    color: #282675;
+    font-weight: 0;
+    font-family: "Arial";
+    opacity: .6;
     align-self: center;
+    text-align: center;
+}
+
+button {
+    color: rgba(51, 139, 255, 0.85);
+   /* opacity: .4;*/
+}
+
+div.button_one {
+    width: 20%;
+    align-items: left;
+    margin-top: 40px;
+    display: inline-flex;
+    margin-left: 180px;
+}
+
+div.button_two {
+    width: 20%;
+    align-self: center;
+    display: inline-flex;
+    margin-left: 120px;
+
+}
+
+div.button_three {
+    width: 20%;
+    align-self: left;
+    display: inline-flex;
+    margin-left: 120px;
+}
+
+
+#one{
+    width: 250px;
+    height: 55px;
+    /*padding: 1.05rem 2.75rem;*/
+    color: rgba(51, 139, 255, 0.95);
+    background-color: rgba(255, 255, 255, 0.75);
+    font-size: 16px;
+    font-weight: 300;
+    text-transform: uppercase;
+    border-radius: 12rem;
+    border: .2rem solid rgba(51, 139, 255, 0.85);
+    -webkit-transition: color .3s,border .3s;
+    transition: color .3s,border .3s;
+    align-self: right;
+    align-items: left;
+}
+
+#two{
+    width: 250px;
+    height: 55px;
+    /*padding: 1.05rem 2.75rem;*/
+    color: rgba(51, 139, 255, 0.85);
+    background-color: rgba(255, 255, 255, 0.75);
+    font-size: 16px;
+    font-weight: 300;
+    text-transform: uppercase;
+    border-radius: 50px;
+    border: .2rem solid rgba(51, 139, 255, 0.85);
+    -webkit-transition: color .3s,border .3s;
+    transition: color .3s,border .3s;
+    align-self: center;
+}
+
+#three{
+    width: 250px;
+    height: 55px;
+    /*padding: 1.05rem 2.75rem;*/
+    color: rgba(51, 139, 255, 0.85);
+    background-color: rgba(255, 255, 255, 0.75);
+    font-size: 16px;
+    font-weight: 300;
+    text-transform: uppercase;
+    border-radius: 12rem;
+    border: .2rem solid rgba(51, 139, 255, 0.85);
+    -webkit-transition: color .3s,border .3s;
+    transition: color .3s,border .3s;
+    align-self: right;
+    align-items: right;
+}
+
+img.comp {
+    border-image: 30px;
+    width: 270px;
+    height: 270px;
+    border-radius: 5px;
+    border-width: thick;
+    border-image-width: 20px;
+    padding:1px;
+    border:5px solid #021a40;
+    opacity: .5;
+}
+
+img.logoimg {
+    padding-left: 30px;
+    width: 130px;
+    height: 80px;
+    align-self: left;
 }
 
 body {
     background: linear-gradient(
       rgba(0,0,0, 0.35),
       rgba(0,0,0, 0.35)
-    ), url(./images/people-holding-hands.jpg);
-    background-size: cover;
+    ),
 }
 
 .navbar {
-    background-color: rgba(0,0,0,0.5);
-    border-color: black;
-    border-radius: 0;
+    /*background-color: rgba(134, 165, 218, 0.27);*/
+    background-color: rgba(51, 139, 255, 0.62);
+    border-color: none;
+    margin-top: 0px;
+    height: 50px;
+    align-self: center;
+    position: relative;
 }
 
 .modal {
@@ -56,3 +325,24 @@ body {
     display: flex;
     flex-direction: column;
 }
+
+
+section.bg-contact {
+
+        background-color: rgba(51, 139, 255, 0.85);
+        width: 1440px;
+        height: 400px;
+        /*align-content: center;*/
+        padding-top: 80px;
+        margin-right: 0px;
+        margin-left: -15px;
+        margin-bottom: -25px;
+        margin-top: 500px;
+}
+
+div.col-md-4 {
+    height: 10px;
+}
+
+
+
