@@ -13,8 +13,20 @@
                         </div>
                     </div>
 
-
                     <h3>Location</h3>
+                    <div class="horizontal" *ngFor="let location of locations">
+                        <p>{{location.name}}</p>
+                        <voter-icons [voters]="location.voters"></voter-icons>
+                    </div>
+
+                    <h3>Date + Time</h3>
+                    <div class="horizontal" *ngFor="let time of times; let index = index">
+                        <p>{{time}}</p>
+                        <voter-icons></voter-icons>
+                    </div>
+
+
+                    <!-- <h3>Location</h3>
                     <div class="horizontal" *ngFor="let location of locations; let index = index;">
                         <input [id]="'location_' + index" type="radio" name="location" (click)="selectLocation(location.name)">
                         <label [attr.for]="'location_' + index">{{location.name}}</label><br>
@@ -31,7 +43,7 @@
                     <h3>Recipients</h3>
                     <div *ngFor="let email of emails">
                         <input type="checkbox" (click)="selectEmail(email)" checked>{{email}}<br>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
