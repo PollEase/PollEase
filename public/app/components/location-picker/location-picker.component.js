@@ -9,13 +9,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var createPoll_repository_service_1 = require('../repository/createPoll-repository.service');
 var LocationPickerComponent = (function () {
-    function LocationPickerComponent() {
+    function LocationPickerComponent(createService) {
+        this.createService = createService;
+        console.log("when");
         this.locations = [];
+        console.log("go into the location constructor, refresh" + this.locations);
         this._temp = "";
     }
     LocationPickerComponent.prototype.addLocation = function () {
         this.locations.push(this._temp);
+        this.createService.addLoc(this._temp);
+        //console.log("here add the location "+this.locations);
+        //console.log("and here get the location "+this.getLocations());
         this._temp = "";
     };
     LocationPickerComponent.prototype.removeLocation = function (location) {
@@ -23,10 +30,9 @@ var LocationPickerComponent = (function () {
         if (index != -1) {
             this.locations.splice(index, 1);
         }
+        this.createService.remLoc(location);
     };
     LocationPickerComponent.prototype.getLocations = function () {
-        // console.log("In Location Picker");
-        // console.log(this.locations[0]);
         return this.locations;
     };
     LocationPickerComponent = __decorate([
@@ -35,7 +41,7 @@ var LocationPickerComponent = (function () {
             templateUrl: './app/components/location-picker/location-picker.html',
             styleUrls: ['./app/components/location-picker/location-picker.css']
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [createPoll_repository_service_1.createRepoService])
     ], LocationPickerComponent);
     return LocationPickerComponent;
 }());
