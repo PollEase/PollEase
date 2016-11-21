@@ -18,7 +18,7 @@ function post(req,res){
 
       for(var i = 0; i < events.length; i++){
           var evt =  events[i];
-          options.text+="Results: "+"localhost:8000/results?pollId="+evt.event_id+"\n";
+          options.text+="Results: "+"localhost:8000/results?pollId="+evt.uid+"\n";
       }
 
       sendmail(options);

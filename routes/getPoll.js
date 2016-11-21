@@ -1,7 +1,6 @@
 var sql = require("../helpers/sql.js");
 var colors = require("colors");
 function get(req,res){
-  console.log(req.query);
   var pollId = req.query.pollId;
   if(!(pollId)){
     res.send("No Poll Id Sent."+pollId);
@@ -18,10 +17,8 @@ function get(req,res){
       var event_id = row.event_id;
       var uid = row.uid;
       var funding = row.funding;
-      console.log(colors.green("Selected Event"));
 
       sql.selectOwner(owner_id,function(creator){
-          console.log(colors.green("Selected Owner"));
           var json_object = {};
           json_object.creatorEmail = creator.email;
           json_object.name = creator.name;
@@ -31,7 +28,6 @@ function get(req,res){
           json_object.description = description;
 
           function finalize(){
-            console.log(colors.green("Sent json object!"));
             res.send(JSON.stringify(json_object));
             return;
           }
