@@ -17,6 +17,9 @@ import { VoterIconsComponent } from './components/voter-icons/voter-icons.compon
 import { Ng2DatetimePickerModule } from 'ng2-datetime-picker';
 
 import { CreateEventPollFormService } from './components/create-event-poll-form/create-event-poll-form.service';
+
+//New service for all event related actions
+import { EventRepositoryService } from './repositories/event.service';
 // import { InMemoryDataService } from './in-memory-data.service';
 
 
@@ -36,7 +39,9 @@ import { CreateEventPollFormService } from './components/create-event-poll-form/
   declarations: [ AppComponent, HomePageComponent, CreateEventPollFormComponent,
                   LocationPickerComponent, EmailPickerComponent, TimePickerComponent,
                   EventVotingFormComponent, PollResultsFormComponent, VoterIconsComponent ],
-  providers: [ LocationPickerComponent, TimePickerComponent, EmailPickerComponent, CreateEventPollFormService ],
+  providers: [ LocationPickerComponent, TimePickerComponent, EmailPickerComponent, CreateEventPollFormService,
+               EventRepositoryService
+             ],
   bootstrap:    [ AppComponent ]
 })
 
