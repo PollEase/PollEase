@@ -218,9 +218,30 @@ function get_options(event_id,type,callback,fail){
     });
 }
 
+function getUser(user_id){
+  
+}
+
+function getOwner(poll_id,callback,fail){
+  var connection = getConnection();
+  connection.query("select * from events where uid=?",[poll_id],function(err,rows,fields){
+
+      if(err){
+        fail("Error selecting from events where uid="+[poll_id]);
+      }
+      else if(rows.length <=0){
+        console.log(colors.green("Sending row to callback: "+rows[0]));
+        callback(rows[0].owner_id);
+      }else{
+        fail("No rows matching where uid="+poll_id);
+      }
+      connection.end();
+  });
+}
 
 module.exports = {};
 module.exports.selectOwner = selectOwner;
+module.exports.getOwner = getOwner;
 module.exports.get_options = get_options;
 module.exports.selectEvent = selectEvent;
 module.exports.send_all_events = getAllPolls;
