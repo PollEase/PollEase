@@ -1,12 +1,21 @@
 var sql = require("../helpers/sql.js");
 var colors = require("colors");
 
-function fail(message){
-  console.log(colors.red(message));
+const descriptors = ["spurious","curious","comedic","ludacrious","hilarious","perfect","slippery"];
+const animals = ["panther","sloth","cat","dog","spider","cheetah","koala"];
+function generate_names(number){
+  var response = [];
+  for(var i = 0; i < number; i++){
+    response.push({
+      "firstName":descriptors[Math.floor(Math.random() * descriptors.length)],
+      "lastName":animals[Math.floor(Math.random() * animals.length)]
+    });
+  }
+  return response;
 }
 
-function send_response(object,res){
-  res.send(JSON.stringify(object));
+function fail(message){
+  console.log(colors.red(message));
 }
 
 function get(req,res){
@@ -17,34 +26,50 @@ function get(req,res){
     return;
   }
 
-  var response_object= {};
+  var response = {};
 
   sql.getOwner(pollId,function(owner_id){
-      
+
+    console.log(colors.green("Requesting user with id "+owner_id));
+    sql.getUser(owner_id,function(owner){
+
+        response.creatorEmail = owner.email;
+        response.creatorName = owner.name;
+
+        console.log(colors.green("Selecting poll with id "+pollId));
+        sql.selectEvent(pollId,function(evt){
+          response.eventTitle = evt.name;
+          response.description = evt.description
+          response.coverCharge = evt.funding;
+          sql.get_options(evt.event_id,0,function(rows){
+            response.locations = [];
+            for(var i=  0; i < rows.length; i++){
+              response.locations.push({
+                name:rows[i].description,
+                voters:generate_names(rows[i].tally)
+              });
+            }
+
+            sql.get_options(evt.event_id,1,function(rows){
+              response.times = [];
+              for(var i=  0; i < rows.length; i++){
+                response.times.push({
+                  name:rows[i].description,
+                  voters:generate_names(rows[i].tally)
+                });
+              }
+
+              res.send(JSON.stringify(response));
+
+            },fail);
+
+          },fail);
+
+
+        },fail);
+    },fail);
   },fail);
 
-
-  `{
-   "creatorEmail": "example@smu.edu",
-   "creatorFirstName": "Will",
-   "creatorLastName": "Spurgin",
-   "eventTitle": "Group Project Get Together",
-   "locations": [
-        {
-            "name": "Fondren",
-            "voters": [{firstname,lastname}]
-        }
-    ],
-   "times": [
-        {
-            "dateTime": "2016-04-23T18:25:43.511Z",
-            "voters": [{firstname,lastname}]
-        }
-   ],
-    "description": "Get excited for next class!",
-    "emails": ["anyEmail@gmail.com", "ajf@gmail.com"],
-    "coverCharge": 50
-  }`
 
 }
 

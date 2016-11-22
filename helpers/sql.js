@@ -126,16 +126,21 @@ function getAllPolls(email,callback,finalize_emails){
 function castVote(eventId,description){
 
     var connection = getConnection();
-    connection.query("select event_id from events where uid=?",[eventId], function(err,row,field){
+    connection.query("select event_id from events where uid=?",[eventId], function(err,rows,field){
       if(err || rows == null || rows.length ==0){
           console.log(colors.red("No event where uid="+eventId));
           connection.end();
           return;
       }
+      connection.end();
+      connection = getConnection();
       var e_id = rows[0].event_id;
       connection.query("update options set tally=tally+1 where event_id=? AND description=?",[e_id,description],function(err){
             if(err){
               console.log(colors.red("Query "+eventId + " " + description));
+            }
+            else{
+              console.log(colors.green("Voted for "+description));
             }
             connection.end();
       });
@@ -153,29 +158,34 @@ function deleteUser(uid){
         if(rows.length > 0){
           console.log(colors.green("Deleted user "+uid));
         }
+        else{
+          console.log(colors.blue("No user in database "+uid));
+        }
         connection.end();
       }
   });
 }
 
 function selectEvent(e_id,callback,fail){
+
     var connection = getConnection();
     connection.query("SELECT * from events where uid=?",[e_id],function(err,rows,fields){
       if(err){
         console.log(colors.red("Error selecting from events "+e_id));
         fail();
       }
-      else{
-        if(rows.length > 0 ){
+      else if(rows.length > 0 ){
+        console.log(colors.green("Responding with poll: "+JSON.stringify(rows[0])));
             callback(rows[0]);
-        }
-        else{
-          console.log(colors.red("No event for "+e_id));
-          fail();
-        }
       }
+      else{
+        console.log(colors.red("No event for "+e_id));
+        fail();
+      }
+
       connection.end();
     });
+
 }
 
 function createOption(poll_id,description,type){
@@ -193,9 +203,11 @@ function createOption(poll_id,description,type){
     }
     connection.query("insert into options values(default,?,?,?,0)", [type,rows[0].event_id,description],function(err){
         if(err){
-          console.log(colors.red("Error inserting into options" + [type,rows[0].event_id,description]));
+          console.log(colors.red("Error inserting into options " + [type,rows[0].event_id,description]));
         }
-        console.log(colors.blue("Created option "+[type,rows[0].event_id,description]));
+        else{
+          console.log(colors.blue("Created option "+[type,rows[0].event_id,description]));
+        }
         connection.end();
     });
   });
@@ -218,8 +230,23 @@ function get_options(event_id,type,callback,fail){
     });
 }
 
-function getUser(user_id){
-  
+function getUser(user_id,callback,fail){
+  var connection = getConnection();
+  connection.query("select * from users where id=?",[user_id],function(err,rows,fields){
+    if(err){
+      console.log(colors.red("Error getting user "+user_id));
+      fail("Nothing in getUser");
+    }
+    else if(rows.length >= 1){
+      console.log(colors.green("Sending back owner "+JSON.stringify(rows[0])+"\n"));
+      callback(rows[0]);
+    }
+    else{
+      fail("No rows for users matching where id="+user_id);
+    }
+    connection.end();
+  });
+
 }
 
 function getOwner(poll_id,callback,fail){
@@ -229,8 +256,8 @@ function getOwner(poll_id,callback,fail){
       if(err){
         fail("Error selecting from events where uid="+[poll_id]);
       }
-      else if(rows.length <=0){
-        console.log(colors.green("Sending row to callback: "+rows[0]));
+      else if(rows.length >=1){
+        console.log(colors.green("Sending owner_id from getOwner to callback: "+rows[0].owner_id));
         callback(rows[0].owner_id);
       }else{
         fail("No rows matching where uid="+poll_id);
@@ -240,6 +267,8 @@ function getOwner(poll_id,callback,fail){
 }
 
 module.exports = {};
+module.exports.getUser = getUser;
+
 module.exports.selectOwner = selectOwner;
 module.exports.getOwner = getOwner;
 module.exports.get_options = get_options;
