@@ -33,15 +33,6 @@ function post(req,res){
               for(var i = 0; i < date.length; i++){
                 sql.createOption(poll_id,date[i],1);
               }
-              //sql.createEvent.
-              /* Options = json
-
-                to: comma separated
-                subject: the subject
-                html: the html of the email
-                text: this is a fallback version
-                attachments: this is like attachable files and embedded images
-              */
 
             }
 
@@ -75,6 +66,7 @@ function post(req,res){
       sql.createUser(email,uid,name,next_part);
 
       }      else{
+
               res.send(email + " IS NOT A VALID EMAIL STOP TRYING TO HACK US");
               return;
             }
