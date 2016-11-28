@@ -34,9 +34,6 @@ transporter.verify(function(error, success) {
 //pretty self explanatory.
 function sendEmail(options){
     options.from = options.from ? options.from : smtpConfig.auth.user;
-
-    return;
-
     transporter.sendMail(options, function(err,info){
       if(err){
         console.log(colors.red("Email couldn't send"));
