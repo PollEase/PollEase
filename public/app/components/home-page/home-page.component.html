@@ -27,12 +27,30 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <h5>Recieve an email with links to all of the active polls you are involved in!</h5>
-                            <label for="request-email">Email</label>
-                            <input type="text" class="form-control" id="request-email">
+                            <label for="request_email">Email</label>
+                            <input 
+                                id="request_email"
+                                name="request_email"
+                                class="form-control"
+                                [(ngModel)]="email"
+                                #request_email="ngModel"
+                                required
+                                pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$">
+                            <div class="alert alert-danger"
+                                *ngIf="request_email.errors && request_email.touched">
+                                <ul>
+                                    <li [hidden]="!request_email.errors.pattern">
+                                            Email is not valid
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-success" data-dismiss="modal">Send</button>
+                        <button type="button" *ngIf="request_email.valid"
+                        class="btn btn-primary btn-lg btn-block" (click)="submit()" data-dismiss="modal">Submit</button>
+                        <button type="button" *ngIf="request_email.invalid"
+                        class="btn btn-primary btn-lg btn-block" disabled>Submit</button>
                     </div>
                 </div>
             </div>

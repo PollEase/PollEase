@@ -15,6 +15,9 @@ var HomePageComponent = (function () {
         this.route = route;
         this.router = router;
     }
+    HomePageComponent.prototype.submit = function () {
+        console.log("In submit of homepage email is: " + this.email);
+    };
     HomePageComponent = __decorate([
         core_1.Component({
             selector: 'home-page',
