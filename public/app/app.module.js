@@ -26,8 +26,6 @@ var createPoll_repository_service_1 = require('./components/repository/createPol
 var event_voting_form_component_1 = require('./components/event-voting-form/event-voting-form.component');
 var poll_results_form_component_1 = require('./components/poll-results-form/poll-results-form.component');
 var voter_icons_component_1 = require('./components/voter-icons/voter-icons.component');
-var create_event_poll_form_service_1 = require('./components/create-event-poll-form/create-event-poll-form.service');
-// import { InMemoryDataService } from './in-memory-data.service';
 var AppModule = (function () {
     function AppModule() {
     }
@@ -48,7 +46,7 @@ var AppModule = (function () {
             declarations: [app_component_1.AppComponent, home_page_component_1.HomePageComponent, create_event_poll_form_component_1.CreateEventPollFormComponent,
                 location_picker_component_1.LocationPickerComponent, email_picker_component_1.EmailPickerComponent, time_picker_component_1.TimePickerComponent, confirmation_component_1.ConfirmationComponent,
                 event_voting_form_component_1.EventVotingFormComponent, poll_results_form_component_1.PollResultsFormComponent, voter_icons_component_1.VoterIconsComponent],
-            providers: [location_picker_component_1.LocationPickerComponent, time_picker_component_1.TimePickerComponent, email_picker_component_1.EmailPickerComponent, create_event_poll_form_service_1.CreateEventPollFormService, createPoll_repository_service_1.createRepoService],
+            providers: [location_picker_component_1.LocationPickerComponent, time_picker_component_1.TimePickerComponent, email_picker_component_1.EmailPickerComponent, createPoll_repository_service_1.CreateEventPollService],
             bootstrap: [app_component_1.AppComponent]
         }), 
         __metadata('design:paramtypes', [])

@@ -16,10 +16,10 @@ export class CreateEventPollService{
     // private _apiUrl = 'app/events';
 
     //localhost
-    private _apiUrl = 'http://localhost:8000/createPoll';
+    // private _apiUrl = 'http://localhost:8000';
 
     //Apiary
-    // private _apiUrl = 'http://private-a1931-dbgui1.apiary-mock.com/createPoll';
+    private _apiUrl = 'http://private-a1931-dbgui1.apiary-mock.com';
 
     constructor(private http: Http) {
         this._event = {};
@@ -50,6 +50,8 @@ export class CreateEventPollService{
         return this._event;
     }
 
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Http Stuff
+
     private extractData(res: Response) {
         let body = res.json();
         return body.data;
@@ -75,12 +77,61 @@ export class CreateEventPollService{
         let options = new RequestOptions({ headers: headers });
 
         return this.http
-            .post(this._apiUrl, this._event, options)
+            .post(this._apiUrl + '/createPoll', this._event, options)
             .toPromise()
             .then(x => x.json())
             .catch(this.handleError);
     }
 
+    get(id : number) : Promise<any> {
+
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+
+		var pluck = x => (x && x.length) ? x[0] : undefined;
+		return this.http
+			.get(`${this._apiUrl + '/events'}/?id=${id}`)
+			.toPromise()
+			.then(x => pluck(x.json().data))
+			.catch(x => alert(x.json().error));
+	}
+
+	update(event) : Promise<any> {
+
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+
+        return this.http
+			.put(`${this._apiUrl + '/events' }/${event.id}`, event)
+			.toPromise()
+			.then(() => event)
+			.catch(x => alert(x.json().error));
+	}
+
+    emailAllPolls(email) : Promise<any> {
+
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+
+        return this.http
+            .post(this._apiUrl + '/email', JSON.stringify(email), options)
+            .toPromise()
+            .then(x => x.json())
+            .catch(this.handleError);
+    }
+
+	// delete(id : number) : Promise<any> {
+
+    //     let headers = new Headers({ 'Content-Type': 'application/json' });
+    //     let options = new RequestOptions({ headers: headers });
+
+	// 	return this.http
+	// 		.delete(`${this._apiUrl + '/events'}/${id}`)
+	// 		.toPromise()
+	// 		.catch(x => alert(x.json().error));
+	// }
+
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Picker Functions
 
     public addLocation(location) {
         this._event.locations.push(location);

@@ -5,6 +5,7 @@ import { CreateEventPollService } from '../repository/createPoll-repository.serv
 import { LocationPickerComponent } from './../location-picker/location-picker.component';
 import { TimePickerComponent } from './../time-picker/time-picker.component';
 import { EmailPickerComponent } from './../email-picker/email-picker.component';
+import { FormsModule } from '@angular/forms';
 
 @Component({
 	selector: 'create-event-poll-form',

@@ -17,8 +17,8 @@ require('rxjs/add/operator/distinctUntilChanged');
 require('rxjs/add/operator/map');
 require('rxjs/add/operator/switchMap');
 require('rxjs/add/operator/toPromise');
-var CreateEventPollFormService = (function () {
-    function CreateEventPollFormService(http) {
+var EventRepositoryService = (function () {
+    function EventRepositoryService(http) {
         this.http = http;
         //InMemoryModule
         // private _apiUrl = 'app/events';
@@ -27,11 +27,11 @@ var CreateEventPollFormService = (function () {
         //Apiary
         this._apiUrl = 'http://private-a1931-dbgui1.apiary-mock.com';
     }
-    CreateEventPollFormService.prototype.extractData = function (res) {
+    EventRepositoryService.prototype.extractData = function (res) {
         var body = res.json();
         return body.data;
     };
-    CreateEventPollFormService.prototype.handleError = function (error) {
+    EventRepositoryService.prototype.handleError = function (error) {
         // In a real world app, we might use a remote logging infrastructure
         var errMsg;
         if (error instanceof http_1.Response) {
@@ -45,7 +45,8 @@ var CreateEventPollFormService = (function () {
         console.error(errMsg);
         return Promise.reject(errMsg);
     };
-    CreateEventPollFormService.prototype.createEventPoll = function (poll) {
+    //add
+    EventRepositoryService.prototype.createEventPoll = function (poll) {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         var options = new http_1.RequestOptions({ headers: headers });
         return this.http
@@ -54,11 +55,39 @@ var CreateEventPollFormService = (function () {
             .then(function (x) { return x.json(); })
             .catch(this.handleError);
     };
-    CreateEventPollFormService = __decorate([
+    EventRepositoryService.prototype.get = function (id) {
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        var options = new http_1.RequestOptions({ headers: headers });
+        var pluck = function (x) { return (x && x.length) ? x[0] : undefined; };
+        return this.http
+            .get((this._apiUrl + '/events') + "/?id=" + id)
+            .toPromise()
+            .then(function (x) { return pluck(x.json().data); })
+            .catch(function (x) { return alert(x.json().error); });
+    };
+    EventRepositoryService.prototype.update = function (event) {
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        var options = new http_1.RequestOptions({ headers: headers });
+        return this.http
+            .put((this._apiUrl + '/events') + "/" + event.id, event)
+            .toPromise()
+            .then(function () { return event; })
+            .catch(function (x) { return alert(x.json().error); });
+    };
+    EventRepositoryService.prototype.emailAllPolls = function (email) {
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        var options = new http_1.RequestOptions({ headers: headers });
+        return this.http
+            .post(this._apiUrl + '/email', JSON.stringify(email), options)
+            .toPromise()
+            .then(function (x) { return x.json(); })
+            .catch(this.handleError);
+    };
+    EventRepositoryService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http])
-    ], CreateEventPollFormService);
-    return CreateEventPollFormService;
+    ], EventRepositoryService);
+    return EventRepositoryService;
 }());
-exports.CreateEventPollFormService = CreateEventPollFormService;
-//# sourceMappingURL=create-event-poll-form.service.js.map
+exports.EventRepositoryService = EventRepositoryService;
+//# sourceMappingURL=event.service.js.map

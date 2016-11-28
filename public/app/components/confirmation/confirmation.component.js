@@ -12,22 +12,23 @@ var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var createPoll_repository_service_1 = require('../repository/createPoll-repository.service');
 var ConfirmationComponent = (function () {
-    function ConfirmationComponent(route, router, createService) {
+    function ConfirmationComponent(route, router, createEventPollService) {
         this.route = route;
         this.router = router;
-        this.createService = createService;
-        this.event = this.createService.getEvent();
-        //this.event.title = this.createService.getTitle();
-        console.log(this.event.locations + "from confirm");
-        console.log(this.event.times + "from confirm");
+        this.createEventPollService = createEventPollService;
+        this.event = this.createEventPollService.getEvent();
     }
+    ConfirmationComponent.prototype.submit = function () {
+        this.submitStatus = this.createEventPollService.createEventPoll();
+        console.log("submitting");
+    };
     ConfirmationComponent = __decorate([
         core_1.Component({
             selector: 'confirmation',
             templateUrl: './app/components/confirmation/confirmation.html',
             styleUrls: ['./app/components/confirmation/confirmation.css'],
         }), 
-        __metadata('design:paramtypes', [router_1.ActivatedRoute, router_1.Router, createPoll_repository_service_1.createRepoService])
+        __metadata('design:paramtypes', [router_1.ActivatedRoute, router_1.Router, createPoll_repository_service_1.CreateEventPollService])
     ], ConfirmationComponent);
     return ConfirmationComponent;
 }());

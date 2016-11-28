@@ -13,12 +13,14 @@ var createPoll_repository_service_1 = require('../repository/createPoll-reposito
 var TimePickerComponent = (function () {
     function TimePickerComponent(createService) {
         this.createService = createService;
-        this.times = [];
+        this.times = this.createService.getTimes();
         this._temp = "";
     }
+    TimePickerComponent.prototype.setTimes = function (times) {
+        this.times = times;
+    };
     TimePickerComponent.prototype.addTime = function () {
         var time = new Date(this._temp);
-        this.times.push(time);
         this._temp = "";
         this.createService.addTime(time);
     };
@@ -26,8 +28,8 @@ var TimePickerComponent = (function () {
         var index = this.times.findIndex(function (tim) { return (tim === time); });
         if (index != -1) {
             this.times.splice(index, 1);
-            this.createService.remLoc(index);
         }
+        this.createService.removeTime(time);
     };
     TimePickerComponent.prototype.getTimes = function () {
         return this.times;
@@ -38,7 +40,7 @@ var TimePickerComponent = (function () {
             templateUrl: './app/components/time-picker/time-picker.component.html',
             styleUrls: ['./app/components/time-picker/time-picker.component.css']
         }), 
-        __metadata('design:paramtypes', [createPoll_repository_service_1.createRepoService])
+        __metadata('design:paramtypes', [createPoll_repository_service_1.CreateEventPollService])
     ], TimePickerComponent);
     return TimePickerComponent;
 }());

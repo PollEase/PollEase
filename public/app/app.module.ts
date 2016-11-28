@@ -18,9 +18,6 @@ import { EventVotingFormComponent } from './components/event-voting-form/event-v
 import { PollResultsFormComponent } from './components/poll-results-form/poll-results-form.component';
 import { VoterIconsComponent } from './components/voter-icons/voter-icons.component';
 
-import { CreateEventPollFormService } from './components/create-event-poll-form/create-event-poll-form.service';
-// import { InMemoryDataService } from './in-memory-data.service';
-
 
 @NgModule({
   imports: [ BrowserModule,
@@ -39,7 +36,7 @@ import { CreateEventPollFormService } from './components/create-event-poll-form/
   declarations: [ AppComponent, HomePageComponent, CreateEventPollFormComponent,
                   LocationPickerComponent, EmailPickerComponent, TimePickerComponent, ConfirmationComponent,
                   EventVotingFormComponent, PollResultsFormComponent, VoterIconsComponent ],
-  providers: [ LocationPickerComponent, TimePickerComponent, EmailPickerComponent, CreateEventPollFormService, CreateEventPollService ],
+  providers: [ LocationPickerComponent, TimePickerComponent, EmailPickerComponent, CreateEventPollService ],
   bootstrap:    [ AppComponent ]
 })
 

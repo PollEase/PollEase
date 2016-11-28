@@ -18,8 +18,20 @@
                             Email
                         </label>
                         <input  id="creator_email"
+                                name="creator_email"
                                 class="form-control"
-                                [(ngModel)]="creatorEmail" />
+                                [(ngModel)]="creatorEmail"
+                                #creator_email="ngModel"
+                                required
+                                pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$">
+                        <div class="alert alert-danger"
+                            *ngIf="creator_email.errors && creator_email.touched">
+                            <ul>
+                                <li [hidden]="!creator_email.errors.pattern">
+                                        Email is not valid
+                                </li>
+                            </ul>
+                        </div>
                     </div>
 
                     <h3>Event Info</h3>
@@ -89,7 +101,10 @@
             </div>
         </div>
         <div class="col-md-7 submitBtn">
-            <a class="btn btn-primary btn-block btn-lg" (click)="submit()" routerLink="/confirm">
+            <a *ngIf="creator_email.valid" class="btn btn-primary btn-lg btn-block" (click)="submit()" routerLink="/confirm">
+                Submit
+            </a>
+            <a *ngIf="creator_email.invalid" class="btn btn-primary btn-lg btn-block" disabled>
                 Submit
             </a>
         </div>
