@@ -23,9 +23,9 @@ var EventRepositoryService = (function () {
         //InMemoryModule
         // private _apiUrl = 'app/events';
         //localhost
-        // private _apiUrl = 'http://localhost:8000/createPoll';
+        // private _apiUrl = 'http://localhost:8000';
         //Apiary
-        this._apiUrl = 'http://private-a1931-dbgui1.apiary-mock.com/createPoll';
+        this._apiUrl = 'http://private-a1931-dbgui1.apiary-mock.com';
     }
     EventRepositoryService.prototype.extractData = function (res) {
         var body = res.json();
@@ -50,37 +50,28 @@ var EventRepositoryService = (function () {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         var options = new http_1.RequestOptions({ headers: headers });
         return this.http
-            .post(this._apiUrl, poll, options)
+            .post(this._apiUrl + '/createPoll', poll, options)
             .toPromise()
             .then(function (x) { return x.json(); })
             .catch(this.handleError);
     };
     EventRepositoryService.prototype.get = function (id) {
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        var options = new http_1.RequestOptions({ headers: headers });
         var pluck = function (x) { return (x && x.length) ? x[0] : undefined; };
         return this.http
-            .get(this._apiUrl + "/?id=" + id)
+            .get((this._apiUrl + '/events') + "/?id=" + id)
             .toPromise()
             .then(function (x) { return pluck(x.json().data); })
             .catch(function (x) { return alert(x.json().error); });
     };
-    // add(movie) : Promise<any> {
-    // 	return this.http
-    // 		.post(this._apiUrl, movie)
-    // 		.toPromise()
-    // 		.then(() => movie)
-    // 		.catch(x => alert(x.json().error));
-    // }
     EventRepositoryService.prototype.update = function (event) {
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        var options = new http_1.RequestOptions({ headers: headers });
         return this.http
-            .put(this._apiUrl + "/" + event.id, event)
+            .put((this._apiUrl + '/events') + "/" + event.id, event)
             .toPromise()
             .then(function () { return event; })
-            .catch(function (x) { return alert(x.json().error); });
-    };
-    EventRepositoryService.prototype.delete = function (id) {
-        return this.http
-            .delete(this._apiUrl + "/" + id)
-            .toPromise()
             .catch(function (x) { return alert(x.json().error); });
     };
     EventRepositoryService = __decorate([

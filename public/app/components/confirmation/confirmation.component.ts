@@ -23,13 +23,22 @@ export class ConfirmationComponent {
 	
 	
 	
-	constructor(private route : ActivatedRoute, private router: Router, private createService : createRepoService) {
+	constructor(private route : ActivatedRoute, 
+				private router: Router, 
+				private createService : createRepoService,
+				private createEventPollFormService : CreateEventPollFormService) {
+					
 				this.event = this.createService.getEvent();
 				//this.event.title = this.createService.getTitle();
 				console.log(this.event.locations+"from confirm");
 				console.log(this.event.times+"from confirm");
 
 			}
+
+	submit() {
+
+		let submitStatus = this.createEventPollFormService.createEventPoll(this.event);
+	}
 
 	
 	

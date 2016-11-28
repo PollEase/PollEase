@@ -15,10 +15,10 @@ export class EventRepositoryService {
     // private _apiUrl = 'app/events';
 
     //localhost
-    // private _apiUrl = 'http://localhost:8000/createPoll';
+    // private _apiUrl = 'http://localhost:8000';
 
     //Apiary
-    private _apiUrl = 'http://private-a1931-dbgui1.apiary-mock.com/createPoll';
+    private _apiUrl = 'http://private-a1931-dbgui1.apiary-mock.com';
 
     constructor(private http: Http) { }
 
@@ -48,42 +48,45 @@ export class EventRepositoryService {
         let options = new RequestOptions({ headers: headers });
 
         return this.http
-            .post(this._apiUrl, poll, options)
+            .post(this._apiUrl + '/createPoll', poll, options)
             .toPromise()
             .then(x => x.json())
             .catch(this.handleError);
     }
 
     get(id : number) : Promise<any> {
+
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+
 		var pluck = x => (x && x.length) ? x[0] : undefined;
 		return this.http
-			.get(`${this._apiUrl}/?id=${id}`)
+			.get(`${this._apiUrl + '/events'}/?id=${id}`)
 			.toPromise()
 			.then(x => pluck(x.json().data))
 			.catch(x => alert(x.json().error));
 	}
 
-	// add(movie) : Promise<any> {
-	// 	return this.http
-	// 		.post(this._apiUrl, movie)
-	// 		.toPromise()
-	// 		.then(() => movie)
-	// 		.catch(x => alert(x.json().error));
-	// }
-
 	update(event) : Promise<any> {
-		return this.http
-			.put(`${this._apiUrl}/${event.id}`, event)
+
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+		
+        return this.http
+			.put(`${this._apiUrl + '/events' }/${event.id}`, event)
 			.toPromise()
 			.then(() => event)
 			.catch(x => alert(x.json().error));
 	}
 
-	delete(id : number) : Promise<any> {
+	// delete(id : number) : Promise<any> {
+
+    //     let headers = new Headers({ 'Content-Type': 'application/json' });
+    //     let options = new RequestOptions({ headers: headers });
 		
-		return this.http
-			.delete(`${this._apiUrl}/${id}`)
-			.toPromise()
-			.catch(x => alert(x.json().error));
-	}
+	// 	return this.http
+	// 		.delete(`${this._apiUrl + '/events'}/${id}`)
+	// 		.toPromise()
+	// 		.catch(x => alert(x.json().error));
+	// }
 }

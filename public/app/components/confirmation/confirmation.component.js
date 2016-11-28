@@ -11,23 +11,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var createPoll_repository_service_1 = require('../repository/createPoll-repository.service');
+var create_event_poll_form_service_1 = require('./../create-event-poll-form/create-event-poll-form.service');
 var ConfirmationComponent = (function () {
-    function ConfirmationComponent(route, router, createService) {
+    function ConfirmationComponent(route, router, createService, createEventPollFormService) {
         this.route = route;
         this.router = router;
         this.createService = createService;
+        this.createEventPollFormService = createEventPollFormService;
         this.event = this.createService.getEvent();
         //this.event.title = this.createService.getTitle();
         console.log(this.event.locations + "from confirm");
         console.log(this.event.times + "from confirm");
     }
+    ConfirmationComponent.prototype.submit = function () {
+        var submitStatus = this.createEventPollFormService.createEventPoll(this.event);
+    };
     ConfirmationComponent = __decorate([
         core_1.Component({
             selector: 'confirmation',
             templateUrl: './app/components/confirmation/confirmation.html',
             styleUrls: ['./app/components/confirmation/confirmation.css'],
         }), 
-        __metadata('design:paramtypes', [router_1.ActivatedRoute, router_1.Router, createPoll_repository_service_1.createRepoService])
+        __metadata('design:paramtypes', [router_1.ActivatedRoute, router_1.Router, createPoll_repository_service_1.createRepoService, create_event_poll_form_service_1.CreateEventPollFormService])
     ], ConfirmationComponent);
     return ConfirmationComponent;
 }());
