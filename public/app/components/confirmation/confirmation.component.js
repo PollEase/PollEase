@@ -11,20 +11,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var createPoll_repository_service_1 = require('../repository/createPoll-repository.service');
-var create_event_poll_form_service_1 = require('./../create-event-poll-form/create-event-poll-form.service');
 var ConfirmationComponent = (function () {
-    function ConfirmationComponent(route, router, createService, createEventPollFormService) {
+    function ConfirmationComponent(route, router, createEventPollService) {
         this.route = route;
         this.router = router;
-        this.createService = createService;
-        this.createEventPollFormService = createEventPollFormService;
-        this.event = this.createService.getEvent();
-        //this.event.title = this.createService.getTitle();
-        // console.log(this.event.locations+"from confirm");
-        // console.log(this.event.times+"from confirm");
+        this.createEventPollService = createEventPollService;
+        this.event = this.createEventPollService.getEvent();
     }
     ConfirmationComponent.prototype.submit = function () {
-        var submitStatus = this.createEventPollFormService.createEventPoll(this.event);
+        this.submitStatus = this.createEventPollService.createEventPoll();
+        console.log("submitting");
     };
     ConfirmationComponent = __decorate([
         core_1.Component({
@@ -32,7 +28,7 @@ var ConfirmationComponent = (function () {
             templateUrl: './app/components/confirmation/confirmation.html',
             styleUrls: ['./app/components/confirmation/confirmation.css'],
         }), 
-        __metadata('design:paramtypes', [router_1.ActivatedRoute, router_1.Router, createPoll_repository_service_1.createRepoService, create_event_poll_form_service_1.CreateEventPollFormService])
+        __metadata('design:paramtypes', [router_1.ActivatedRoute, router_1.Router, createPoll_repository_service_1.CreateEventPollService])
     ], ConfirmationComponent);
     return ConfirmationComponent;
 }());

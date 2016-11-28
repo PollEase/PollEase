@@ -13,16 +13,14 @@ var createPoll_repository_service_1 = require('../repository/createPoll-reposito
 var LocationPickerComponent = (function () {
     function LocationPickerComponent(createService) {
         this.createService = createService;
-        console.log("when");
-        this.locations = [];
-        console.log("go into the location constructor, refresh" + this.locations);
+        this.locations = this.createService.getLocations();
         this._temp = "";
     }
+    LocationPickerComponent.prototype.setLocations = function (locations) {
+        this.locations = locations;
+    };
     LocationPickerComponent.prototype.addLocation = function () {
-        this.locations.push(this._temp);
-        this.createService.addLoc(this._temp);
-        //console.log("here add the location "+this.locations);
-        //console.log("and here get the location "+this.getLocations());
+        this.createService.addLocation(this._temp);
         this._temp = "";
     };
     LocationPickerComponent.prototype.removeLocation = function (location) {
@@ -30,7 +28,7 @@ var LocationPickerComponent = (function () {
         if (index != -1) {
             this.locations.splice(index, 1);
         }
-        this.createService.remLoc(location);
+        this.createService.removeLocation(location);
     };
     LocationPickerComponent.prototype.getLocations = function () {
         return this.locations;
@@ -41,7 +39,7 @@ var LocationPickerComponent = (function () {
             templateUrl: './app/components/location-picker/location-picker.html',
             styleUrls: ['./app/components/location-picker/location-picker.css']
         }), 
-        __metadata('design:paramtypes', [createPoll_repository_service_1.createRepoService])
+        __metadata('design:paramtypes', [createPoll_repository_service_1.CreateEventPollService])
     ], LocationPickerComponent);
     return LocationPickerComponent;
 }());

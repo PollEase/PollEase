@@ -14,81 +14,45 @@ var createPoll_repository_service_1 = require('../repository/createPoll-reposito
 var location_picker_component_1 = require('./../location-picker/location-picker.component');
 var time_picker_component_1 = require('./../time-picker/time-picker.component');
 var email_picker_component_1 = require('./../email-picker/email-picker.component');
-var create_event_poll_form_service_1 = require('./create-event-poll-form.service');
 var CreateEventPollFormComponent = (function () {
-    function CreateEventPollFormComponent(route, router, locationPicker, timePicker, emailPicker, createService, createEventPollFormService) {
+    function CreateEventPollFormComponent(route, router, locationPicker, timePicker, emailPicker, createEventPollService) {
         this.route = route;
         this.router = router;
         this.locationPicker = locationPicker;
         this.timePicker = timePicker;
         this.emailPicker = emailPicker;
-        this.createService = createService;
-        this.createEventPollFormService = createEventPollFormService;
+        this.createEventPollService = createEventPollService;
     }
     CreateEventPollFormComponent.prototype.ngOnInit = function () {
-        this.event = {};
-        //base
-        this.event.title = '';
-        this.event.description = '';
-        this.event.deadline = null;
-        this.event.creator = {};
-        this.event.creator.name = '';
-        this.event.creator.email = '';
-        this.event.locations = [];
-        this.event.times = [];
-        this.event.emails = [];
-        //optional fields
-        this.event.coverCharge = false;
-        this.event.coverAmount = 0.00;
-        this.event.pollUsersForTransport = false;
-        this.event.needPickup = false;
-        this.event.canDrive = false;
-        this.event.pickupQuantity = 0;
-        //ngIfs
-        this.showFunding = false;
-        this.showTransportation = false;
-        //
-        // //Submission
-        // this.pollData = { };
-        // this.pollData.creatorEmail = '';
-        // this.pollData.creatorName = '';
-        // this.pollData.eventTitle = '';
-        // this.pollData.description = '';
-        // this.pollData.pollDeadline = null;
-        // this.pollData.locations = [];
-        // this.pollData.times = [];
-        // this.pollData.emails = [];
-        // this.pollData.coverCharge = null;
+        var event = this.createEventPollService.getEvent();
+        console.log(event);
+        this.creatorName = event.creatorName;
+        this.creatorEmail = event.creatorEmail;
+        this.eventTitle = event.eventTitle;
+        this.description = event.description;
+        this.pollDeadline = event.pollDeadline;
+        this.coverCharge = event.coverCharge;
+        // this.timePicker.setTimes(event.times);
+        // this.emailPicker.setEmails(event.emails);
+        // this.locationPicker.setLocations(event.locations);
     };
     CreateEventPollFormComponent.prototype.submit = function () {
-        this.event.locations = this.createService.getLoc();
-        this.event.times = this.createService.getTime();
-        this.event.emails = this.emailPicker.getEmails();
-        this.createService.create(this.event);
-        // console.log(this.locationPicker.getLocations());
-        // console.log(this.event.locations+" here before submit");
-        // console.log(this.createService.getEvent()+" here submit");
-        //TODO Fix this.
-        // 		this.pollData.creatorEmail = this.creator.email;
-        // 		this.pollData.creatorName = this.creator.name;
-        // 		this.pollData.eventTitle = this.event.title;
-        // 		this.pollData.description = this.event.description;
-        // 		this.pollData.pollDeadline = this.event.deadline;
-        // 		this.pollData.locations = this.locationPicker.getLocations();
-        // 		// console.log(this.pollData.locations);
-        // 		this.pollData.times = [];
-        // 		//Till timepicker is ready
-        // 		// this.pollData.times = this.timePicker.getTimes();
-        // 		this.pollData.emails = this.emailPicker.getEmails();
-        // 	//optional fields
-        // 	if(this.coverCharge !== false) {
-        // 		this.pollData.coverCharge = this.coverAmount;
-        // 	}
-        // 	else {
-        // 		this.pollData.coverCharge = 0;
-        // 	}
-        //
-        // 	this.submitStatus = this.createEventPollFormService.createEventPoll(this.pollData);
+        // var locations = this.locationPicker.getLocations();
+        // var times = this.timePicker.getTimes();
+        // var emails = this.emailPicker.getEmails();
+        // console.log(this.emailPicker.emails);
+        var event = {
+            "creatorName": this.creatorName,
+            "creatorEmail": this.creatorEmail,
+            "eventTitle": this.eventTitle,
+            "description": this.description,
+            "pollDeadline": this.pollDeadline,
+            // "locations": locations,
+            // "times": times,
+            // "emails": emails,
+            "coverCharge": this.coverCharge
+        };
+        this.createEventPollService.store(event);
     };
     CreateEventPollFormComponent = __decorate([
         core_1.Component({
@@ -96,7 +60,7 @@ var CreateEventPollFormComponent = (function () {
             templateUrl: './app/components/create-event-poll-form/create-event-poll-form.component.html',
             styleUrls: ['./app/components/create-event-poll-form/create-event-poll-form.component.css'],
         }), 
-        __metadata('design:paramtypes', [router_1.ActivatedRoute, router_1.Router, location_picker_component_1.LocationPickerComponent, time_picker_component_1.TimePickerComponent, email_picker_component_1.EmailPickerComponent, createPoll_repository_service_1.createRepoService, create_event_poll_form_service_1.CreateEventPollFormService])
+        __metadata('design:paramtypes', [router_1.ActivatedRoute, router_1.Router, location_picker_component_1.LocationPickerComponent, time_picker_component_1.TimePickerComponent, email_picker_component_1.EmailPickerComponent, createPoll_repository_service_1.CreateEventPollService])
     ], CreateEventPollFormComponent);
     return CreateEventPollFormComponent;
 }());

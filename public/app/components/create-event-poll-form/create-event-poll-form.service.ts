@@ -10,7 +10,7 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class CreateEventPollFormService {
- 
+
     //InMemoryModule
     // private _apiUrl = 'app/events';
 

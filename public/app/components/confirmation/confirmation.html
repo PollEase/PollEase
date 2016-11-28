@@ -7,7 +7,7 @@
 
                     <div class="form-group" id = "center">
                         <h4>Confirm Event Details</h4>
-                        <h3>{{event.title}}</h3>
+                        <h3>{{event.eventTitle}}</h3>
                         <!-- <h3>: {{event.creator.name }}</h3> -->
                     </div>
                     <hr/>
@@ -19,14 +19,14 @@
                         </label>
                         <br/>
                         <label *ngIf="event.coverCharge == true">
-                            Cover Charge: {{event.coverAmount}}
+                            Cover Charge: {{event.coverCharge}}
                         </label>
                         <label *ngIf="event.coverCharge == false">
                             Cover Charge: NONE
                         </label>
                         <br/>
                         <label>
-                            Deadline:  {{event.deadline}}
+                            Deadline:  {{event.pollDeadline}}
                         </label>
                         <br/>
                     </div>
@@ -45,17 +45,28 @@
                         <li  class="list-group-item"
                             *ngFor="let time of event.times">
                              <div class="input-group">
-                                {{time }}
+                                {{ time }}
+                            </div>
+                        </li>
+                    </div>
+                    <br/>
+                    <div class="form-group" id="emails">
+                        <h4>EMAILS</h4>
+                        <li  class="list-group-item"
+                            *ngFor="let email of event.emails">
+                             <div class="input-group">
+                                {{ email }}
                             </div>
                         </li>
                     </div>
                     <br/>
 
-
                     <div class="col-md-7">
-
-                        <a class="btn btn-primary btn-block btn-group-sm" (click)="submit()" data-toggle="modal" data-target="#myModal">
-                            Confirm
+                        <a class="btn btn-primary btn-block btn-group-sm" data-toggle="modal" data-target="#myModal" (click)="submit()">
+                            SUBMIT
+                        </a>
+                        <a class="btn btn-primary btn-block btn-group-sm" onclick="history.back()">
+                            EDIT
                         </a>
                     </div>
 

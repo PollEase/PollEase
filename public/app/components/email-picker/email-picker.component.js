@@ -9,13 +9,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var createPoll_repository_service_1 = require('../repository/createPoll-repository.service');
 var EmailPickerComponent = (function () {
-    function EmailPickerComponent() {
-        this.emails = [];
+    function EmailPickerComponent(createService) {
+        this.createService = createService;
+        this.emails = this.createService.getEmails();
         this._temp = "";
     }
+    EmailPickerComponent.prototype.setEmails = function (emails) {
+        this.emails = emails;
+    };
     EmailPickerComponent.prototype.addEmail = function () {
-        this.emails.push(this._temp);
+        this.createService.addEmail(this._temp);
         this._temp = "";
     };
     EmailPickerComponent.prototype.removeEmail = function (email) {
@@ -23,8 +28,10 @@ var EmailPickerComponent = (function () {
         if (index != -1) {
             this.emails.splice(index, 1);
         }
+        this.createService.removeEmail(email);
     };
     EmailPickerComponent.prototype.getEmails = function () {
+        console.log(this.emails);
         return this.emails;
     };
     EmailPickerComponent = __decorate([
@@ -33,7 +40,7 @@ var EmailPickerComponent = (function () {
             templateUrl: './app/components/email-picker/email-picker.component.html',
             styleUrls: ['./app/components/email-picker/email-picker.component.css']
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [createPoll_repository_service_1.CreateEventPollService])
     ], EmailPickerComponent);
     return EmailPickerComponent;
 }());
