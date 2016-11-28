@@ -101,9 +101,11 @@ export class CreateEventPollFormComponent {
 		this.event.times = this.createService.getTime();
 		this.event.emails = this.emailPicker.getEmails();
 		this.createService.create(this.event);
-		console.log(this.locationPicker.getLocations());
-		console.log(this.event.locations+" here before submit");
-		console.log(this.createService.getEvent()+" here submit");
+		// console.log(this.locationPicker.getLocations());
+		// console.log(this.event.locations+" here before submit");
+		// console.log(this.createService.getEvent()+" here submit");
+
+		//TODO Fix this.
 // 		this.pollData.creatorEmail = this.creator.email;
 // 		this.pollData.creatorName = this.creator.name;
 // 		this.pollData.eventTitle = this.event.title;

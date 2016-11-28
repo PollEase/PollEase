@@ -37,7 +37,7 @@
                                 required
                                 pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$">
                             <div class="alert alert-danger"
-                                *ngIf="request_email.errors && request_email.touched">
+                                *ngIf="request_email.errors && request_email.dirty">
                                 <ul>
                                     <li [hidden]="!request_email.errors.pattern">
                                             Email is not valid

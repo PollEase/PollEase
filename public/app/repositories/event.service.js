@@ -74,6 +74,15 @@ var EventRepositoryService = (function () {
             .then(function () { return event; })
             .catch(function (x) { return alert(x.json().error); });
     };
+    EventRepositoryService.prototype.emailAllPolls = function (email) {
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        var options = new http_1.RequestOptions({ headers: headers });
+        return this.http
+            .post(this._apiUrl + '/email', JSON.stringify(email), options)
+            .toPromise()
+            .then(function (x) { return x.json(); })
+            .catch(this.handleError);
+    };
     EventRepositoryService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http])

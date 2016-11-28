@@ -10,13 +10,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
+var event_service_1 = require('../../repositories/event.service');
 var HomePageComponent = (function () {
-    function HomePageComponent(route, router) {
+    function HomePageComponent(route, router, eventService) {
         this.route = route;
         this.router = router;
+        this.eventService = eventService;
     }
     HomePageComponent.prototype.submit = function () {
         console.log("In submit of homepage email is: " + this.email);
+        var status = this.eventService.emailAllPolls(this.email);
     };
     HomePageComponent = __decorate([
         core_1.Component({
@@ -24,7 +27,7 @@ var HomePageComponent = (function () {
             templateUrl: './app/components/home-page/home-page.component.html',
             styleUrls: ['./app/components/home-page/home-page.component.css']
         }), 
-        __metadata('design:paramtypes', [router_1.ActivatedRoute, router_1.Router])
+        __metadata('design:paramtypes', [router_1.ActivatedRoute, router_1.Router, event_service_1.EventRepositoryService])
     ], HomePageComponent);
     return HomePageComponent;
 }());

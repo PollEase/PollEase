@@ -20,9 +20,6 @@ export class ConfirmationComponent {
 	times: string[];
 	emails: string[];
 	
-	
-	
-	
 	constructor(private route : ActivatedRoute, 
 				private router: Router, 
 				private createService : createRepoService,
@@ -30,16 +27,12 @@ export class ConfirmationComponent {
 					
 				this.event = this.createService.getEvent();
 				//this.event.title = this.createService.getTitle();
-				console.log(this.event.locations+"from confirm");
-				console.log(this.event.times+"from confirm");
-
+				// console.log(this.event.locations+"from confirm");
+				// console.log(this.event.times+"from confirm");
 			}
 
 	submit() {
 
 		let submitStatus = this.createEventPollFormService.createEventPoll(this.event);
 	}
-
-	
-	
 }

@@ -20,8 +20,8 @@ var ConfirmationComponent = (function () {
         this.createEventPollFormService = createEventPollFormService;
         this.event = this.createService.getEvent();
         //this.event.title = this.createService.getTitle();
-        console.log(this.event.locations + "from confirm");
-        console.log(this.event.times + "from confirm");
+        // console.log(this.event.locations+"from confirm");
+        // console.log(this.event.times+"from confirm");
     }
     ConfirmationComponent.prototype.submit = function () {
         var submitStatus = this.createEventPollFormService.createEventPoll(this.event);

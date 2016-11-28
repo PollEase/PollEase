@@ -79,6 +79,18 @@ export class EventRepositoryService {
 			.catch(x => alert(x.json().error));
 	}
 
+    emailAllPolls(email) : Promise<any> {
+
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+
+        return this.http
+            .post(this._apiUrl + '/email', JSON.stringify(email), options)
+            .toPromise()
+            .then(x => x.json())
+            .catch(this.handleError);
+    }
+
 	// delete(id : number) : Promise<any> {
 
     //     let headers = new Headers({ 'Content-Type': 'application/json' });
