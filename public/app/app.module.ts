@@ -13,7 +13,7 @@ import { LocationPickerComponent } from './components/location-picker/location-p
 import { EmailPickerComponent } from './components/email-picker/email-picker.component';
 import { TimePickerComponent } from './components/time-picker/time-picker.component';
 import { ConfirmationComponent } from './components/confirmation/confirmation.component';
-import { createRepoService } from './components/repository/createPoll-repository.service';
+import { CreateEventPollService } from './components/repository/createPoll-repository.service';
 import { EventVotingFormComponent } from './components/event-voting-form/event-voting-form.component';
 import { PollResultsFormComponent } from './components/poll-results-form/poll-results-form.component';
 import { VoterIconsComponent } from './components/voter-icons/voter-icons.component';
@@ -39,7 +39,7 @@ import { CreateEventPollFormService } from './components/create-event-poll-form/
   declarations: [ AppComponent, HomePageComponent, CreateEventPollFormComponent,
                   LocationPickerComponent, EmailPickerComponent, TimePickerComponent, ConfirmationComponent,
                   EventVotingFormComponent, PollResultsFormComponent, VoterIconsComponent ],
-  providers: [ LocationPickerComponent, TimePickerComponent, EmailPickerComponent, CreateEventPollFormService, createRepoService ],
+  providers: [ LocationPickerComponent, TimePickerComponent, EmailPickerComponent, CreateEventPollFormService, CreateEventPollService ],
   bootstrap:    [ AppComponent ]
 })
 

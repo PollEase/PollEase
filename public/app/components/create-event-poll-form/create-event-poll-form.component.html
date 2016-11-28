@@ -11,7 +11,7 @@
                         </label>
                         <input  id="creator_name"
                                 class="form-control"
-                                [(ngModel)]="event.creator.name" />
+                                [(ngModel)]="creatorName" />
                     </div>
                     <div class="form-group">
                         <label for="creator_email">
@@ -19,7 +19,7 @@
                         </label>
                         <input  id="creator_email"
                                 class="form-control"
-                                [(ngModel)]="event.creator.email" />
+                                [(ngModel)]="creatorEmail" />
                     </div>
 
                     <h3>Event Info</h3>
@@ -29,7 +29,7 @@
                         </label>
                         <input  id="event_title"
                                 class="form-control"
-                                [(ngModel)]="event.title" />
+                                [(ngModel)]="eventTitle" />
                     </div>
                     <div class="form-group">
                         <label for="event_description">
@@ -37,7 +37,7 @@
                         </label>
                         <input  id="event_description"
                                 class="form-control"
-                                [(ngModel)]="event.description" />
+                                [(ngModel)]="description" />
                     </div>
                     <div class="form-group">
                         <label for="event_deadline">
@@ -45,7 +45,7 @@
                         </label>
                         <input  id="event_deadline"
                                 class="form-control"
-                                [(ngModel)]="event.deadline" />
+                                [(ngModel)]="pollDeadline" />
                         <!--<datetime [(ngModel)]="event.deadline"></datetime>-->
                     </div>
 
@@ -68,69 +68,23 @@
                             <div class="input-group">
                                 <span class="input-group-addon">
                                     <input  id="cover_charge"
-                                            type="checkbox"
-                                            [(ngModel)]="event.coverCharge" />
+                                            [(ngModel)]="cover"
+                                            type="checkbox" />
                                 </span>
                                 <span class="input-group-addon">$</span>
                                 <input  id="cover_amount"
                                         type="number" min="0" step="any"
                                         placeholder="0.00"
-                                        [(ngModel)]="event.coverAmount" />
+                                        [(ngModel)]="coverCharge"
+                                        [hidden]="!cover" />
+                                <input  id="cover_amount"
+                                        type="number" min="0" step="any"
+                                        placeholder=""
+                                        [hidden]="cover"
+                                        disabled />
                             </div>
                         </div>
                     </div>
-
-                    <!--<div class="container" *ngIf="showTransportation == true">
-                        <h3>Transportation</h3>
-                        <div class="form-group">
-                            <label for="poll_for_transport">
-                                Poll Attendees for Drivers and Riders?
-                            </label>
-                            <div class="input-group">
-                                <input  id="poll_for_transport"
-                                        type="checkbox"
-                                        [(ngModel)]="event.pollUsersForTransport" />
-                            </div>
-                        </div>
-
-                        <div class="form-group" *ngIf="pollUsersForTransport == true">
-                            <label for="need_pickup">
-                                Do you need a ride?
-                            </label>
-                            <div class="input-group">
-                                <input  id="need_pickup"
-                                        type="checkbox"
-                                        [(ngModel)]="event.needPickup" />
-                            </div>
-                        </div>
-
-                        <div class="form-group" *ngIf="pollUsersForTransport == true && needPickup == false">
-                            <label for="can_drive">
-                                Can you pickup others?
-                            </label>
-                            <div class="input-group">
-                                <span class="input-group-addon">
-                                    <input  id="can_drive"
-                                            type="checkbox"
-                                            [(ngModel)]="event.canDrive" />
-                                </span>
-                                <input  id="cover_amount"
-                                        type="number" min="0"
-                                        [(ngModel)]="event.pickupQuantity" />
-                            </div>
-                        </div>
-                    </div>-->
-
-                    <!--More Options Buttons-->
-                    <!--<div class="container col-md-12" *ngIf="showFunding == false || showTransportation == false">
-                        <h3>More Options</h3>
-                        <button class="btn btn-info btn-block btn-lg" *ngIf="showFunding == false"
-                            (click)="showFunding = true">
-                            <span class="glyphicon glyphicon-usd"></span>
-                        </button>
-
-                    </div>-->
-
                 </div>
             </div>
         </div>
