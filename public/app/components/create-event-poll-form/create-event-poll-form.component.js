@@ -61,7 +61,6 @@ var CreateEventPollFormComponent = (function () {
         // this.pollData.coverCharge = null;
     };
     CreateEventPollFormComponent.prototype.submit = function () {
-        // <<<<<<< ours
         this.event.locations = this.createService.getLoc();
         this.event.times = this.createService.getTime();
         this.event.emails = this.emailPicker.getEmails();
@@ -69,7 +68,6 @@ var CreateEventPollFormComponent = (function () {
         console.log(this.locationPicker.getLocations());
         console.log(this.event.locations + " here before submit");
         console.log(this.createService.getEvent() + " here submit");
-        // =======
         // 		this.pollData.creatorEmail = this.creator.email;
         // 		this.pollData.creatorName = this.creator.name;
         // 		this.pollData.eventTitle = this.event.title;
@@ -81,7 +79,6 @@ var CreateEventPollFormComponent = (function () {
         // 		//Till timepicker is ready
         // 		// this.pollData.times = this.timePicker.getTimes();
         // 		this.pollData.emails = this.emailPicker.getEmails();
-        // >>>>>>> theirs
         // 	//optional fields
         // 	if(this.coverCharge !== false) {
         // 		this.pollData.coverCharge = this.coverAmount;

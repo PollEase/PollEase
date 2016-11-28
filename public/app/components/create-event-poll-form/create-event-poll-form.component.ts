@@ -6,6 +6,8 @@ import { LocationPickerComponent } from './../location-picker/location-picker.co
 import { TimePickerComponent } from './../time-picker/time-picker.component';
 import { EmailPickerComponent } from './../email-picker/email-picker.component';
 
+import { FormsModule } from '@angular/forms';
+
 import { CreateEventPollFormService } from './create-event-poll-form.service';
 
 @Component({
@@ -95,7 +97,6 @@ export class CreateEventPollFormComponent {
 
 	submit() {
 
-// <<<<<<< ours
 		this.event.locations = this.createService.getLoc();
 		this.event.times = this.createService.getTime();
 		this.event.emails = this.emailPicker.getEmails();
@@ -103,7 +104,6 @@ export class CreateEventPollFormComponent {
 		console.log(this.locationPicker.getLocations());
 		console.log(this.event.locations+" here before submit");
 		console.log(this.createService.getEvent()+" here submit");
-// =======
 // 		this.pollData.creatorEmail = this.creator.email;
 // 		this.pollData.creatorName = this.creator.name;
 // 		this.pollData.eventTitle = this.event.title;
@@ -115,7 +115,6 @@ export class CreateEventPollFormComponent {
 // 		//Till timepicker is ready
 // 		// this.pollData.times = this.timePicker.getTimes();
 // 		this.pollData.emails = this.emailPicker.getEmails();
-// >>>>>>> theirs
 
 	// 	//optional fields
 	// 	if(this.coverCharge !== false) {
