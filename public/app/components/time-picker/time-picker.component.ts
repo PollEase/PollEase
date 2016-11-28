@@ -12,7 +12,7 @@ export class TimePickerComponent {
 	_temp: any;
 
 	constructor(private createService : CreateEventPollService){
-		this.times = [];
+		this.times = this.createService.getTimes();
 		this._temp = "";
 	}
 
@@ -22,8 +22,8 @@ export class TimePickerComponent {
 
 	addTime(){
 		var time = new Date(this._temp);
-		this.times.push(time);
 		this._temp = "";
+		this.createService.addTime(time);
 	}
 
 	removeTime(time){
@@ -31,6 +31,7 @@ export class TimePickerComponent {
 		if(index != -1) {
 			this.times.splice(index, 1);
 		}
+		this.createService.removeTime(time);
 	}
 
     getTimes() {

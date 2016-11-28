@@ -6,8 +6,6 @@ import { LocationPickerComponent } from './../location-picker/location-picker.co
 import { TimePickerComponent } from './../time-picker/time-picker.component';
 import { EmailPickerComponent } from './../email-picker/email-picker.component';
 
-import { CreateEventPollFormService } from './create-event-poll-form.service';
-
 @Component({
 	selector: 'create-event-poll-form',
 	templateUrl: './app/components/create-event-poll-form/create-event-poll-form.component.html',
@@ -19,15 +17,15 @@ export class CreateEventPollFormComponent {
 	//Base values
 	creatorName: string;
 	creatorEmail: string;
-	title: string;
+	eventTitle: string;
 	description: string;
-	deadline: string;
+	pollDeadline: string;
 	coverCharge: number;
-	cover: bool;
+	cover: boolean;
 
 	constructor(private route : ActivatedRoute, private router: Router, private locationPicker : LocationPickerComponent,
 				private timePicker : TimePickerComponent, private emailPicker : EmailPickerComponent,
-				private createEventPollService : CreateEventPollService, private createEventPollFormService : CreateEventPollFormService) {}
+				private createEventPollService : CreateEventPollService) {}
 
 	ngOnInit() {
 		var event = this.createEventPollService.getEvent();
@@ -57,11 +55,9 @@ export class CreateEventPollFormComponent {
 			// "locations": locations,
 			// "times": times,
 			// "emails": emails,
-			"coverFee": this.coverFee,
 			"coverCharge": this.coverCharge
 		};
 
-		console.log(event);
 		this.createEventPollService.store(event);
 	}
 }

@@ -40,13 +40,13 @@ export class CreateEventPollService{
         this._event.eventTitle = event.eventTitle;
         this._event.description = event.description;
         this._event.pollDeadline = event.pollDeadline;
-        this._event.locations = event.locations;
-        this._event.times = event.times;
-        this._event.emails = event.emails;
+        // this._event.locations = event.locations;
+        // this._event.times = event.times;
+        // this._event.emails = event.emails;
         this._event.coverCharge = event.coverCharge;
     }
 
-    public getEvent(){
+    public getEvent() {
         return this._event;
     }
 
@@ -79,6 +79,58 @@ export class CreateEventPollService{
             .toPromise()
             .then(x => x.json())
             .catch(this.handleError);
+    }
+
+
+    public addLocation(location) {
+        this._event.locations.push(location);
+        return this._event.locations;
+    }
+
+    public removeLocation(location) {
+        var index = this._event.locations.findIndex((loc) => (loc===location));
+        if(index != -1) {
+            this._event.locations.splice(index, 1);
+        }
+        return this._event.locations;
+    }
+
+    public getLocations() {
+        return this._event.locations;
+    }
+
+    public addEmail(email) {
+        this._event.emails.push(email);
+        return this._event.emails;
+    }
+
+    public removeEmail(email) {
+        var index = this._event.emails.findIndex((em) => (em===email));
+        if(index != -1) {
+            this._event.emails.splice(index, 1);
+        }
+        return this._event.emails;
+    }
+
+    public getEmails() {
+        return this._event.emails;
+    }
+
+    public addTime(time) {
+        this._event.times.push(time);
+        return this._event.times;
+    }
+
+    public removeTime(time) {
+        var index = this._event.times.findIndex((ti) => (ti===time));
+        if(index != -1) {
+            this._event.times.splice(index, 1);
+        }
+        return this._event.times;
+    }
+
+    public getTimes() {
+        return this._event.times;
     }
 
 }

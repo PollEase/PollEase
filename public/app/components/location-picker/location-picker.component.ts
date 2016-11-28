@@ -13,7 +13,7 @@ export class LocationPickerComponent {
     _temp: string;
 
     constructor(private createService : CreateEventPollService) {
-        this.locations = [];
+        this.locations = this.createService.getLocations();
         this._temp = "";
     }
 
@@ -22,7 +22,7 @@ export class LocationPickerComponent {
     }
 
     addLocation() {
-        this.locations.push(this._temp);
+        this.createService.addLocation(this._temp);
 	    this._temp = "";
     }
 
@@ -31,6 +31,7 @@ export class LocationPickerComponent {
         if(index != -1) {
             this.locations.splice(index, 1);
         }
+      this.createService.removeLocation(location);
     }
 
     getLocations() {

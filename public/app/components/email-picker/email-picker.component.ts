@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { CreateEventPollService } from '../repository/createPoll-repository.service';
 
 @Component({
 	selector: 'email-picker',
@@ -10,8 +11,8 @@ export class EmailPickerComponent {
 	emails: string[];
 	_temp: string;
 
-	constructor() {
-		this.emails = [];
+	constructor(private createService : CreateEventPollService) {
+		this.emails = this.createService.getEmails();
 		this._temp = "";
 	}
 
@@ -20,9 +21,8 @@ export class EmailPickerComponent {
 	}
 
 	addEmail() {
-		this.emails.push(this._temp);
+		this.createService.addEmail(this._temp);
 		this._temp = "";
-		console.log(this.emails);
 	}
 
 	removeEmail(email) {
@@ -30,6 +30,7 @@ export class EmailPickerComponent {
 		if(index != -1) {
 			this.emails.splice(index, 1);
 		}
+		this.createService.removeEmail(email);
 	}
 
 	getEmails() {
