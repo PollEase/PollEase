@@ -2,7 +2,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
-import { EventRepositoryService } from '../../repositories/event.service';
+import { CreateEventPollService } from '../repository/createPoll-repository.service';
 
 @Component({
 	selector: 'home-page',
@@ -14,9 +14,9 @@ export class HomePageComponent {
 
 	email: string;
 
-	constructor(private route : ActivatedRoute, 
+	constructor(private route : ActivatedRoute,
 				private router : Router,
-				private eventService : EventRepositoryService) {
+				private eventService : CreateEventPollService) {
 
 	}
 
