@@ -17,12 +17,15 @@ export class HomePageComponent {
 	constructor(private route : ActivatedRoute,
 				private router : Router,
 				private eventService : CreateEventPollService) {
-
 	}
 
 	submit() {
 
+		let theEmail = {
+			"email":this.email
+		};
+		this.email = null;
 		console.log("In submit of homepage email is: " + this.email);
-		let status = this.eventService.emailAllPolls(this.email);
+		let status = this.eventService.emailAllPolls(theEmail);
 	}
 }

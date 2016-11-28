@@ -18,8 +18,12 @@ var HomePageComponent = (function () {
         this.eventService = eventService;
     }
     HomePageComponent.prototype.submit = function () {
+        var theEmail = {
+            "email": this.email
+        };
+        this.email = null;
         console.log("In submit of homepage email is: " + this.email);
-        var status = this.eventService.emailAllPolls(this.email);
+        var status = this.eventService.emailAllPolls(theEmail);
     };
     HomePageComponent = __decorate([
         core_1.Component({
