@@ -16,10 +16,10 @@ export class CreateEventPollService{
     // private _apiUrl = 'app/events';
 
     //localhost
-    private _apiUrl = 'http://localhost:8000/createPoll';
+    // private _apiUrl = 'http://localhost:8000';
 
     //Apiary
-    // private _apiUrl = 'http://private-a1931-dbgui1.apiary-mock.com/createPoll';
+    private _apiUrl = 'http://private-a1931-dbgui1.apiary-mock.com';
 
     constructor(private http: Http) {
         this._event = {};
@@ -77,7 +77,7 @@ export class CreateEventPollService{
         let options = new RequestOptions({ headers: headers });
 
         return this.http
-            .post(this._apiUrl, this._event, options)
+            .post(this._apiUrl + '/createPoll', this._event, options)
             .toPromise()
             .then(x => x.json())
             .catch(this.handleError);

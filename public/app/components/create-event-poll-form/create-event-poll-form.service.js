@@ -18,14 +18,14 @@ require('rxjs/add/operator/map');
 require('rxjs/add/operator/switchMap');
 require('rxjs/add/operator/toPromise');
 var CreateEventPollFormService = (function () {
-    //Apiary
-    // private _apiUrl = 'http://private-a1931-dbgui1.apiary-mock.com';
     function CreateEventPollFormService(http) {
         this.http = http;
         //InMemoryModule
         // private _apiUrl = 'app/events';
         //localhost
-        this._apiUrl = 'http://localhost:8000';
+        // private _apiUrl = 'http://localhost:8000';
+        //Apiary
+        this._apiUrl = 'http://private-a1931-dbgui1.apiary-mock.com';
     }
     CreateEventPollFormService.prototype.extractData = function (res) {
         var body = res.json();
