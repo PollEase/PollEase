@@ -31,7 +31,7 @@ import { GetPollComponent } from './components/get-poll/get-poll.component';
                 { path: 'confirm', component: ConfirmationComponent},
                 { path: 'vote/:id', component: EventVotingFormComponent },
                 { path: 'getPoll/:id', component: EventVotingFormComponent },
-                { path: 'results/:id', component: PollResultsFormComponent },
+                { path: 'viewResults/:id', component: PollResultsFormComponent },
                 { path: 'createpoll', component: CreateEventPollFormComponent }
              ])
             //  InMemoryWebApiModule.forRoot(InMemoryDataService)

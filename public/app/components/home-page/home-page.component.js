@@ -25,6 +25,12 @@ var HomePageComponent = (function () {
         console.log("In submit of homepage email is: " + this.email);
         this.response = this.eventService.emailAllPolls(theEmail);
     };
+    HomePageComponent.prototype.vote = function (id) {
+        this.router.navigateByUrl('vote/' + id);
+    };
+    HomePageComponent.prototype.results = function (id) {
+        this.router.navigateByUrl('viewResults/' + id);
+    };
     HomePageComponent = __decorate([
         core_1.Component({
             selector: 'home-page',

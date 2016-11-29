@@ -52,6 +52,21 @@
             <button id = "three" style="margin-top:5px;" class="btn btn-primary colorsave" data-toggle="modal" data-target="#myModal">Get Your Active Polls</button>
         </div>
 
+        <div class="form-group">
+            <input  id="poll_id"
+                    class="form-control"
+                    [(ngModel)]="poll_id" />
+        </div>
+
+        <a class= "button_four btn btn-primary colorsave" (click)="vote(poll_id)">
+            VOTE
+        </a>
+
+        <a class= "button_five btn btn-primary colorsave" (click)="results(poll_id)">
+            RESULTS
+        </a>
+
+
     </section>
 
         <!-- <a class="btn btn-default btn-lg" routerLink="/createpoll">

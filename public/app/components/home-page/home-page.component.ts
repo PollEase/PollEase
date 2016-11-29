@@ -14,6 +14,7 @@ export class HomePageComponent {
 
 	email: string;
 	response: any;
+	poll_id: string;
 
 	constructor(private route : ActivatedRoute,
 				private router : Router,
@@ -28,5 +29,13 @@ export class HomePageComponent {
 		this.email = null;
 		console.log("In submit of homepage email is: " + this.email);
 		this.response = this.eventService.emailAllPolls(theEmail);
+	}
+
+	vote(id : string) {
+		this.router.navigateByUrl('vote/'+ id);
+	}
+
+	results(id : string) {
+		this.router.navigateByUrl('viewResults/'+ id);
 	}
 }
