@@ -1,7 +1,13 @@
 var sql = require("../helpers/sql.js");
 var colors = require("colors");
 function get(req,res){
-  var pollId = req.query.pollId;
+  
+  // var pollId = req.query.pollId;
+
+  //Bryces changes.
+  var _bufferId = req.params.id;
+  var pollId = _bufferId.substring(0,64);
+
   if(!(pollId)){
     res.send("No Poll Id Sent."+pollId);
     return;
