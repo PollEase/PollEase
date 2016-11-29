@@ -120,6 +120,18 @@ export class CreateEventPollService{
             .catch(this.handleError);
     }
 
+    getResults(id : number) : Promise<any> {
+        et headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+
+		var pluck = x => (x && x.length) ? x[0] : undefined;
+		return this.http
+			.get(`${this._apiUrl + '/results'}/?id=${id}`)
+			.toPromise()
+			.then(x => pluck(x.json().data))
+			.catch(x => alert(x.json().error));
+    }
+
 	// delete(id : number) : Promise<any> {
 
     //     let headers = new Headers({ 'Content-Type': 'application/json' });

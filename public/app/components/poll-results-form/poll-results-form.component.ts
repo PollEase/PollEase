@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { VoterIconsComponent } from '../voter-icons/voter-icons.component';
+import { CreateEventPollService } from '../repository/createPoll-repository.service';
 
 @Component({
 	selector: 'poll-results-form',
@@ -11,61 +12,23 @@ import { VoterIconsComponent } from '../voter-icons/voter-icons.component';
 export class PollResultsFormComponent {
 
 	//Base values
-
 	eventTitle: any;
 	locations: any[];
-	// times: Date[];
-	times: any[];
+	times: Date[];
 	emails: string[];
 	description: string;
 	coverCharge: number;
+	// selectedLocation: string;
+	// selectedTime: Date;
+	// selectedEmails: string[];
 
-	// deadline: Date;
-	deadline: string;
-
-
-	selectedLocation: string;
-	// selectedTime: Date;  //TODO: switch
-	selectedTime: string;
-	selectedEmails: string[];
-
-
-	constructor(private route : ActivatedRoute, private router: Router) {}
+	constructor(private route : ActivatedRoute, private router: Router, private service : CreateEventPollService) {}
 
 	ngOnInit() {
-		this.eventTitle = "Battle";
-		this.locations = [
-	        {
-	            "name": "Fondren",
-	            "voters": [
-	                {
-	                    "firstName": "Luke",
-	                    "lastName": "Oglesbee",
-	                },
-	                {
-	                    "firstName": "Bob",
-	                    "lastName": "Sponge",
-	                }
-	            ]
-	        },
-	        {
-	            "name": "Caruth",
-	            "voters": [
-	                {
-	                    "firstName": "Luke",
-	                    "lastName": "Oglesbee",
-	                },
-	            ]
-	        }
-	    ];
-		this.times = ["date1", "date2", "Date3"];
-		this.emails = ["fjs@smu.edu", "asdf@smu.edu", "idk@smu.edu", "hello@smu.edu"];
-		this.description = "A battle yayayay with swords and people and alcohol and food and things in game of thrones. Need more text text text tesxt";
-		this.coverCharge = 25;
-		this.deadline = "tomorrow";
-		this.selectedLocation = "default";
-		this.selectedTime = "default";
-		this.selectedEmails = this.emails.slice();
+		// this.selectedLocation = "default";
+		// this.selectedTime = "default";
+		// this.selectedEmails = this.emails.slice();
+        this.route.params.forEach(x => this.load(x['id']));
 	}
 
 	submit() {
@@ -74,20 +37,38 @@ export class PollResultsFormComponent {
 		console.log(this.selectedTime);
 		console.log(this.selectedEmails);
 	}
+	
+	// selectLocation(location: string) {
+	// 	this.selectedLocation = location;
+	// }
+	//
+	// selectTime(time: string) {
+	// 	this.selectedTime = time;
+	// }
+	//
+	// selectEmail(email: string) {
+	// 	if (this.selectedEmails.indexOf(email) > -1) {
+	// 		this.selectedEmails.splice(this.selectedEmails.indexOf(email), 1);
+	// 	} else {
+	// 		this.selectedEmails.push(email);
+	// 	}
+	// }
 
-	selectLocation(location: string) {
-		this.selectedLocation = location;
-	}
-
-	selectTime(time: string) {
-		this.selectedTime = time;
-	}
-
-	selectEmail(email: string) {
-		if (this.selectedEmails.indexOf(email) > -1) {
-			this.selectedEmails.splice(this.selectedEmails.indexOf(email), 1);
-		} else {
-			this.selectedEmails.push(email);
+	private load(id) {
+		if (!id) {
+			return;
 		}
+
+		var onload = (data) => {
+			if (data) {
+				this.eventTitle = data.eventTitle;
+				this.locations = data.locations;
+				this.times = data.times;
+				this.emails = data.emails;
+				this.description = data.description;
+				this.coverCharge = data.coverCharge;
+			}
+		};
+		this.service.getResults(id).then(onload);
 	}
 }
