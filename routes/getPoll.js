@@ -21,7 +21,7 @@ function get(req,res){
       sql.selectOwner(owner_id,function(creator){
           var json_object = {};
           json_object.creatorEmail = creator.email;
-          json_object.name = creator.name;
+          json_object.creatorName = creator.name;
           json_object.eventTitle = name;
           json_object.pollDeadline = deadline;
           json_object.funding = funding;
