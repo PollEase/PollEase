@@ -96,13 +96,13 @@ export class CreateEventPollService{
 			.catch(x => alert(x.json().error));
 	}
 
-	update(event) : Promise<any> {
+	submitVote(vote) : Promise<any> {
 
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
 
         return this.http
-			.put(`${this._apiUrl + '/events' }/${event.id}`, event)
+			.put(this._apiUrl + '/submitPreferences', JSON.stringify(vote), options)
 			.toPromise()
 			.then(() => event)
 			.catch(x => alert(x.json().error));

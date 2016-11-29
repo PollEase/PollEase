@@ -11,10 +11,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 // import { EventVotingFormService } from './event-voting-form.service';
+var createPoll_repository_service_1 = require('../repository/createPoll-repository.service');
 var EventVotingFormComponent = (function () {
-    function EventVotingFormComponent(route, router) {
+    function EventVotingFormComponent(route, router, createEventPollService) {
         this.route = route;
         this.router = router;
+        this.createEventPollService = createEventPollService;
     }
     EventVotingFormComponent.prototype.ngOnInit = function () {
         this.creatorFirstName = "Rob";
@@ -36,6 +38,12 @@ var EventVotingFormComponent = (function () {
         console.log("submitting");
         console.log(this.selectedLocations);
         console.log(this.selectedTimes);
+        var vote = {
+            "eventId": this.eventId,
+            "times": this.selectedTimes,
+            "locations": this.selectedLocations
+        };
+        this.response = this.createEventPollService.submitVote(vote);
     };
     EventVotingFormComponent.prototype.selectLocation = function (location) {
         if (this.selectedLocations.indexOf(location) > -1) {
@@ -59,7 +67,7 @@ var EventVotingFormComponent = (function () {
             templateUrl: './app/components/event-voting-form/event-voting-form.component.html',
             styleUrls: ['./app/components/event-voting-form/event-voting-form.component.css'],
         }), 
-        __metadata('design:paramtypes', [router_1.ActivatedRoute, router_1.Router])
+        __metadata('design:paramtypes', [router_1.ActivatedRoute, router_1.Router, createPoll_repository_service_1.CreateEventPollService])
     ], EventVotingFormComponent);
     return EventVotingFormComponent;
 }());

@@ -89,11 +89,11 @@ var CreateEventPollService = (function () {
             .then(function (x) { return pluck(x.json().data); })
             .catch(function (x) { return alert(x.json().error); });
     };
-    CreateEventPollService.prototype.update = function (event) {
+    CreateEventPollService.prototype.submitVote = function (vote) {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         var options = new http_1.RequestOptions({ headers: headers });
         return this.http
-            .put((this._apiUrl + '/events') + "/" + event.id, event)
+            .put(this._apiUrl + '/submitPreferences', JSON.stringify(vote), options)
             .toPromise()
             .then(function () { return event; })
             .catch(function (x) { return alert(x.json().error); });

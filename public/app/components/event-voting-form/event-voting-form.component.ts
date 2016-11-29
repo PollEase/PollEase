@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 
 // import { EventVotingFormService } from './event-voting-form.service';
+import { CreateEventPollService } from '../repository/createPoll-repository.service';
 
 @Component({
 	selector: 'event-voting-form',
@@ -34,8 +35,13 @@ export class EventVotingFormComponent {
 	// selectedTimes: Date[];  //TODO: switch
 	selectedTimes: string[];
 
+	eventId: "dba575232a6970737d48b7e51505d652ce775c268f489a869158799f20b4b79a";
+	response: any;
 
-	constructor(private route : ActivatedRoute, private router: Router) {}
+
+	constructor(private route : ActivatedRoute, 
+				private router: Router,
+				private createEventPollService : CreateEventPollService) { }
 
 	ngOnInit() {
 		this.creatorFirstName = "Rob";
@@ -58,6 +64,14 @@ export class EventVotingFormComponent {
 		console.log("submitting");
 		console.log(this.selectedLocations);
 		console.log(this.selectedTimes);
+
+		var vote = {
+
+			"eventId" : this.eventId, 
+			"times" : this.selectedTimes, 
+			"locations" : this.selectedLocations
+		}
+		this.response = this.createEventPollService.submitVote(vote);
 	}
 
 	selectLocation(location: string) {
