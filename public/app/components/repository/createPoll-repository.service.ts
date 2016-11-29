@@ -83,17 +83,16 @@ export class CreateEventPollService{
             .catch(this.handleError);
     }
 
-    get(id : number) : Promise<any> {
-
+    getPoll(id : number) : Promise<any> {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
 
 		var pluck = x => (x && x.length) ? x[0] : undefined;
 		return this.http
-			.get(`${this._apiUrl + '/events'}/?id=${id}`)
+			.get(`${this._apiUrl + '/getPoll'}/?id=${id}`)
 			.toPromise()
 			.then(x => pluck(x.json().data))
-			.catch(x => alert(x.json().error));
+            .catch(x => alert(x.json().error));
 	}
 
 	update(event) : Promise<any> {
