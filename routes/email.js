@@ -26,7 +26,7 @@ function post(req,res){
 
     res.send(
       `{
-        status:1
+        "status":1
       }`
      );
 }

@@ -11,14 +11,27 @@ function post(req,res){
     var deadline = req.body.deadline;
 
     var locations = req.body.locations;
-    var date = req.body.dateTime;
+    var times = req.body.times;
 
     var description = req.body.description;
 
     var recipient_emails = req.body.emails;
     var cost = req.body.coverCharge;
 
-    if(email &&validator.isEmail(email) && name !=null && description != null && event_title != null && deadline != null){
+    console.log("email: " + email + "\n");
+    console.log("name: " + name + "\n");
+    console.log("event_title: " + event_title + "\n");
+    console.log("deadline: " + deadline + "\n");
+
+    console.log("locations: " + locations + "\n");
+    console.log("times: " + times + "\n");
+
+    console.log("description: " + description + "\n");
+
+    console.log("recipient_emails: " + recipient_emails + "\n");
+    console.log("cost: " + cost + "\n");
+
+    if(email && validator.isEmail(email) && name !=null && description != null && event_title != null && deadline != null){
       //create users uid
       var uid = crypto.randomBytes(32).toString("hex");
 
@@ -30,8 +43,8 @@ function post(req,res){
               }
 
               //1 represents date.
-              for(var i = 0; i < date.length; i++){
-                sql.createOption(poll_id,date[i],1);
+              for(var i = 0; i < times.length; i++){
+                sql.createOption(poll_id,times[i],1);
               }
 
             }
@@ -64,12 +77,12 @@ function post(req,res){
 
       //polls uid
       sql.createUser(email,uid,name,next_part);
+      }      
+      else {
 
-      }      else{
-
-              res.send(email + " IS NOT A VALID EMAIL STOP TRYING TO HACK US");
-              return;
-            }
+        res.send('{"status":0}');
+        return;
+      }
 
 }
 

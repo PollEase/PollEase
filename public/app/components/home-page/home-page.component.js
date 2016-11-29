@@ -23,7 +23,7 @@ var HomePageComponent = (function () {
         };
         this.email = null;
         console.log("In submit of homepage email is: " + this.email);
-        var status = this.eventService.emailAllPolls(theEmail);
+        this.response = this.eventService.emailAllPolls(theEmail);
     };
     HomePageComponent = __decorate([
         core_1.Component({

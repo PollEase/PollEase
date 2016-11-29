@@ -15,10 +15,10 @@ export class EventRepositoryService {
     // private _apiUrl = 'app/events';
 
     //localhost
-    // private _apiUrl = 'http://localhost:8000';
+    private _apiUrl = 'http://localhost:8000';
 
     //Apiary
-    private _apiUrl = 'http://private-a1931-dbgui1.apiary-mock.com';
+    // private _apiUrl = 'http://private-a1931-dbgui1.apiary-mock.com';
 
     constructor(private http: Http) { }
 

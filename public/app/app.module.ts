@@ -29,7 +29,8 @@ import { VoterIconsComponent } from './components/voter-icons/voter-icons.compon
                 { path: 'confirm', component: ConfirmationComponent},
                 { path: 'vote', component: EventVotingFormComponent },
                 { path: 'results', component: PollResultsFormComponent },
-                { path: 'createpoll', component: CreateEventPollFormComponent }
+                { path: 'createpoll', component: CreateEventPollFormComponent },
+                // { path: 'getPoll', component: getPol}
              ])
             //  InMemoryWebApiModule.forRoot(InMemoryDataService)
   ],

@@ -18,20 +18,20 @@ require('rxjs/add/operator/map');
 require('rxjs/add/operator/switchMap');
 require('rxjs/add/operator/toPromise');
 var CreateEventPollService = (function () {
+    //Apiary
+    // private _apiUrl = 'http://private-a1931-dbgui1.apiary-mock.com';
     function CreateEventPollService(http) {
         this.http = http;
         //InMemoryModule
         // private _apiUrl = 'app/events';
         //localhost
-        // private _apiUrl = 'http://localhost:8000';
-        //Apiary
-        this._apiUrl = 'http://private-a1931-dbgui1.apiary-mock.com';
+        this._apiUrl = 'http://localhost:8000';
         this._event = {};
         this._event.creatorName = "";
         this._event.creatorEmail = "";
         this._event.eventTitle = "";
         this._event.description = "";
-        this._event.pollDeadline = "";
+        this._event.deadline = "";
         this._event.locations = [];
         this._event.times = [];
         this._event.emails = [];
@@ -42,7 +42,7 @@ var CreateEventPollService = (function () {
         this._event.creatorEmail = event.creatorEmail;
         this._event.eventTitle = event.eventTitle;
         this._event.description = event.description;
-        this._event.pollDeadline = event.pollDeadline;
+        this._event.deadline = event.deadline;
         // this._event.locations = event.locations;
         // this._event.times = event.times;
         // this._event.emails = event.emails;
@@ -74,7 +74,7 @@ var CreateEventPollService = (function () {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         var options = new http_1.RequestOptions({ headers: headers });
         return this.http
-            .post(this._apiUrl + '/createPoll', this._event, options)
+            .post(this._apiUrl + '/createPoll', JSON.stringify(this._event), options)
             .toPromise()
             .then(function (x) { return x.json(); })
             .catch(this.handleError);

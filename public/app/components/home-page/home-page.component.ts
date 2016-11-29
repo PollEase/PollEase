@@ -13,6 +13,7 @@ import { CreateEventPollService } from '../repository/createPoll-repository.serv
 export class HomePageComponent {
 
 	email: string;
+	response: any;
 
 	constructor(private route : ActivatedRoute,
 				private router : Router,
@@ -26,6 +27,6 @@ export class HomePageComponent {
 		};
 		this.email = null;
 		console.log("In submit of homepage email is: " + this.email);
-		let status = this.eventService.emailAllPolls(theEmail);
+		this.response = this.eventService.emailAllPolls(theEmail);
 	}
 }
