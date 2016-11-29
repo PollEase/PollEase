@@ -85,11 +85,11 @@ var CreateEventPollService = (function () {
         return this.http
             .get((this._apiUrl + '/getPoll') + "/" + id)
             .toPromise()
-            .then(function (x) { console.log(x._body); return x.json()._body; });
-        try { }
-        catch (x) { }
-        alert(x.statusText);
-        ;
+            .then(function (x) {
+            console.log(x.json()._body);
+            return x.json()._body;
+        })
+            .catch(function (x) { return alert(x.statusText); });
     };
     CreateEventPollService.prototype.submitVote = function (vote) {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
@@ -115,11 +115,11 @@ var CreateEventPollService = (function () {
         return this.http
             .get((this._apiUrl + '/results') + "/" + id)
             .toPromise()
-            .then(function (x) { console.log(x._body); return x.json()._body; });
-        try { }
-        catch (x) { }
-        alert(x.statusText);
-        ;
+            .then(function (x) {
+            console.log(x.json()._body);
+            return x.json()._body;
+        })
+            .catch(function (x) { return alert(x.statusText); });
     };
     // delete(id : number) : Promise<any> {
     //     let headers = new Headers({ 'Content-Type': 'application/json' });
