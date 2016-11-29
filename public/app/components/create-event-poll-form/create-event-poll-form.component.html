@@ -11,15 +11,27 @@
                         </label>
                         <input  id="creator_name"
                                 class="form-control"
-                                [(ngModel)]="creator.name" />
+                                [(ngModel)]="creatorName" />
                     </div>
                     <div class="form-group">
                         <label for="creator_email">
                             Email
                         </label>
                         <input  id="creator_email"
+                                name="creator_email"
                                 class="form-control"
-                                [(ngModel)]="creator.email" />
+                                [(ngModel)]="creatorEmail"
+                                #creator_email="ngModel"
+                                required
+                                pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$">
+                        <div class="alert alert-danger"
+                            *ngIf="creator_email.errors && creator_email.touched">
+                            <ul>
+                                <li [hidden]="!creator_email.errors.pattern">
+                                        Email is not valid
+                                </li>
+                            </ul>
+                        </div>
                     </div>
 
                     <h3>Event Info</h3>
@@ -29,7 +41,7 @@
                         </label>
                         <input  id="event_title"
                                 class="form-control"
-                                [(ngModel)]="event.title" />
+                                [(ngModel)]="eventTitle" />
                     </div>
                     <div class="form-group">
                         <label for="event_description">
@@ -37,7 +49,7 @@
                         </label>
                         <input  id="event_description"
                                 class="form-control"
-                                [(ngModel)]="event.description" />
+                                [(ngModel)]="description" />
                     </div>
                     <div class="form-group">
                         <label for="event_deadline">
@@ -45,7 +57,7 @@
                         </label>
                         <input  id="event_deadline"
                                 class="form-control"
-                                [(ngModel)]="event.deadline" />
+                                [(ngModel)]="deadline" />
                         <!--<datetime [(ngModel)]="event.deadline"></datetime>-->
                     </div>
 
@@ -58,8 +70,8 @@
 
                     <h3>Add Attendees</h3>
                     <email-picker></email-picker>
-                    
-                    <div class="container" *ngIf="showFunding == true">
+
+                    <div class="container">
                         <h3>Funding</h3>
                         <div class="form-group">
                             <label for="cover_charge">
@@ -68,93 +80,35 @@
                             <div class="input-group">
                                 <span class="input-group-addon">
                                     <input  id="cover_charge"
-                                            type="checkbox"
-                                            [(ngModel)]="coverCharge" />
+                                            [(ngModel)]="cover"
+                                            type="checkbox" />
                                 </span>
                                 <span class="input-group-addon">$</span>
                                 <input  id="cover_amount"
                                         type="number" min="0" step="any"
                                         placeholder="0.00"
-                                        [(ngModel)]="coverAmount" />
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="contribution">
-                                Ask for Contributions
-                            </label>
-                            <div class="input-group">
-                                <input  id="contribution"
-                                        type="checkbox"
-                                        [(ngModel)]="contribution" />
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="container" *ngIf="showTransportation == true">
-                        <h3>Transportation</h3>
-                        <div class="form-group">
-                            <label for="poll_for_transport">
-                                Poll Attendees for Drivers and Riders?
-                            </label>
-                            <div class="input-group">
-                                <input  id="poll_for_transport"
-                                        type="checkbox"
-                                        [(ngModel)]="pollUsersForTransport" />
-                            </div>
-                        </div>
-
-                        <div class="form-group" *ngIf="pollUsersForTransport == true">
-                            <label for="need_pickup">
-                                Do you need a ride?
-                            </label>
-                            <div class="input-group">
-                                <input  id="need_pickup"
-                                        type="checkbox"
-                                        [(ngModel)]="needPickup" />
-                            </div>
-                        </div>
-
-                        <div class="form-group" *ngIf="pollUsersForTransport == true && needPickup == false">
-                            <label for="can_drive">
-                                Can you pickup others?
-                            </label>
-                            <div class="input-group">
-                                <span class="input-group-addon">
-                                    <input  id="can_drive"
-                                            type="checkbox"
-                                            [(ngModel)]="canDrive" />
-                                </span>
+                                        [(ngModel)]="coverCharge"
+                                        [hidden]="!cover" />
                                 <input  id="cover_amount"
-                                        type="number" min="0"
-                                        [(ngModel)]="pickupQuantity" />
+                                        type="number" min="0" step="any"
+                                        placeholder=""
+                                        [hidden]="cover"
+                                        disabled />
                             </div>
                         </div>
                     </div>
-
-                    <!--More Options Buttons-->
-                    <div class="container col-md-12" *ngIf="showFunding == false || showTransportation == false">
-                        <h3>More Options</h3>
-                        <button class="btn btn-info btn-block btn-lg" *ngIf="showFunding == false"
-                            (click)="showFunding = true">
-                            <span class="glyphicon glyphicon-usd"></span>
-                        </button>
-                        <button class="btn btn-info btn-block btn-lg" *ngIf="showTransportation == false"
-                            (click)="showTransportation = true">
-                            <span class="glyphicon glyphicon-road"></span>
-                        </button>
-                    </div>
-
                 </div>
             </div>
         </div>
-
         <div class="col-md-7 submitBtn">
-            <a class="btn btn-primary btn-block btn-lg" (click)="submit()">
+            <a *ngIf="creator_email.valid" class="btn btn-primary btn-lg btn-block" (click)="submit()" routerLink="/confirm">
+                Submit
+            </a>
+            <a *ngIf="creator_email.invalid" class="btn btn-primary btn-lg btn-block" disabled>
                 Submit
             </a>
         </div>
     </div>
-    <pre>{{submitStatus|json}}</pre>
-    <pre>{{submitStatus}}</pre>
+    <!-- <pre>{{submitStatus|json}}</pre>
+    <pre>{{submitStatus}}</pre> -->
 </div>

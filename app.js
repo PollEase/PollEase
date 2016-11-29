@@ -15,6 +15,9 @@ app.use(bodyParser.urlencoded({extended:true}));
 var email = require("./routes/email.js");
 app.post("/email",email.post);
 
+var getPoll = require("./routes/getPoll.js");
+app.get("/getPoll/:id",getPoll.get);
+
 var createPoll = require("./routes/createPoll.js");
 app.post("/createPoll",createPoll.post);
 

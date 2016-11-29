@@ -18,14 +18,14 @@ require('rxjs/add/operator/map');
 require('rxjs/add/operator/switchMap');
 require('rxjs/add/operator/toPromise');
 var CreateEventPollFormService = (function () {
-    //Apiary
-    // private _apiUrl = 'http://private-a1931-dbgui1.apiary-mock.com/createPoll';
     function CreateEventPollFormService(http) {
         this.http = http;
         //InMemoryModule
         // private _apiUrl = 'app/events';
         //localhost
-        this._apiUrl = 'http://localhost:8000/createPoll';
+        // private _apiUrl = 'http://localhost:8000';
+        //Apiary
+        this._apiUrl = 'http://private-a1931-dbgui1.apiary-mock.com';
     }
     CreateEventPollFormService.prototype.extractData = function (res) {
         var body = res.json();
@@ -49,7 +49,7 @@ var CreateEventPollFormService = (function () {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         var options = new http_1.RequestOptions({ headers: headers });
         return this.http
-            .post(this._apiUrl, poll, options)
+            .post(this._apiUrl + '/createPoll', poll, options)
             .toPromise()
             .then(function (x) { return x.json(); })
             .catch(this.handleError);

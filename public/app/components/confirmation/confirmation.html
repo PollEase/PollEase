@@ -1,0 +1,89 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-7">
+            <div class="panel panel-info">
+                <div class="panel-body">
+
+
+                    <div class="form-group" id = "center">
+                        <h4>Confirm Event Details</h4>
+                        <h3>{{event.eventTitle}}</h3>
+                    </div>
+                    <hr/>
+
+                    <div class="form-group">
+                        
+                        <h4>Description</h4>
+                        <p>{{event.description}}</p>
+                        <br/>
+
+                        
+                        <h4>Cover Charge</h4><h5>{{ event.coverCharge | currency:'USD':true:'1.2-2' }}</h5>
+                        <br/>
+
+                        <h4>Deadline</h4><p>{{ event.deadline }}</p>
+                        <br/>
+                    </div>
+                    <div class="form-group" id="loc">
+                        <h4>Location</h4>
+                        <li  class="list-group-item"
+                            *ngFor="let location of event.locations">
+                             <div class="input-group">
+                                {{ location }}
+                            </div>
+                        </li>
+                    </div>
+                    <br/>
+                    <div class="form-group" id="time">
+                        <h4>Date + Time</h4>
+                        <li  class="list-group-item"
+                            *ngFor="let time of event.times">
+                             <div class="input-group">
+                                {{ time }}
+                            </div>
+                        </li>
+                    </div>
+                    <br/>
+                    <div class="form-group" id="emails">
+                        <h4>Attendees</h4>
+                        <li  class="list-group-item"
+                            *ngFor="let email of event.emails">
+                             <div class="input-group">
+                                {{ email }}
+                            </div>
+                        </li>
+                    </div>
+                    <br/>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <a class="btn btn-primary btn-block btn-group-sm" data-toggle="modal" data-target="#myModal" (click)="submit()">
+                CONFIRM
+            </a>
+            <a class="btn btn-info btn-block btn-group-sm" onclick="history.back()">
+                EDIT
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Poll was created successfully!</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <h5>You will recieve an email with a link to view the results of your poll shortly.</h5>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal" routerLink="">OK</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,57 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-7">
+            <div class="panel panel-info">
+                <div class="panel-body">
+                    <div class="static">
+                        <h1 class="title">{{eventTitle}}</h1>
+                        <div class="border">
+                            <p class="left">{{description}}</p>
+                            <div class="span">
+                                <p [hidden]="!coverCharge">Cover Charge: ${{coverCharge}}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3>Location</h3>
+                    <div class="horizontal" *ngFor="let location of locations">
+                        <p>{{location.name}}</p>
+                        <voter-icons [voters]="location.voters"></voter-icons>
+                    </div>
+
+                    <h3>Date + Time</h3>
+                    <div class="horizontal" *ngFor="let time of times; let index = index">
+                        <p>{{time}}</p>
+                        <voter-icons></voter-icons>
+                    </div>
+
+
+                    <!-- <h3>Location</h3>
+                    <div class="horizontal" *ngFor="let location of locations; let index = index;">
+                        <input [id]="'location_' + index" type="radio" name="location" (click)="selectLocation(location.name)">
+                        <label [attr.for]="'location_' + index">{{location.name}}</label><br>
+                        <voter-icons [voters]="location.voters"></voter-icons>
+                    </div>
+
+                    <h3>Date + Time</h3>
+                    <div class="horizontal" *ngFor="let time of times; let index = index">
+                        <input [id]="'times_' + index" type="radio" name="time" (click)="selectTime(time.dateTime)">
+                        <label [attr.for]="'times_' + index">{{time}}</label><br>
+                        <voter-icons></voter-icons>
+                    </div>
+
+                    <h3>Recipients</h3>
+                    <div *ngFor="let email of emails">
+                        <input type="checkbox" (click)="selectEmail(email)" checked>{{email}}<br>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="col-md-7">
+            <a class="btn btn-primary btn-block btn-lg" (click)="submit()">
+                Send Invites
+            </a>
+        </div> -->
+    </div>
+</div>
