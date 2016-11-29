@@ -1,60 +1,135 @@
+
 <nav class="navbar navbar-default">
-    <img src="./images/logo.png" alt="[-PollEase-]">
+    <img class = logoimg src="./images/pollease.png" alt="[-PollEase-]">
+    <!-- <a class = "about" href="/about">About</a> -->
+<div class = "topcontain">
+    <div class = "intro">
+        <h1 class="slogan">A Fast and Simple Way to Gather Information.</h1>
+    </div>
+</div>
 </nav>
 
-<div class="container">
-    <div class="content">
 
-        <h1 class="slogan">Hangout Planning Made Easy!</h1>
+<div class = "imgbackground">
 
-        <a class="btn btn-default btn-lg" routerLink="/createpoll">
-            Start Hangout Poll
-        </a>
 
-        <h1 class="or">or</h1>
-        <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal">
-            Get Your Active Polls
-        </button>
 
-        <!-- Modal -->
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Get Your Active Polls</h4>
+    <div class="container">
+
+        <div class = "content">
+
+<!--     <div class="content"> -->
+
+
+        <section class="midbox">
+                    <div class="paragraph">
+                        <h2>What is PollEase?</h2>
+                        <hr>
+                        <p>PollEase is a web application that will allow any user to easily be their own event planner. It will effectively connect event attendees with the host and enable the host to gather important information from attendees, like availability and location preferences, to assist them in planning the event for the group as a whole.</p>
+
+                        <!-- <img class = "comp" src="./images/computer1.jpg"> -->
                     </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <h5>Recieve an email with links to all of the active polls you are involved in!</h5>
-                            <label for="request_email">Email</label>
-                            <input 
-                                id="request_email"
-                                name="request_email"
-                                class="form-control"
-                                [(ngModel)]="email"
-                                #request_email="ngModel"
-                                required
-                                pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$">
-                            <div class="alert alert-danger"
-                                *ngIf="request_email.errors && request_email.dirty">
-                                <ul>
-                                    <li [hidden]="!request_email.errors.pattern">
-                                            Email is not valid
-                                    </li>
-                                </ul>
+
+
+        </section>
+
+        <!-- Hangout Planning Made Easy! -->
+
+
+<!-- __________________________________________________________________________ -->
+
+    <section class = "buttons">
+
+        <!-- <div class = "button_one">
+            <button id = "one" style="margin-top:5px;" class="btn btn-primary colorsave">Save Color</button>
+        </div> -->
+
+        <div class = "button_two">
+            <button id = "two" style="margin-top:5px;" class="btn btn-primary colorsave" routerLink="/createpoll">Start Hangout Poll</button>
+        </div>
+
+        <div class = "button_three">
+            <button id = "three" style="margin-top:5px;" class="btn btn-primary colorsave" data-toggle="modal" data-target="#myModal">Get Your Active Polls</button>
+        </div>
+
+    </section>
+
+        <!-- <a class="btn btn-default btn-lg" routerLink="/createpoll">
+            Start Hangout Poll
+        </a> -->
+
+        <!-- <h1 class="o -->
+
+
+
+
+            <section class="bg-contact">
+               <div class="container">
+                  <div class="row">
+                     <div class="col-md-8 col-md-offset-2">
+                        <h2>Contact Us</h2>
+                        <hr>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-md-4 col-md-offset-2">
+                        <p><span class="glyphicon glyphicon-phone-alt"></span><br>214-768-1111</p>
+                     </div>
+                     <div class="col-md-4">
+                        <p><span class="glyphicon glyphicon-envelope"></span><br>pollEase@pollease.com</p>
+                     </div>
+                  </div>
+               </div>
+            </section>
+
+
+
+
+
+
+
+
+
+
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Get Your Active Polls</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <h5>Recieve an email with links to all of the active polls you are involved in!</h5>
+                                <label for="request_email">Email</label>
+                                <input
+                                    id="request_email"
+                                    name="request_email"
+                                    class="form-control"
+                                    [(ngModel)]="email"
+                                    #request_email="ngModel"
+                                    required
+                                    pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$">
+                                <div class="alert alert-danger"
+                                    *ngIf="request_email.errors && request_email.dirty">
+                                    <ul>
+                                        <li [hidden]="!request_email.errors.pattern">
+                                                Email is not valid
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" *ngIf="request_email.valid"
-                        class="btn btn-primary btn-lg btn-block" (click)="submit()" data-dismiss="modal" data-target="#myModal">Submit</button>
-                        <button type="button" *ngIf="request_email.invalid"
-                        class="btn btn-primary btn-lg btn-block" disabled>Submit</button>
+                        <div class="modal-footer">
+                            <button type="button" *ngIf="request_email.valid"
+                            class="btn btn-primary btn-lg btn-block" (click)="submit()" data-dismiss="modal">Submit</button>
+                            <button type="button" *ngIf="request_email.invalid"
+                            class="btn btn-primary btn-lg btn-block" disabled>Submit</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-    </div><!-- end tabs -->
+        </div>
+    </div>
 </div>
