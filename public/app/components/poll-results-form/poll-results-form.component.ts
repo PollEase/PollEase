@@ -33,11 +33,11 @@ export class PollResultsFormComponent {
 
 	submit() {
 		console.log("sending Invites");
-		console.log(this.selectedLocation);
-		console.log(this.selectedTime);
-		console.log(this.selectedEmails);
+		// console.log(this.selectedLocation);
+		// console.log(this.selectedTime);
+		// console.log(this.selectedEmails);
 	}
-	
+
 	// selectLocation(location: string) {
 	// 	this.selectedLocation = location;
 	// }
@@ -58,7 +58,6 @@ export class PollResultsFormComponent {
 		if (!id) {
 			return;
 		}
-
 		var onload = (data) => {
 			if (data) {
 				this.eventTitle = data.eventTitle;

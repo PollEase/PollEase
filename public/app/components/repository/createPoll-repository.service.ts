@@ -126,7 +126,7 @@ export class CreateEventPollService{
 
 		var pluck = x => (x && x.length) ? x[0] : undefined;
 		return this.http
-			.get(`${this._apiUrl + '/results'}/?id=${id}`)
+			.get(`${this._apiUrl + '/results'}/${id}`)
 			.toPromise()
 			.then(x => pluck(x.json().data))
 			.catch(x => alert(x.json().error));
