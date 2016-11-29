@@ -2,13 +2,13 @@
     /*color: #071722;*/
     color: #fcfcfc;
 
-    font-family: 'Oswald', sans-serif; 
-    font-size: 75px; 
-    font-weight: normal; 
-    letter-spacing: -5px; 
+    font-family: 'Oswald', sans-serif;
+    font-size: 75px;
+    font-weight: normal;
+    letter-spacing: -5px;
     word-spacing: 3px;
-    line-height: 1; 
-    text-align: center; 
+    line-height: 1;
+    text-align: center;
     opacity: 1.0;
     margin-top: 60px;
     padding-right: 25px;
@@ -30,7 +30,7 @@ div.topcontain {
     margin-left: 230px;
     margin-right: 100px;
     /*background-color: rgba(134, 165, 218, 0.27);*/
-    background-color: rgba(51, 139, 255, 0.62);
+    background-color: rgba(51, 139, 255, 0.75);
     border-color: none;
     align-self: center;
     position: relative;
@@ -45,7 +45,7 @@ div.topcontain {
 .intro{
     width: 970px;
     height: 409px;
-    margin-top: -20px; 
+    margin-top: -20px;
     color: rgba(31, 132, 255, 1);
     opacity: .9;
     padding-left: -10px;
@@ -61,12 +61,13 @@ div.topcontain {
 
 }*/
 
-.button_one{
+.button_two{
     margin-top: 800px;
     align-items: left;
+    margin-left: 450px;
 }
 
-.button_two{
+.button_three{
     margin-top: 0px;
     padding-top: 0px;
     align-items: center;
@@ -74,14 +75,15 @@ div.topcontain {
 
 .imgbackground {
     margin-right: 0px;
-    margin-left: 0px;
-    margin-top: -50px;
+    margin-left: -200px;
+    margin-top: -70px;
     margin-bottom: 5px;
     background-image: url('./images/Picture1.png');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
-    background-size: cover;
+    /*background-size: cover;*/
+    width: 1488px;
 }
 
 
@@ -159,6 +161,7 @@ a.about {
     text-align: right;
     padding-top: 10px;
     padding-bottom:10px;
+    margin-top: 14px;
 }
 
 /*.or {
@@ -181,16 +184,16 @@ a.about {
 }
 
 section.midbox {
-    width: 1420px;
-    height: 550px;
-    background-color: rgba(51, 139, 255, 0.85);
+    width: 1380px;
+    height: 300px;
+    background-color: rgba(51, 139, 255, 0.75);
     border-radius: 10px;
     padding-top: 395px;
     padding-bottom: 110px;
-    margin-top: 850px;
+    margin-top: 720px;
     background-color: none;
     align-items: right;
-    margin-left: -5px;
+    margin-left: 65px;
 }
 
 .phrase {
@@ -220,7 +223,7 @@ div.button_two {
     align-self: center;
     margin-top: 40px;
     display: inline-flex;
-    margin-left: 320px;
+    margin-left: 380px;
 
 }
 
@@ -308,13 +311,17 @@ body {
 }
 
 .navbar {
+	width: 1438px;
     /*background-color: rgba(134, 165, 218, 0.27);*/
-    background-color: rgba(51, 139, 255, 0.62);
+    background-color: rgba(51, 139, 255, 0.75);
     border-color: none;
     margin-top: 0px;
+    /*margin-right: -1800px;*/
+    margin-left: -150px;
     height: 50px;
     align-self: center;
     position: relative;
+    padding-right: 25px;
 }
 
 .modal {
@@ -329,20 +336,22 @@ body {
 
 section.bg-contact {
 
-        background-color: rgba(51, 139, 255, 0.85);
-        width: 1440px;
+        background-color: rgba(51, 139, 255, 0.75);
+        width: 1480;
         height: 400px;
         /*align-content: center;*/
         padding-top: 80px;
         margin-right: 0px;
-        margin-left: -15px;
+        margin-left: 0px;
         margin-bottom: -25px;
-        margin-top: 500px;
+        margin-top: 350px;
 }
 
 div.col-md-4 {
     height: 10px;
 }
 
-
-
+ul.nav {
+	margin-top: 12px;
+	margin-right: 15px;
+}

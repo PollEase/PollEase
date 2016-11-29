@@ -90,8 +90,8 @@ export class CreateEventPollService{
 		return this.http
 			.get(`${this._apiUrl + '/getPoll'}/${id}`)
 			.toPromise()
-            .then(x => { 
-                console.log(x.json()); 
+            .then(x => {
+                console.log(x.json());
                 return x.json()
             })
             .catch(x => alert(x.statusText));
@@ -128,8 +128,8 @@ export class CreateEventPollService{
 		return this.http
 			.get(`${this._apiUrl + '/results'}/${id}`)
 			.toPromise()
-            .then(x => { 
-                console.log(x.json()); 
+            .then(x => {
+                console.log(x.json());
                 return x.json()
             })
 			.catch(x => alert(x.statusText));
