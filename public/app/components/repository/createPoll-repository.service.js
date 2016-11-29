@@ -95,7 +95,7 @@ var CreateEventPollService = (function () {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         var options = new http_1.RequestOptions({ headers: headers });
         return this.http
-            .put(this._apiUrl + '/submitPreferences', JSON.stringify(vote), options)
+            .post(this._apiUrl + '/submitPreferences', JSON.stringify(vote), options)
             .toPromise()
             .then(function () { return event; })
             .catch(function (x) { return alert(x.json().error); });

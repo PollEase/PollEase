@@ -103,7 +103,7 @@ export class CreateEventPollService{
         let options = new RequestOptions({ headers: headers });
 
         return this.http
-			.put(this._apiUrl + '/submitPreferences', JSON.stringify(vote), options)
+			.post(this._apiUrl + '/submitPreferences', JSON.stringify(vote), options)
 			.toPromise()
 			.then(() => event)
 			.catch(x => alert(x.json().error));

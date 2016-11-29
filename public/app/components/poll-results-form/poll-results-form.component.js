@@ -58,6 +58,10 @@ var PollResultsFormComponent = (function () {
             if (data) {
                 _this.eventTitle = data.eventTitle;
                 _this.locations = data.locations;
+                // this.times = data.times.map(function(time) {
+                // 	time = new Date(time);
+                // 	return time;
+                // });
                 _this.times = data.times;
                 _this.emails = data.emails;
                 _this.description = data.description;
