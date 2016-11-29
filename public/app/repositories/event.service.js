@@ -18,14 +18,14 @@ require('rxjs/add/operator/map');
 require('rxjs/add/operator/switchMap');
 require('rxjs/add/operator/toPromise');
 var EventRepositoryService = (function () {
+    //Apiary
+    // private _apiUrl = 'http://private-a1931-dbgui1.apiary-mock.com';
     function EventRepositoryService(http) {
         this.http = http;
         //InMemoryModule
         // private _apiUrl = 'app/events';
         //localhost
-        // private _apiUrl = 'http://localhost:8000';
-        //Apiary
-        this._apiUrl = 'http://private-a1931-dbgui1.apiary-mock.com';
+        this._apiUrl = 'http://localhost:8000';
     }
     EventRepositoryService.prototype.extractData = function (res) {
         var body = res.json();

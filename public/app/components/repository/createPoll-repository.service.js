@@ -18,20 +18,20 @@ require('rxjs/add/operator/map');
 require('rxjs/add/operator/switchMap');
 require('rxjs/add/operator/toPromise');
 var CreateEventPollService = (function () {
+    //Apiary
+    // private _apiUrl = 'http://private-a1931-dbgui1.apiary-mock.com';
     function CreateEventPollService(http) {
         this.http = http;
         //InMemoryModule
         // private _apiUrl = 'app/events';
         //localhost
-        // private _apiUrl = 'http://localhost:8000';
-        //Apiary
-        this._apiUrl = 'http://private-a1931-dbgui1.apiary-mock.com';
+        this._apiUrl = 'http://localhost:8000';
         this._event = {};
         this._event.creatorName = "";
         this._event.creatorEmail = "";
         this._event.eventTitle = "";
         this._event.description = "";
-        this._event.pollDeadline = "";
+        this._event.deadline = "";
         this._event.locations = [];
         this._event.times = [];
         this._event.emails = [];
@@ -42,7 +42,7 @@ var CreateEventPollService = (function () {
         this._event.creatorEmail = event.creatorEmail;
         this._event.eventTitle = event.eventTitle;
         this._event.description = event.description;
-        this._event.pollDeadline = event.pollDeadline;
+        this._event.deadline = event.deadline;
         // this._event.locations = event.locations;
         // this._event.times = event.times;
         // this._event.emails = event.emails;
@@ -74,26 +74,28 @@ var CreateEventPollService = (function () {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         var options = new http_1.RequestOptions({ headers: headers });
         return this.http
-            .post(this._apiUrl + '/createPoll', this._event, options)
+            .post(this._apiUrl + '/createPoll', JSON.stringify(this._event), options)
             .toPromise()
             .then(function (x) { return x.json(); })
             .catch(this.handleError);
     };
-    CreateEventPollService.prototype.get = function (id) {
+    CreateEventPollService.prototype.getPoll = function (id) {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         var options = new http_1.RequestOptions({ headers: headers });
-        var pluck = function (x) { return (x && x.length) ? x[0] : undefined; };
         return this.http
-            .get((this._apiUrl + '/events') + "/?id=" + id)
+            .get((this._apiUrl + '/getPoll') + "/" + id)
             .toPromise()
-            .then(function (x) { return pluck(x.json().data); })
-            .catch(function (x) { return alert(x.json().error); });
+            .then(function (x) { console.log(x._body); return x.json()._body; });
+        try { }
+        catch (x) { }
+        alert(x.statusText);
+        ;
     };
-    CreateEventPollService.prototype.update = function (event) {
+    CreateEventPollService.prototype.submitVote = function (vote) {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         var options = new http_1.RequestOptions({ headers: headers });
         return this.http
-            .put((this._apiUrl + '/events') + "/" + event.id, event)
+            .put(this._apiUrl + '/submitPreferences', JSON.stringify(vote), options)
             .toPromise()
             .then(function () { return event; })
             .catch(function (x) { return alert(x.json().error); });
@@ -106,6 +108,18 @@ var CreateEventPollService = (function () {
             .toPromise()
             .then(function (x) { return x.json(); })
             .catch(this.handleError);
+    };
+    CreateEventPollService.prototype.getResults = function (id) {
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        var options = new http_1.RequestOptions({ headers: headers });
+        return this.http
+            .get((this._apiUrl + '/results') + "/" + id)
+            .toPromise()
+            .then(function (x) { console.log(x._body); return x.json()._body; });
+        try { }
+        catch (x) { }
+        alert(x.statusText);
+        ;
     };
     // delete(id : number) : Promise<any> {
     //     let headers = new Headers({ 'Content-Type': 'application/json' });

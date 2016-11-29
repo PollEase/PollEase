@@ -30,7 +30,7 @@ var CreateEventPollFormComponent = (function () {
         this.creatorEmail = event.creatorEmail;
         this.eventTitle = event.eventTitle;
         this.description = event.description;
-        this.pollDeadline = event.pollDeadline;
+        this.deadline = event.deadline;
         this.coverCharge = event.coverCharge;
         // this.timePicker.setTimes(event.times);
         // this.emailPicker.setEmails(event.emails);
@@ -46,7 +46,7 @@ var CreateEventPollFormComponent = (function () {
             "creatorEmail": this.creatorEmail,
             "eventTitle": this.eventTitle,
             "description": this.description,
-            "pollDeadline": this.pollDeadline,
+            "deadline": this.deadline,
             // "locations": locations,
             // "times": times,
             // "emails": emails,

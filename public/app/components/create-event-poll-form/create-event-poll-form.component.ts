@@ -20,7 +20,7 @@ export class CreateEventPollFormComponent {
 	creatorEmail: string;
 	eventTitle: string;
 	description: string;
-	pollDeadline: string;
+	deadline: string;
 	coverCharge: number;
 	cover: boolean;
 
@@ -35,7 +35,7 @@ export class CreateEventPollFormComponent {
 		this.creatorEmail = event.creatorEmail;
 		this.eventTitle = event.eventTitle;
 		this.description = event.description;
-		this.pollDeadline = event.pollDeadline;
+		this.deadline = event.deadline;
 		this.coverCharge = event.coverCharge;
 		// this.timePicker.setTimes(event.times);
 		// this.emailPicker.setEmails(event.emails);
@@ -52,7 +52,7 @@ export class CreateEventPollFormComponent {
 			"creatorEmail": this.creatorEmail,
 			"eventTitle": this.eventTitle,
 			"description": this.description,
-			"pollDeadline": this.pollDeadline,
+			"deadline": this.deadline,
 			// "locations": locations,
 			// "times": times,
 			// "emails": emails,

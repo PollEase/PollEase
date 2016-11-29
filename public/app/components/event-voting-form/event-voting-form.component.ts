@@ -24,11 +24,13 @@ export class EventVotingFormComponent {
 	selectedLocations: string[];
 	// selectedTimes: Date[];
 	selectedTimes: string[];
+	eventId: string;
+	userId: string;
+	response: any;
 
-	pollId: string;
-
-
-	constructor(private route : ActivatedRoute, private router: Router, private service: CreateEventPollService) {}
+	constructor(private route : ActivatedRoute,
+				private router: Router,
+				private service : CreateEventPollService) {}
 
 	ngOnInit() {
 		this.route.params.forEach(x => this.load(x['id']));
@@ -40,6 +42,15 @@ export class EventVotingFormComponent {
 		console.log("submitting");
 		console.log(this.selectedLocations);
 		console.log(this.selectedTimes);
+
+		var vote = {
+
+			"uid": this.userId,
+			"eventId" : this.eventId,
+			"times" : this.selectedTimes,
+			"locations" : this.selectedLocations
+		}
+		this.response = this.service.submitVote(vote);
 	}
 
 	selectLocation(location: string) {
@@ -75,6 +86,9 @@ export class EventVotingFormComponent {
 			}
 		};
 		this.service.getPoll(id).then(onload);
-		this.pollId = id.substring(0, Math.floor(id.length / 2));
+		this.eventId = id.substring(0, Math.floor(id.length / 2));
+		console.log(this.eventId);
+		this.userId = id.substring(Math.floor(id.length / 2));
+		console.log(this.userId);
 	}
 }

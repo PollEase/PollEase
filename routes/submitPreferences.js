@@ -16,7 +16,7 @@ function post(req,res){
 
     sql.deleteUser(req.body.uid);
 
-    res.send("{'SubmissionSuccessful':1}");
+    res.send("{'status':1}");
 }
 
 var exports = {};

@@ -18,6 +18,8 @@ import { EventVotingFormComponent } from './components/event-voting-form/event-v
 import { PollResultsFormComponent } from './components/poll-results-form/poll-results-form.component';
 import { VoterIconsComponent } from './components/voter-icons/voter-icons.component';
 
+import { GetPollComponent } from './components/get-poll/get-poll.component';
+
 
 @NgModule({
   imports: [ BrowserModule,
@@ -27,6 +29,7 @@ import { VoterIconsComponent } from './components/voter-icons/voter-icons.compon
              RouterModule.forRoot([
                 { path: '', component: HomePageComponent },
                 { path: 'confirm', component: ConfirmationComponent},
+                { path: 'vote', component: EventVotingFormComponent },
                 { path: 'getPoll/:id', component: EventVotingFormComponent },
                 { path: 'results/:id', component: PollResultsFormComponent },
                 { path: 'createpoll', component: CreateEventPollFormComponent }
@@ -35,7 +38,7 @@ import { VoterIconsComponent } from './components/voter-icons/voter-icons.compon
   ],
   declarations: [ AppComponent, HomePageComponent, CreateEventPollFormComponent,
                   LocationPickerComponent, EmailPickerComponent, TimePickerComponent, ConfirmationComponent,
-                  EventVotingFormComponent, PollResultsFormComponent, VoterIconsComponent ],
+                  EventVotingFormComponent, PollResultsFormComponent, VoterIconsComponent, GetPollComponent ],
   providers: [ LocationPickerComponent, TimePickerComponent, EmailPickerComponent, CreateEventPollService ],
   bootstrap:    [ AppComponent ]
 })

@@ -11,14 +11,27 @@ function post(req,res){
     var deadline = req.body.deadline;
 
     var locations = req.body.locations;
-    var date = req.body.dateTime;
+    var times = req.body.times;
 
     var description = req.body.description;
 
     var recipient_emails = req.body.emails;
     var cost = req.body.coverCharge;
 
-    if(email &&validator.isEmail(email) && name !=null && description != null && event_title != null && deadline != null){
+    console.log("email: " + email + "\n");
+    console.log("name: " + name + "\n");
+    console.log("event_title: " + event_title + "\n");
+    console.log("deadline: " + deadline + "\n");
+
+    console.log("locations: " + locations + "\n");
+    console.log("times: " + times + "\n");
+
+    console.log("description: " + description + "\n");
+
+    console.log("recipient_emails: " + recipient_emails + "\n");
+    console.log("cost: " + cost + "\n");
+
+    if(email && validator.isEmail(email) && name !=null && description != null && event_title != null && deadline != null){
       //create users uid
       var uid = crypto.randomBytes(32).toString("hex");
 
@@ -30,20 +43,22 @@ function post(req,res){
               }
 
               //1 represents date.
-              for(var i = 0; i < date.length; i++){
-                sql.createOption(poll_id,date[i],1);
+              for(var i = 0; i < times.length; i++){
+                sql.createOption(poll_id,times[i],1);
               }
 
             }
 
       function next_part(){
         var poll_id = sql.createPoll(event_title,uid,deadline,description,cost,part_three);
-        res.send(JSON.stringify({"voteLink":"localhost:8000/getPoll?id="+uid+"&pollId="+poll_id,"shareLink": "localhost:8000/results?pollId="+poll_id}));
+        // res.send(JSON.stringify({"voteLink":"localhost:8000/getPoll?id="+uid+"&pollId="+poll_id,"shareLink": "localhost:8000/results?pollId="+poll_id}));
+
+        res.send(JSON.stringify({"voteLink":"http://localhost:8000/getPoll/"+poll_id+uid,"shareLink": "http://localhost:8000/results/"+poll_id}));
 
         var options = {};
         options.to = email;
-        options.subject = "Knock Knock open up its the PollEase.  We got a warrant.";
-        options.text = "Click here to not go to jail "+ "localhost:8000/getPoll?id="+uid+"&pollId="+poll_id+"\nAnd here for the results localhost:8000/getPoll?pollId="+poll_id;
+        options.subject = "PollEase Event Poll Invite";
+        options.text = "Click here to vote:\n" + "http://localhost:8000/getPoll/"+poll_id+uid+"\n\nCheck here for results:\n" + "http://localhost:8000/results/"+poll_id;
         sendmail(JSON.parse(JSON.stringify(options)));
 
         for(var i = 0; i < recipient_emails.length; i++){
@@ -54,7 +69,7 @@ function post(req,res){
               sql.createUser(user_email, u_uid, "");
 
               options.to = user_email;
-              options.text = "Click here to not go to jail "+ "localhost:8000/getPoll?id="+u_uid+"&pollId="+poll_id;
+              options.text = "Click here to vote:\n"+ "http://localhost:8000/getPoll/"+poll_id+uid;
               sendmail(JSON.parse(JSON.stringify(options)));
           }
 
@@ -64,12 +79,12 @@ function post(req,res){
 
       //polls uid
       sql.createUser(email,uid,name,next_part);
+      }      
+      else {
 
-      }      else{
-
-              res.send(email + " IS NOT A VALID EMAIL STOP TRYING TO HACK US");
-              return;
-            }
+        res.send('{"status":0}');
+        return;
+      }
 
 }
 

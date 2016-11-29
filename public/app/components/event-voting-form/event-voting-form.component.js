@@ -10,25 +10,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
-// import { EventVotingFormService } from './event-voting-form.service';
+var createPoll_repository_service_1 = require('../repository/createPoll-repository.service');
 var EventVotingFormComponent = (function () {
-    function EventVotingFormComponent(route, router) {
+    function EventVotingFormComponent(route, router, service) {
         this.route = route;
         this.router = router;
+        this.service = service;
     }
     EventVotingFormComponent.prototype.ngOnInit = function () {
-        this.creatorFirstName = "Rob";
-        this.creatorLastName = "Stark";
-        this.eventTitle = "Battle";
-        this.locations = ["SMU", "Somewehre else", "Chickfila"];
-        this.times = ["date1", "date2", "Date3"];
-        this.emails = ["fjs@smu.edu, asdf@smu.edu"];
-        this.description = "A battle yayayay with swords and people and alcohol and food and things in game of thrones. Need more text text text tesxt";
-        this.coverCharge = 25;
-        this.askDonations = true;
-        this.askNeedPickup = true;
-        this.askCanDrive = true;
-        this.deadline = "tomorrow";
+        var _this = this;
+        this.route.params.forEach(function (x) { return _this.load(x['id']); });
         this.selectedLocations = [];
         this.selectedTimes = [];
     };
@@ -36,6 +27,13 @@ var EventVotingFormComponent = (function () {
         console.log("submitting");
         console.log(this.selectedLocations);
         console.log(this.selectedTimes);
+        var vote = {
+            "uid": this.userId,
+            "eventId": this.eventId,
+            "times": this.selectedTimes,
+            "locations": this.selectedLocations
+        };
+        this.response = this.service.submitVote(vote);
     };
     EventVotingFormComponent.prototype.selectLocation = function (location) {
         if (this.selectedLocations.indexOf(location) > -1) {
@@ -53,13 +51,36 @@ var EventVotingFormComponent = (function () {
             this.selectedTimes.push(time);
         }
     };
+    EventVotingFormComponent.prototype.load = function (id) {
+        var _this = this;
+        if (!id) {
+            return;
+        }
+        var onload = function (data) {
+            if (data) {
+                console.log(data);
+                _this.creatorName = data.creatorName;
+                _this.eventTitle = data.eventTitle;
+                _this.pollDeadline = data.pollDeadline;
+                _this.locations = data.locations;
+                _this.times = data.times;
+                _this.description = data.description;
+                _this.coverCharge = data.coverCharge;
+            }
+        };
+        this.service.getPoll(id).then(onload);
+        this.eventId = id.substring(0, Math.floor(id.length / 2));
+        console.log(this.eventId);
+        this.userId = id.substring(Math.floor(id.length / 2));
+        console.log(this.userId);
+    };
     EventVotingFormComponent = __decorate([
         core_1.Component({
             selector: 'event-voting-form',
             templateUrl: './app/components/event-voting-form/event-voting-form.component.html',
             styleUrls: ['./app/components/event-voting-form/event-voting-form.component.css'],
         }), 
-        __metadata('design:paramtypes', [router_1.ActivatedRoute, router_1.Router])
+        __metadata('design:paramtypes', [router_1.ActivatedRoute, router_1.Router, createPoll_repository_service_1.CreateEventPollService])
     ], EventVotingFormComponent);
     return EventVotingFormComponent;
 }());

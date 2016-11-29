@@ -16,10 +16,10 @@ export class CreateEventPollService{
     // private _apiUrl = 'app/events';
 
     //localhost
-    // private _apiUrl = 'http://localhost:8000';
+    private _apiUrl = 'http://localhost:8000';
 
     //Apiary
-    private _apiUrl = 'http://private-a1931-dbgui1.apiary-mock.com';
+    // private _apiUrl = 'http://private-a1931-dbgui1.apiary-mock.com';
 
     constructor(private http: Http) {
         this._event = {};
@@ -27,7 +27,7 @@ export class CreateEventPollService{
 		this._event.creatorEmail = "";
 		this._event.eventTitle = "";
 		this._event.description = "";
-		this._event.pollDeadline = "";
+		this._event.deadline = "";
 		this._event.locations = [];
 		this._event.times = [];
 		this._event.emails = [];
@@ -39,7 +39,7 @@ export class CreateEventPollService{
         this._event.creatorEmail = event.creatorEmail;
         this._event.eventTitle = event.eventTitle;
         this._event.description = event.description;
-        this._event.pollDeadline = event.pollDeadline;
+        this._event.deadline = event.deadline;
         // this._event.locations = event.locations;
         // this._event.times = event.times;
         // this._event.emails = event.emails;
@@ -77,7 +77,7 @@ export class CreateEventPollService{
         let options = new RequestOptions({ headers: headers });
 
         return this.http
-            .post(this._apiUrl + '/createPoll', this._event, options)
+            .post(this._apiUrl + '/createPoll', JSON.stringify(this._event), options)
             .toPromise()
             .then(x => x.json())
             .catch(this.handleError);
@@ -94,13 +94,13 @@ export class CreateEventPollService{
             .catch(x => alert(x.statusText));
 	}
 
-	update(event) : Promise<any> {
+	submitVote(vote) : Promise<any> {
 
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
 
         return this.http
-			.put(`${this._apiUrl + '/events' }/${event.id}`, event)
+			.put(this._apiUrl + '/submitPreferences', JSON.stringify(vote), options)
 			.toPromise()
 			.then(() => event)
 			.catch(x => alert(x.json().error));
