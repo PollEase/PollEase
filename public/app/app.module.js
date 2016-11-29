@@ -40,9 +40,9 @@ var AppModule = (function () {
                     { path: '', component: home_page_component_1.HomePageComponent },
                     { path: 'confirm', component: confirmation_component_1.ConfirmationComponent },
                     { path: 'vote', component: event_voting_form_component_1.EventVotingFormComponent },
-                    { path: 'results', component: poll_results_form_component_1.PollResultsFormComponent },
-                    { path: 'createpoll', component: create_event_poll_form_component_1.CreateEventPollFormComponent },
-                    { path: 'getPoll/?id&?pollId', component: event_voting_form_component_1.EventVotingFormComponent }
+                    { path: 'getPoll/:id', component: event_voting_form_component_1.EventVotingFormComponent },
+                    { path: 'results/:id', component: poll_results_form_component_1.PollResultsFormComponent },
+                    { path: 'createpoll', component: create_event_poll_form_component_1.CreateEventPollFormComponent }
                 ])
             ],
             declarations: [app_component_1.AppComponent, home_page_component_1.HomePageComponent, create_event_poll_form_component_1.CreateEventPollFormComponent,

@@ -79,15 +79,17 @@ var CreateEventPollService = (function () {
             .then(function (x) { return x.json(); })
             .catch(this.handleError);
     };
-    CreateEventPollService.prototype.get = function (id) {
+    CreateEventPollService.prototype.getPoll = function (id) {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         var options = new http_1.RequestOptions({ headers: headers });
-        var pluck = function (x) { return (x && x.length) ? x[0] : undefined; };
         return this.http
-            .get((this._apiUrl + '/events') + "/?id=" + id)
+            .get((this._apiUrl + '/getPoll') + "/" + id)
             .toPromise()
-            .then(function (x) { return pluck(x.json().data); })
-            .catch(function (x) { return alert(x.json().error); });
+            .then(function (x) { console.log(x._body); return x.json()._body; });
+        try { }
+        catch (x) { }
+        alert(x.statusText);
+        ;
     };
     CreateEventPollService.prototype.submitVote = function (vote) {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
@@ -106,6 +108,18 @@ var CreateEventPollService = (function () {
             .toPromise()
             .then(function (x) { return x.json(); })
             .catch(this.handleError);
+    };
+    CreateEventPollService.prototype.getResults = function (id) {
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        var options = new http_1.RequestOptions({ headers: headers });
+        return this.http
+            .get((this._apiUrl + '/results') + "/" + id)
+            .toPromise()
+            .then(function (x) { console.log(x._body); return x.json()._body; });
+        try { }
+        catch (x) { }
+        alert(x.statusText);
+        ;
     };
     // delete(id : number) : Promise<any> {
     //     let headers = new Headers({ 'Content-Type': 'application/json' });

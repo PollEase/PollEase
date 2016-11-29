@@ -83,17 +83,15 @@ export class CreateEventPollService{
             .catch(this.handleError);
     }
 
-    get(id : number) : Promise<any> {
-
+    getPoll(id : number) : Promise<any> {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
 
-		var pluck = x => (x && x.length) ? x[0] : undefined;
 		return this.http
-			.get(`${this._apiUrl + '/events'}/?id=${id}`)
+			.get(`${this._apiUrl + '/getPoll'}/${id}`)
 			.toPromise()
-			.then(x => pluck(x.json().data))
-			.catch(x => alert(x.json().error));
+            .then(x => { console.log(x._body); return x.json()._body});
+            .catch(x => alert(x.statusText));
 	}
 
 	submitVote(vote) : Promise<any> {
@@ -118,6 +116,17 @@ export class CreateEventPollService{
             .toPromise()
             .then(x => x.json())
             .catch(this.handleError);
+    }
+
+    getResults(id : number) : Promise<any> {
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+
+		return this.http
+			.get(`${this._apiUrl + '/results'}/${id}`)
+			.toPromise()
+            .then(x => { console.log(x._body); return x.json()._body});
+			.catch(x => alert(x.statusText));
     }
 
 	// delete(id : number) : Promise<any> {
