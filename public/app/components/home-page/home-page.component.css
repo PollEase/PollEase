@@ -18,6 +18,11 @@
 
 }
 
+.buttons {
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
 
 div.topcontain {
     width: 970px;
