@@ -21,8 +21,8 @@
 
                     <h3>Date + Time</h3>
                     <div class="horizontal" *ngFor="let time of times; let index = index">
-                        <p>{{time}}</p>
-                        <voter-icons></voter-icons>
+                        <p>{{time.name}}</p>
+                        <voter-icons [voters]="time.voters"></voter-icons>
                     </div>
 
 

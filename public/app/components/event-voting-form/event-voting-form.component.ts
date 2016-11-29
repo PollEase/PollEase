@@ -80,7 +80,11 @@ export class EventVotingFormComponent {
 				this.eventTitle = data.eventTitle;
 				this.pollDeadline = data.pollDeadline;
 				this.locations = data.locations;
-				this.times = data.times;
+				// this.times = data.times;
+				this.times = data.times.map(function(time) {
+					time = new Date(time);
+					return time;
+				});
 				this.description = data.description;
 				this.coverCharge = data.coverCharge;
 			}

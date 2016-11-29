@@ -54,15 +54,15 @@ var PollResultsFormComponent = (function () {
             return;
         }
         var onload = function (data) {
-            console.log(data);
             if (data) {
                 _this.eventTitle = data.eventTitle;
                 _this.locations = data.locations;
-                // this.times = data.times.map(function(time) {
-                // 	time = new Date(time);
-                // 	return time;
-                // });
-                _this.times = data.times;
+                _this.times = data.times.map(function (time) {
+                    time.name = new Date(time.name);
+                    return time;
+                });
+                // this.times = data.times;
+                console.log(_this.times);
                 _this.emails = data.emails;
                 _this.description = data.description;
                 _this.coverCharge = data.coverCharge;

@@ -63,7 +63,11 @@ var EventVotingFormComponent = (function () {
                 _this.eventTitle = data.eventTitle;
                 _this.pollDeadline = data.pollDeadline;
                 _this.locations = data.locations;
-                _this.times = data.times;
+                // this.times = data.times;
+                _this.times = data.times.map(function (time) {
+                    time = new Date(time);
+                    return time;
+                });
                 _this.description = data.description;
                 _this.coverCharge = data.coverCharge;
             }

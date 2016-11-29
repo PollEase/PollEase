@@ -14,8 +14,8 @@ export class PollResultsFormComponent {
 	//Base values
 	eventTitle: any;
 	locations: any[];
-	// times: Date[];
-	times: string[];
+	times: any[];
+	// times: string[];
 	emails: string[];
 	description: string;
 	coverCharge: number;
@@ -60,15 +60,15 @@ export class PollResultsFormComponent {
 			return;
 		}
 		var onload = (data:any) => {
-			console.log(data);
 			if (data) {
 				this.eventTitle = data.eventTitle;
 				this.locations = data.locations;
-				// this.times = data.times.map(function(time) {
-				// 	time = new Date(time);
-				// 	return time;
-				// });
-				this.times = data.times;
+				this.times = data.times.map(function(time) {
+					time.name = new Date(time.name);
+					return time;
+				});
+				// this.times = data.times;
+				console.log(this.times);
 				this.emails = data.emails;
 				this.description = data.description;
 				this.coverCharge = data.coverCharge;
