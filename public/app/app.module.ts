@@ -18,6 +18,8 @@ import { EventVotingFormComponent } from './components/event-voting-form/event-v
 import { PollResultsFormComponent } from './components/poll-results-form/poll-results-form.component';
 import { VoterIconsComponent } from './components/voter-icons/voter-icons.component';
 
+import { GetPollComponent } from './components/get-poll/get-poll.component';
+
 
 @NgModule({
   imports: [ BrowserModule,
@@ -30,13 +32,13 @@ import { VoterIconsComponent } from './components/voter-icons/voter-icons.compon
                 { path: 'vote', component: EventVotingFormComponent },
                 { path: 'results', component: PollResultsFormComponent },
                 { path: 'createpoll', component: CreateEventPollFormComponent },
-                // { path: 'getPoll', component: getPol}
+                { path: 'getPoll/?id&?pollId', component: EventVotingFormComponent }
              ])
             //  InMemoryWebApiModule.forRoot(InMemoryDataService)
   ],
   declarations: [ AppComponent, HomePageComponent, CreateEventPollFormComponent,
                   LocationPickerComponent, EmailPickerComponent, TimePickerComponent, ConfirmationComponent,
-                  EventVotingFormComponent, PollResultsFormComponent, VoterIconsComponent ],
+                  EventVotingFormComponent, PollResultsFormComponent, VoterIconsComponent, GetPollComponent ],
   providers: [ LocationPickerComponent, TimePickerComponent, EmailPickerComponent, CreateEventPollService ],
   bootstrap:    [ AppComponent ]
 })
