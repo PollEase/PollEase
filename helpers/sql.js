@@ -14,6 +14,9 @@ function getConnection(){
   //Table schemes
   var err = false;
   connection.connect();
+
+  console.log(colors.green("Successfully got a mysql connection with database pollease"));
+
   return connection;
 }
 /*

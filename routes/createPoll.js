@@ -52,13 +52,12 @@ function post(req,res){
       function next_part(){
         var poll_id = sql.createPoll(event_title,uid,deadline,description,cost,part_three);
         // res.send(JSON.stringify({"voteLink":"localhost:8000/getPoll?id="+uid+"&pollId="+poll_id,"shareLink": "localhost:8000/results?pollId="+poll_id}));
-
-        res.send(JSON.stringify({"voteLink":"http://localhost:8000/getPoll/"+poll_id+uid,"shareLink": "http://localhost:8000/results/"+poll_id}));
-
+        //
         var options = {};
         options.to = email;
         options.subject = "PollEase Event Poll Invite";
-        options.text = "Click here to vote:\n" + "http://localhost:8000/getPoll/"+poll_id+uid+"\n\nCheck here for results:\n" + "http://localhost:8000/results/"+poll_id;
+        options.text="Click here to vote:\nhttp://localhost:8000/app/components/event-voting-form/event-voting-form.component.html?pollId="+poll_id+"&id="+uid+"\n\nCheck here for results\n";
+        options.text=options.text+"http://localhost:8000/app/components/poll-results-form/poll-results-form.component.html?pollId="+poll_id;
         sendmail(JSON.parse(JSON.stringify(options)));
 
         for(var i = 0; i < recipient_emails.length; i++){
@@ -69,7 +68,7 @@ function post(req,res){
               sql.createUser(user_email, u_uid, "");
 
               options.to = user_email;
-              options.text = "Click here to vote:\n"+ "http://localhost:8000/getPoll/"+poll_id+uid;
+              options.text="Click here to vote:\nhttp://localhost:8000/app/components/event-voting-form/event-voting-form.component.html?pollId="+poll_id+"&id="+uid;
               sendmail(JSON.parse(JSON.stringify(options)));
           }
 
