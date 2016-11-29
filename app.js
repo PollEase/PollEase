@@ -25,7 +25,7 @@ var submitPreferences = require("./routes/submitPreferences.js");
 app.post("/submitPreferences",submitPreferences.post);
 
 var results = require("./routes/results.js");
-app.get("/results",results.get)
+app.get("/results/:id",results.get)
 
 app.use(express.static(path.join(__dirname, 'public')));
 

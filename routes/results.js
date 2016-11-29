@@ -19,7 +19,12 @@ function fail(message){
 }
 
 function get(req,res){
-  var pollId = req.query.pollId;
+
+  // var pollId = req.query.pollId;
+
+  var _bufferId = req.params.id;
+  var pollId = _bufferId.substring(0,64);
+
   if(pollId == null){
     fail("No Poll Id was sent.");
     res.send("No Poll Id Sent.");
