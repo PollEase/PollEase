@@ -36,6 +36,7 @@ export class EventVotingFormComponent {
 	selectedTimes: string[];
 
 	eventId: "dba575232a6970737d48b7e51505d652ce775c268f489a869158799f20b4b79a";
+	userId: "1d2e441c8a62fe340d696144b829c1944b92205599d6679f46984c100c1c62bb";
 	response: any;
 
 
@@ -67,6 +68,7 @@ export class EventVotingFormComponent {
 
 		var vote = {
 
+			"uid": this.userId,
 			"eventId" : this.eventId, 
 			"times" : this.selectedTimes, 
 			"locations" : this.selectedLocations

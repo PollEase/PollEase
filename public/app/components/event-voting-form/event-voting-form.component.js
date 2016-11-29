@@ -39,6 +39,7 @@ var EventVotingFormComponent = (function () {
         console.log(this.selectedLocations);
         console.log(this.selectedTimes);
         var vote = {
+            "uid": this.userId,
             "eventId": this.eventId,
             "times": this.selectedTimes,
             "locations": this.selectedLocations
