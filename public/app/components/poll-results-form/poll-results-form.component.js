@@ -54,6 +54,7 @@ var PollResultsFormComponent = (function () {
             return;
         }
         var onload = function (data) {
+            console.log(data);
             if (data) {
                 _this.eventTitle = data.eventTitle;
                 _this.locations = data.locations;

@@ -91,8 +91,8 @@ export class CreateEventPollService{
 			.get(`${this._apiUrl + '/getPoll'}/${id}`)
 			.toPromise()
             .then(x => { 
-                console.log(x.json()._body); 
-                return x.json()._body
+                console.log(x.json()); 
+                return x.json()
             })
             .catch(x => alert(x.statusText));
 	}
@@ -129,8 +129,8 @@ export class CreateEventPollService{
 			.get(`${this._apiUrl + '/results'}/${id}`)
 			.toPromise()
             .then(x => { 
-                console.log(x.json()._body); 
-                return x.json()._body
+                console.log(x.json()); 
+                return x.json()
             })
 			.catch(x => alert(x.statusText));
     }

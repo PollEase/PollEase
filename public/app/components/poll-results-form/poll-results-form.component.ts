@@ -58,7 +58,8 @@ export class PollResultsFormComponent {
 		if (!id) {
 			return;
 		}
-		var onload = (data) => {
+		var onload = (data:any) => {
+			console.log(data);
 			if (data) {
 				this.eventTitle = data.eventTitle;
 				this.locations = data.locations;

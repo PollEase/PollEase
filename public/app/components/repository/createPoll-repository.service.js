@@ -86,8 +86,8 @@ var CreateEventPollService = (function () {
             .get((this._apiUrl + '/getPoll') + "/" + id)
             .toPromise()
             .then(function (x) {
-            console.log(x.json()._body);
-            return x.json()._body;
+            console.log(x.json());
+            return x.json();
         })
             .catch(function (x) { return alert(x.statusText); });
     };
@@ -116,8 +116,8 @@ var CreateEventPollService = (function () {
             .get((this._apiUrl + '/results') + "/" + id)
             .toPromise()
             .then(function (x) {
-            console.log(x.json()._body);
-            return x.json()._body;
+            console.log(x.json());
+            return x.json();
         })
             .catch(function (x) { return alert(x.statusText); });
     };
