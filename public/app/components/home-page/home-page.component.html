@@ -49,7 +49,7 @@
         </div>
 
         <div class = "button_three">
-            <button id = "three" style="margin-top:5px;" class="btn btn-primary colorsave">Get Your Active Polls</button>
+            <button id = "three" style="margin-top:5px;" class="btn btn-primary colorsave" data-toggle="modal" data-target="#myModal">Get Your Active Polls</button>
         </div>
 
     </section>
@@ -90,48 +90,45 @@
 
 
 
-<!-- __________________________________________________________________________
 
-        <!-- Modal -->
-        <!-- <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Get Your Active Polls</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <h5>Recieve an email with links to all of the active polls you are involved in!</h5>
-                            <label for="request_email">Email</label>
-                            <input
-                                id="request_email"
-                                name="request_email"
-                                class="form-control"
-                                [(ngModel)]="email"
-                                #request_email="ngModel"
-                                required
-                                pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$">
-                            <div class="alert alert-danger"
-                                *ngIf="request_email.errors && request_email.dirty">
-                                <ul>
-                                    <li [hidden]="!request_email.errors.pattern">
-                                            Email is not valid
-                                    </li>
-                                </ul>
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Get Your Active Polls</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <h5>Recieve an email with links to all of the active polls you are involved in!</h5>
+                                <label for="request_email">Email</label>
+                                <input
+                                    id="request_email"
+                                    name="request_email"
+                                    class="form-control"
+                                    [(ngModel)]="email"
+                                    #request_email="ngModel"
+                                    required
+                                    pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$">
+                                <div class="alert alert-danger"
+                                    *ngIf="request_email.errors && request_email.dirty">
+                                    <ul>
+                                        <li [hidden]="!request_email.errors.pattern">
+                                                Email is not valid
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" *ngIf="request_email.valid"
-                        class="btn btn-primary btn-lg btn-block" (click)="submit()" data-dismiss="modal" data-target="#myModal">Submit</button>
-                        <button type="button" *ngIf="request_email.invalid"
-                        class="btn btn-primary btn-lg btn-block" disabled>Submit</button>
+                        <div class="modal-footer">
+                            <button type="button" *ngIf="request_email.valid"
+                            class="btn btn-primary btn-lg btn-block" (click)="submit()" data-dismiss="modal">Submit</button>
+                            <button type="button" *ngIf="request_email.invalid"
+                            class="btn btn-primary btn-lg btn-block" disabled>Submit</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
- -->
 
         </div>
     </div>
