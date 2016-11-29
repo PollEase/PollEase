@@ -121,7 +121,7 @@ export class CreateEventPollService{
     }
 
     getResults(id : number) : Promise<any> {
-        et headers = new Headers({ 'Content-Type': 'application/json' });
+        let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
 
 		var pluck = x => (x && x.length) ? x[0] : undefined;
