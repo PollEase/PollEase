@@ -54,8 +54,7 @@ function post(req,res){
         var options = {};
         options.to = email;
         options.subject = "PollEase Event Poll Invite";
-        options.text="Click here to vote:\nhttp://localhost:8000/voting.html?pollId="+poll_id+"&id="+uid+"\n\nCheck here for results\n";
-        options.text=options.text+"http://localhost:8000/pollResults.html?pollId="+poll_id;
+        options.text="Click here and copy paste your string to vote or check your poll results:\nhttp://localhost:8000/"+"\n\n" + poll_id+uid;
         sendmail(JSON.parse(JSON.stringify(options)));
 
         for(var i = 0; i < recipient_emails.length; i++){
@@ -66,7 +65,7 @@ function post(req,res){
               sql.createUser(user_email, u_uid, "");
 
               options.to = user_email;
-              options.text="Click here to vote:\nhttp://localhost:8000/voting.html?pollId="+poll_id+"&id="+uid;
+              options.text="Click here and copy paste your string to vote or check your poll results:\nhttp://localhost:8000/"+"\n\n" + poll_id+uid;
               sendmail(JSON.parse(JSON.stringify(options)));
           }
 
