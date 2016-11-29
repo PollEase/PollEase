@@ -27,8 +27,8 @@ import { VoterIconsComponent } from './components/voter-icons/voter-icons.compon
              RouterModule.forRoot([
                 { path: '', component: HomePageComponent },
                 { path: 'confirm', component: ConfirmationComponent},
-                { path: 'vote', component: EventVotingFormComponent },
-                { path: 'results', component: PollResultsFormComponent },
+                { path: 'getPoll/:id', component: EventVotingFormComponent },
+                { path: 'results/:id', component: PollResultsFormComponent },
                 { path: 'createpoll', component: CreateEventPollFormComponent }
              ])
             //  InMemoryWebApiModule.forRoot(InMemoryDataService)

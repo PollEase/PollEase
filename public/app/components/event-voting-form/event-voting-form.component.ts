@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
-
-// import { EventVotingFormService } from './event-voting-form.service';
+import { CreateEventPollService } from '../repository/createPoll-repository.service';
 
 @Component({
 	selector: 'event-voting-form',
@@ -11,10 +10,8 @@ import { ActivatedRoute, Router, Params } from '@angular/router';
 })
 
 export class EventVotingFormComponent {
-
 	//Base values
-	creatorFirstName: string;
-	creatorLastName: string;
+	creatorName: string;
 	eventTitle: any;
 	locations: string[];
 	// times: Date[];
@@ -22,34 +19,19 @@ export class EventVotingFormComponent {
 	emails: string[];
 	description: string;
 	coverCharge: number;
-	askDonations: boolean;
-	askNeedPickup: boolean;
-	askCanDrive: boolean;
-	// deadline: Date;
-	deadline: string;
-
-	notes: string;
+	pollDeadline: string;
 
 	selectedLocations: string[];
-	// selectedTimes: Date[];  //TODO: switch
+	// selectedTimes: Date[];
 	selectedTimes: string[];
 
+	pollId: string;
 
-	constructor(private route : ActivatedRoute, private router: Router) {}
+
+	constructor(private route : ActivatedRoute, private router: Router, private service: CreateEventPollService) {}
 
 	ngOnInit() {
-		this.creatorFirstName = "Rob";
-		this.creatorLastName = "Stark";
-		this.eventTitle = "Battle";
-		this.locations = ["SMU", "Somewehre else", "Chickfila"];
-		this.times = ["date1", "date2", "Date3"];
-		this.emails = ["fjs@smu.edu, asdf@smu.edu"];
-		this.description = "A battle yayayay with swords and people and alcohol and food and things in game of thrones. Need more text text text tesxt";
-		this.coverCharge = 25;
-		this.askDonations = true;
-		this.askNeedPickup = true;
-		this.askCanDrive = true;
-		this.deadline = "tomorrow";
+		this.route.params.forEach(x => this.load(x['id']));
 		this.selectedLocations = [];
 		this.selectedTimes = [];
 	}
@@ -74,5 +56,25 @@ export class EventVotingFormComponent {
 		} else {
 			this.selectedTimes.push(time);
 		}
+	}
+
+	private load(id) {
+		if (!id) {
+			return;
+		}
+		var onload = (data) => {
+			if (data) {
+				console.log(data);
+				this.creatorName = data.creatorName;
+				this.eventTitle = data.eventTitle;
+				this.pollDeadline = data.pollDeadline;
+				this.locations = data.locations;
+				this.times = data.times;
+				this.description = data.description;
+				this.coverCharge = data.coverCharge;
+			}
+		};
+		this.service.getPoll(id).then(onload);
+		this.pollId = id.substring(0, Math.floor(id.length / 2));
 	}
 }

@@ -5,12 +5,12 @@
                 <div class="panel-body">
                     <div class="static">
                         <h1 class="title">{{eventTitle}}</h1>
-                        <h4 class="title">Created By: {{creatorFirstName}} {{creatorLastName}}</h4>
+                        <h4 class="title">Created By: {{creatorName}}</h4>
                         <div class="border">
                             <p class="left">{{description}}</p>
                             <div class="span">
                                 <p [hidden]="!coverCharge">Cover Charge: ${{coverCharge}}</p>
-                                <p class="deadline">Deadline: {{deadline}}</p>
+                                <p class="deadline">Deadline: {{pollDeadline}}</p>
                             </div>
                         </div>
                     </div>
