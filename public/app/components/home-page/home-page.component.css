@@ -78,6 +78,18 @@ div.topcontain {
     align-items: center;
 }
 
+.button_four {
+    margin-top: 0px;
+    padding-top: 0px;
+    align-items: center;
+}
+
+.button_five {
+    margin-top: 0px;
+    padding-top: 0px;
+    align-items: center;
+}
+
 .imgbackground {
     margin-right: 0px;
     margin-left: -200px;
@@ -239,6 +251,27 @@ div.button_three {
     margin-left: 160px;
 }
 
+.code_enter {
+
+    margin-top: 50px;
+}
+
+div.button_four {
+    width: 20%;
+    align-self: center;
+    margin-top: 40px;
+    display: inline-flex;
+    margin-left: 380px;
+
+}
+
+div.button_five {
+    width: 20%;
+    align-self: left;
+    display: inline-flex;
+    margin-left: 160px;
+}
+
 
 /*#one{
     width: 250px;
@@ -287,6 +320,38 @@ div.button_three {
     transition: color .3s,border .3s;
     align-self: right;
     align-items: right;
+}
+
+#four{
+    width: 280px;
+    height: 60px;
+    /*padding: 1.05rem 2.75rem;*/
+    color: rgba(51, 139, 255, 0.85);
+    background-color: rgba(255, 255, 255, 0.75);
+    font-size: 16px;
+    font-weight: 300;
+    text-transform: uppercase;
+    border-radius: 50px;
+    border: .2rem solid rgba(51, 139, 255, 0.85);
+    -webkit-transition: color .3s,border .3s;
+    transition: color .3s,border .3s;
+    align-self: center;
+}
+
+#five{
+    width: 280px;
+    height: 60px;
+    /*padding: 1.05rem 2.75rem;*/
+    color: rgba(51, 139, 255, 0.85);
+    background-color: rgba(255, 255, 255, 0.75);
+    font-size: 16px;
+    font-weight: 300;
+    text-transform: uppercase;
+    border-radius: 50px;
+    border: .2rem solid rgba(51, 139, 255, 0.85);
+    -webkit-transition: color .3s,border .3s;
+    transition: color .3s,border .3s;
+    align-self: center;
 }
 
 img.comp {

@@ -25,8 +25,13 @@
                     <div class="paragraph">
                         <h2>What is PollEase?</h2>
                         <hr>
-                        <p>PollEase is a web application that will allow any user to easily be their own event planner. It will effectively connect event attendees with the host and enable the host to gather important information from attendees, like availability and location preferences, to assist them in planning the event for the group as a whole.</p>
-
+                        <p>
+                            PollEase is a web application that helps anyone to easily be their own event planner. 
+                            We aim to help anyone collect information on their invitees prefered time and 
+                            location preferences, in a fast and non intrusive way. Get started now, it only takes
+                             3 minutes and an email to create and send out your first poll, and seconds for invitees
+                              to submit their vote.
+                        </p>
                         <!-- <img class = "comp" src="./images/computer1.jpg"> -->
                     </div>
 
@@ -52,20 +57,25 @@
             <button id = "three" style="margin-top:5px;" class="btn btn-primary colorsave" data-toggle="modal" data-target="#myModal">Get Your Active Polls</button>
         </div>
 
-        <div class="form-group">
+        <div class="form-group code_enter">
             <input  id="poll_id"
                     class="form-control"
+                    placeholder="Your Code Here"
+                    required
                     [(ngModel)]="poll_id" />
         </div>
 
-        <a class= "button_four btn btn-primary colorsave" (click)="vote(poll_id)">
-            VOTE
-        </a>
+        <div class = "button_four">
+            <button id="four" class= "btn btn-primary colorsave" (click)="vote(poll_id)">
+                Vote
+            </button>
+        </div>
 
-        <a class= "button_five btn btn-primary colorsave" (click)="results(poll_id)">
-            RESULTS
-        </a>
-
+        <div class = "button_five">
+            <button id="five" class= "btn btn-primary colorsave" (click)="results(poll_id)">
+                Results
+            </button>
+        </div>
 
     </section>
 
